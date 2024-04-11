@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import logoImage from '../assets/logo.svg';
 import OutlinedButton from './OutlinedButton';
 

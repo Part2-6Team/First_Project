@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 function selectPadding(size) {
   if (size === 56) return 14;
