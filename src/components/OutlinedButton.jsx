@@ -19,6 +19,7 @@ const OutlinedButton = styled.button`
   border: 1px solid var(--Gray-300);
   background: var(--White);
   color: var(--Black);
+  cursor: pointer;
 
   &:disabled {
     background: var(--Gray-300);
