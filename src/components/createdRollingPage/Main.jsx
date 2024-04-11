@@ -1,7 +1,9 @@
 import React from 'react';
 import { styled } from 'styled-components';
+
 import AddCard from './AddCard';
 import Card from './Card';
+import UrlCopyPhrases from './UrlCopyPharases';
 
 function Main() {
   return (
@@ -10,10 +12,8 @@ function Main() {
         <AddCard />
         <Card />
         <Card />
-        <Card />
-        <Card />
-        <Card />
       </CardContainer>
+      <UrlCopyPhrases />
     </Container>
   );
 }
