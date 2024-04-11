@@ -4,7 +4,7 @@ function selectPadding(size) {
   if (size === 56) return 14;
   if (size === 40) return 8;
   if (size === 36) return 6;
-  if (size === 28) return 2;
+  return 2;
 }
 
 const OutlinedButton = styled.button`
