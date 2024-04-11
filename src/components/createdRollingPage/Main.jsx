@@ -4,23 +4,32 @@ import { styled } from 'styled-components';
 import AddCard from './AddCard';
 import Card from './Card';
 import UrlCopyPhrases from './UrlCopyPharases';
+import CardModal from './CardModal';
 
 function Main() {
   return (
-    <Container>
-      <CardContainer>
-        <AddCard />
-        <Card />
-        <Card />
-      </CardContainer>
-      <UrlCopyPhrases />
-    </Container>
+    <>
+      <Container>
+        <CardContainer>
+          <AddCard />
+          <Card />
+          <Card />
+        </CardContainer>
+        <UrlCopyPhrases />
+      </Container>
+
+      {/* 모달이 존재할때만 랜더링 */}
+      <CardModal />
+    </>
   );
 }
 
 const Container = styled.main`
   background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : 'none')};
   background-color: var(--Orange-200);
+
+  // 모달이 존재할때는 50%로 어둡게 처리
+  filter: brightness(100%);
   padding: 80px 0;
   min-height: 100%;
   height: auto;
