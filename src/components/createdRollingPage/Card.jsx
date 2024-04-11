@@ -19,7 +19,9 @@ function Card() {
       <Comment>
         <p className="comment">
           코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또
-          하세요!
+          하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
+          또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두
+          조심 또 하세요!
         </p>
       </Comment>
       <CreatedAt>2021.09.01</CreatedAt>
@@ -30,7 +32,7 @@ function Card() {
 const Container = styled.div`
   padding: 24px;
   background-color: var(--White);
-  width: 384px;
+  max-width: 384px;
   height: 280px;
   border-radius: 16px;
   display: flex;
@@ -39,13 +41,13 @@ const Container = styled.div`
 
   position: relative;
 
-  @media (max-width: 1270px) {
-    width: 352px;
+  @media (max-width: 1248px) {
+    max-width: 352px;
     height: 284px;
   }
 
-  @media (max-width: 870px) {
-    width: 320px;
+  @media (max-width: 800px) {
+    max-width: 320px;
     height: 230px;
   }
 `;
@@ -57,6 +59,10 @@ const ProfileWrap = styled.div`
   gap: 14px;
 
   border-bottom: 1px solid var(--Gray-200);
+
+  @media (max-width: 800px) {
+    padding: 16px 0 15px;
+  }
 `;
 
 const ProfileImg = styled.img`
@@ -95,6 +101,7 @@ const RelrationLabel = styled.span`
 
 const Comment = styled.div`
   width: 100%;
+  padding-top: 16px;
 
   overflow: hidden;
   color: var(--gray-600);
@@ -102,11 +109,21 @@ const Comment = styled.div`
   word-wrap: break-word;
   white-space: normal;
   line-height: 1.2;
-  height: 5.5em;
+  height: 6.2em;
 
   display: -webkit-box;
   -webkit-line-clamp: 4; // 원하는 라인수
   -webkit-box-orient: vertical;
+
+  @media (max-width: 1248px) {
+    -webkit-line-clamp: 3; // 원하는 라인수
+    height: 5em;
+  }
+
+  @media (max-width: 800px) {
+    -webkit-line-clamp: 2; // 원하는 라인수
+    height: 3.4em;
+  }
 
   .comment {
     font-size: 18px;

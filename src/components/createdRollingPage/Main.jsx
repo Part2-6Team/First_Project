@@ -41,20 +41,24 @@ const Container = styled.main`
   padding: 80px 0;
   min-height: 100%;
   height: auto;
+
+  @media (max-width: 800px) {
+    padding: 80px 24px;
+  }
 `;
 
 const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  padding: 0 24px;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1248px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 870px) {
+  @media (max-width: 800px) {
     grid-template-columns: repeat(1, 1fr);
-    padding: 0 24px;
   }
 `;
 

@@ -31,6 +31,10 @@ const Container = styled.div`
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
+
+  @media (max-width: 870px) {
+    width: 320px;
+  }
 `;
 
 const CopyUrl = styled.div`

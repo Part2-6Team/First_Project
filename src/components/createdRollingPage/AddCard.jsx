@@ -22,12 +22,12 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1248px) {
     width: 352px;
     height: 284px;
   }
 
-  @media (max-width: 870px) {
+  @media (max-width: 800px) {
     width: 320px;
     height: 230px;
   }
