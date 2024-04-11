@@ -18,7 +18,7 @@ const Container = styled.div`
 const StyledText = styled.span`
   font-size: 16px;
   font-weight: 400;
-  color: white;
+  color: var(--White);
 `;
 
 export default EmojiBadge;

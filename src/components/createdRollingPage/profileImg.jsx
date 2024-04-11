@@ -16,7 +16,7 @@ const StyledProfileImg = styled.img`
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: ${({ $border }) => ($border ? '2px solid #fff' : 'none')};
+  border: ${({ $border }) => ($border ? '2px solid var(--White)' : 'none')};
 
   flex: 1;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import CreatedRolloingPage from './pages/createdRollingPage';
+import './color.css';
 
 function App() {
   return <CreatedRolloingPage />;

@@ -1,9 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-import ProfileImg from '../components/createdRollingPage/profileImg';
-import EmojiBadge from '../components/createdRollingPage/\bEmojiBadge';
-
 import profile from '../assets/profile.png';
 import profile2 from '../assets/profile2.png';
 import profile3 from '../assets/profile3.png';
@@ -11,6 +8,9 @@ import plusProfile from '../assets/plusProfile.svg';
 import dropArrow from '../assets/dropArrow.svg';
 import addEmoji from '../assets/addEmoji.svg';
 import share from '../assets/share.svg';
+
+import EmojiBadge from '../components/createdRollingPage/EmojiBadge';
+import ProfileImg from '../components/createdRollingPage/ProfileImg';
 
 function CreatedRolloingPage() {
   return (
@@ -55,13 +55,14 @@ const Header = styled.header`
   padding: 13px 0;
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 1248px) {
     margin: 0 24px;
   }
 `;
 
 const Left = styled.span`
-  color: var(--gray-800, #2b2b2b);
+  color: var(--Gray-800);
   font-size: 28px;
   font-weight: 700;
   line-height: 42px;
@@ -84,7 +85,7 @@ const ProfileContainer = styled.div`
 `;
 
 const PostCountText = styled.span`
-  color: var(--gray-900, #181818);
+  color: var(--Gray-900);
   font-size: 18px;
   font-weight: 400;
   line-height: 27px; /* 150% */
@@ -115,8 +116,8 @@ const AddEmojiBtn = styled.button`
   gap: 4px;
   padding: 6px 16px;
   border-radius: 6px;
-  border: 1px solid var(--gray-300, #ccc);
-  background: var(--white, #fff);
+  border: 1px solid var(--Gray-300);
+  background: var(--White);
   .addEmoji {
     width: 24px;
     height: 24px;
@@ -126,15 +127,15 @@ const AddEmojiBtn = styled.button`
 const DividingLine = styled.div`
   width: 1px;
   height: 28px;
-  background: var(--gray-200, #eee);
+  background: var(--Gray-200);
   margin: 0 13px;
 `;
 
 const ShareButton = styled.button`
   padding: 6px 16px;
   border-radius: 6px;
-  border: 1px solid var(--gray-300, #ccc);
-  background: var(--white, #fff);
+  border: 1px solid var(--Gray-300);
+  background: var(--White);
 
   .shareImg {
     width: 24px;
