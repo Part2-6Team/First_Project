@@ -19,7 +19,10 @@ function GlobalNav({ hasButton = false }) {
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 64px;
   padding: 0 350px;
+  border-bottom: 2px solid var(--Gray-100);
 `;
 
 const Logo = styled.button`
