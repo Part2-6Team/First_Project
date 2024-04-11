@@ -21,6 +21,16 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1270px) {
+    width: 352px;
+    height: 284px;
+  }
+
+  @media (max-width: 870px) {
+    width: 320px;
+    height: 230px;
+  }
 `;
 
 const PlusIconWrap = styled.div`

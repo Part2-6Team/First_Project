@@ -38,6 +38,16 @@ const Container = styled.div`
   align-items: flex-start;
 
   position: relative;
+
+  @media (max-width: 1270px) {
+    width: 352px;
+    height: 284px;
+  }
+
+  @media (max-width: 870px) {
+    width: 320px;
+    height: 230px;
+  }
 `;
 
 const ProfileWrap = styled.div`

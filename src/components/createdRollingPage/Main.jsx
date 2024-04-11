@@ -14,12 +14,17 @@ function Main() {
           <AddCard />
           <Card />
           <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </CardContainer>
         <UrlCopyPhrases />
       </Container>
 
       {/* 모달이 존재할때만 랜더링 */}
-      <CardModal />
+      {/* <CardModal /> */}
     </>
   );
 }
@@ -27,6 +32,9 @@ function Main() {
 const Container = styled.main`
   background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : 'none')};
   background-color: var(--Orange-200);
+
+  display: flex;
+  justify-content: center;
 
   // 모달이 존재할때는 50%로 어둡게 처리
   filter: brightness(100%);
@@ -36,14 +44,18 @@ const Container = styled.main`
 `;
 
 const CardContainer = styled.div`
-  //   display: grid;
-  //   grid-template-columns: repeat(3, 1fr);
-  //   gap: 16px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  justify-content: center;
-  height: auto; /* 부모 요소의 높이를 자식 요소에 맞게 설정합니다. */
+
+  @media (max-width: 1270px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 870px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 24px;
+  }
 `;
 
 export default Main;

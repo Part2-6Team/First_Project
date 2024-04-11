@@ -14,7 +14,7 @@ function CreatedRolloingPage() {
 }
 
 const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - 68px);
 `;
 
 export default CreatedRolloingPage;
