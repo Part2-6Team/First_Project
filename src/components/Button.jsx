@@ -7,12 +7,6 @@ const BUTTON_TEXT = {
   postPage: '생성하기',
 };
 
-const BUTTON_WIDTH = {
-  mainPage: '구경해보기',
-  listPage: '280px',
-  postPage: '생성하기',
-};
-
 function Button({ disabled, PageName }) {
   return (
     <ButtonStyled disabled={disabled}>{BUTTON_TEXT[PageName]}</ButtonStyled>
