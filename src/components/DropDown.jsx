@@ -3,22 +3,31 @@ import { styled } from 'styled-components';
 import arrowTop from '../assets/arrow_top.svg';
 import arrowDown from '../assets/arrow_right.svg';
 
-function OptionList({ display }) {
+function OptionList({ display, setSelected }) {
+  const handleClickOption = (e) => {
+    setSelected(e.target.innerText);
+  };
+
   return (
-    <div>
-      {display.map((item) => {
-        return (
-          <li className="options" key={item.id}>
-            {item.value}
-          </li>
-        );
-      })}
-    </div>
+    <OptionWrapper>
+      {display.map((item) => (
+        <li
+          role="presentation"
+          className="option"
+          key={item.id}
+          onClick={() => {}}
+          onKeyDown={(e) => handleClickOption(e)}
+        >
+          {item.value}
+        </li>
+      ))}
+    </OptionWrapper>
   );
 }
 
 function DropDown({ display }) {
   const [isDropdownView, setDropdownView] = useState(false);
+  const [selected, setSelected] = useState(display[0].value);
 
   const handlerOnClickDropDown = () => {
     setDropdownView(!isDropdownView);
@@ -26,13 +35,59 @@ function DropDown({ display }) {
 
   return (
     <div>
-      <label onClick={handlerOnClickDropDown}>
-        <button type="button">{display[0].value}</button>
-        <img className="icon" src={arrowDown} alt="화살표" />
-      </label>
-      {isDropdownView ? <OptionList display={display} /> : null}
+      <DropdownLabel type="button" onClick={handlerOnClickDropDown}>
+        <div className="label">{selected}</div>
+        {isDropdownView ? (
+          <img className="icon" src={arrowTop} alt="화살표" />
+        ) : (
+          <img className="icon" src={arrowDown} alt="화살표" />
+        )}
+      </DropdownLabel>
+      {isDropdownView ? (
+        <OptionList display={display} setSelected={setSelected} />
+      ) : null}
     </div>
   );
 }
+
+const OptionWrapper = styled.div`
+  box-sizing: border-box;
+  width: 320px;
+  list-style: none;
+  color: var(--Gray-900);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 8px;
+  border: 1px solid var(--Gray-300);
+
+  .option {
+    padding: 12px 16px;
+    height: 50px;
+    box-sizing: border-box;
+  }
+
+  .option:hover {
+    background: var(--Gray-100);
+  }
+`;
+
+const DropdownLabel = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--Gray-300);
+  background: var(--White);
+  box-sizing: border-box;
+
+  .label {
+    color: var(--Gray-500);
+    font-family: Pretendard;
+    font-size: 16px;
+  }
+`;
 
 export default DropDown;
