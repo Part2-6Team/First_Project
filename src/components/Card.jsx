@@ -1,25 +1,38 @@
-/* eslint-disable react/function-component-definition */
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { styled } from 'styled-components';
-import { BackgroundColorPattern, BackgroundColor } from './constant';
 
-export const Card = ({ ColorData, ProfileImageData }) => (
-  <CardStyled backgroundColor={BackgroundColor[ColorData]}>
-    <CardContainer>
-      <img src={BackgroundColorPattern[ColorData]} alt="배경 색 패턴" />
-      <CardDataSection>
-        <CardToId>To.</CardToId>
-        <ProfileImage>{ProfileImageData}</ProfileImage>
-        <RollingWriteCount>30</RollingWriteCount>
-        <RollingWriteText>명이 작성했어요!</RollingWriteText>
-      </CardDataSection>
-      <EmojiBadge>
-        <EmojiBadgeContent>Emoji, count</EmojiBadgeContent>
-      </EmojiBadge>
-    </CardContainer>
-  </CardStyled>
-);
+const BackgroundColorPattern = {
+  beige: 'images/pattern_beige.svg',
+  purple: 'images/pattern_purple.svg',
+  blue: 'images/pattern_blue.svg',
+  green: 'images/pattern_green.svg',
+};
+
+const BackgroundColor = {
+  beige: 'beige',
+  purple: 'purple',
+  blue: 'blue',
+  green: 'green',
+};
+
+function Card({ ColorData, ProfileImageData }) {
+  return (
+    <CardStyled backgroundColor={BackgroundColor[ColorData]}>
+      <CardContainer>
+        <img src={BackgroundColorPattern[ColorData]} alt="배경 색 패턴" />
+        <CardDataSection>
+          <CardToId>To.</CardToId>
+          <ProfileImage>{ProfileImageData}</ProfileImage>
+          <RollingWriteCount>30</RollingWriteCount>
+          <RollingWriteText>명이 작성했어요!</RollingWriteText>
+        </CardDataSection>
+        <EmojiBadge>
+          <EmojiBadgeContent>Emoji, count</EmojiBadgeContent>
+        </EmojiBadge>
+      </CardContainer>
+    </CardStyled>
+  );
+}
 
 const CardStyled = styled.div`
   width: 27.5rem;
@@ -88,3 +101,5 @@ const EmojiBadgeContent = styled.div`
   font-weight: 400;
   line-height: 125%;
 `;
+
+export default Card;

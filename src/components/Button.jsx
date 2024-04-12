@@ -1,13 +1,26 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { styled } from 'styled-components';
-import { BUTTON_TEXT } from './constant';
 
-export const Button = ({ disabled, PageName }) => {
-  <ButtonStyled disabled={disabled}>{BUTTON_TEXT[PageName]}</ButtonStyled>;
+const BUTTON_TEXT = {
+  mainPage: '구경해보기',
+  listPage: '나도 만들어보기',
+  postPage: '생성하기',
 };
 
-const ButtonStyled = styled.div`
+const BUTTON_WIDTH = {
+  mainPage: '구경해보기',
+  listPage: '280px',
+  postPage: '생성하기',
+};
+
+function Button({ disabled, PageName }) {
+  return (
+    <ButtonStyled disabled={disabled}>{BUTTON_TEXT[PageName]}</ButtonStyled>
+  );
+}
+
+const ButtonStyled = styled.button`
+  width: 280px;
   color: var(--White);
   display: inline-flex;
   justify-content: center;
@@ -33,3 +46,5 @@ const ButtonStyled = styled.div`
   &:active {
     background-color: ${(props) => !props.disabled && 'var(--Purple-800)'};
 `;
+
+export default Button;

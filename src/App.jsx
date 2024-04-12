@@ -1,23 +1,22 @@
-/* eslint-disable import/named */
 import React from 'react';
 import './color.css';
-import { Layout } from './components/Layout';
-import { ListPage } from './components/ListPage';
-import { Header } from './components/GlobalNav';
-import { CardListTitle } from './components/CardListTitle';
-import { CardList } from './components/CardList';
-import { Button } from './components/Button';
+import Layout from './components/Layout';
+import ListPage from './components/ListPage';
+import GlobalNav from './components/GlobalNav';
+import CardListTitle from './components/CardListTitle';
+import CardList from './components/CardList';
+import Button from './components/Button';
 
 function App() {
   return (
     <Layout>
       <ListPage>
-        <Header />
-        <CardListTitle textType="Text1" />
+        <GlobalNav hasButton />
+        <CardListTitle />
         <CardList />
-        <CardListTitle textType="Text2" />
+        <CardListTitle />
         <CardList />
-        <Button PageName="listPage" />
+        <Button />
       </ListPage>
     </Layout>
   );

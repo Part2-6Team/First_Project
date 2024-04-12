@@ -1,6 +1,6 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { styled } from 'styled-components';
-import logoImage from '../../assets/logo.svg';
+import logoImage from '../assets/logo.svg';
 import OutlinedButton from './OutlineButton';
 
 function GlobalNav({ hasButton = false }) {
