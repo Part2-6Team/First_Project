@@ -28,5 +28,11 @@ module.exports = {
     'react/prop-types': ['off'],
     'linebreak-style': 0,
     'react/react-in-jsx-scope': 'off',
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        some: ['nesting', 'id'],
+      },
+    ],
   },
 };
