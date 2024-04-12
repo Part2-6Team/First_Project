@@ -10,7 +10,7 @@ import addEmoji from '../../assets/addEmoji.svg';
 import share from '../../assets/share.svg';
 
 import EmojiBadge from './EmojiBadge';
-import ProfileImg from './ProfileImg';
+import ProfileImg from './profileImg';
 import device from '../../config';
 
 function Header() {
