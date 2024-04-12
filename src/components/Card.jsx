@@ -2,10 +2,10 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const BackgroundColorPattern = {
-  beige: 'images/pattern_beige.svg',
-  purple: 'images/pattern_purple.svg',
-  blue: 'images/pattern_blue.svg',
-  green: 'images/pattern_green.svg',
+  beige: '../assets/pattern_beige.svg',
+  purple: '../assets/pattern_purple.svg',
+  blue: '../assets/pattern_blue.svg',
+  green: '../assets/pattern_green.svg',
 };
 
 const BackgroundColor = {

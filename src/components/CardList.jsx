@@ -2,10 +2,10 @@ import React from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
 
-function CardList(ColorData) {
+function CardList() {
   return (
     <CardListStyled>
-      <Card ColorData={ColorData} />
+      <Card ColorData="beige" />
     </CardListStyled>
   );
 }
