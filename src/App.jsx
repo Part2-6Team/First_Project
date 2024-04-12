@@ -1,19 +1,21 @@
 /* eslint-disable import/named */
 import React from 'react';
-import './color-list.css';
-import { Layout } from './ListPageUi/Layout';
-import { ListPage } from './ListPageUi/ListPage';
-import { Header } from './ListPageUi/Header';
-import { CardListTitle } from './ListPageUi/CardListTitle';
-import { CardList } from './ListPageUi/CardList';
-import { Button } from './ListPageUi/Button';
+import './color.css';
+import { Layout } from './components/Layout';
+import { ListPage } from './components/ListPage';
+import { Header } from './components/GlobalNav';
+import { CardListTitle } from './components/CardListTitle';
+import { CardList } from './components/CardList';
+import { Button } from './components/Button';
 
 function App() {
   return (
     <Layout>
       <ListPage>
         <Header />
-        <CardListTitle />
+        <CardListTitle textType="Text1" />
+        <CardList />
+        <CardListTitle textType="Text2" />
         <CardList />
         <Button PageName="listPage" />
       </ListPage>
