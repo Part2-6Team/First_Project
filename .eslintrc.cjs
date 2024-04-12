@@ -27,6 +27,10 @@ module.exports = {
     ],
     'object-curly-newline': 'off',
     'react/prop-types': ['off'],
-    'import/extensions': [2, 'ignorePackages', { js: 'never', jsx: 'never' }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      { js: 'never', jsx: 'never' },
+    ],
   },
 };
