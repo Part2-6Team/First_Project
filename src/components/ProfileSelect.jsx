@@ -59,6 +59,8 @@ const ProfileImageListWrapper = styled.div`
   .description {
     color: var(--Gray-500);
     font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
     margin: 0;
   }
 
