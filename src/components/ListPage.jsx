@@ -19,10 +19,8 @@ function ListPage() {
 const ListPageStyled = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
-  margin-right: 380px;
-  margin-bottom: 380px;
-  margin-left: 218px;
+  margin-right: 38rem;
+  margin-left: 21.8rem;
 `;
 
 export default ListPage;

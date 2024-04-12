@@ -17,6 +17,7 @@ const CardListTitleStyled = styled.div`
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 150%;
+  margin-top: 5rem;
 `;
 
 export default CardListTitle;

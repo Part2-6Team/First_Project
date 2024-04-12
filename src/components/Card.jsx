@@ -26,9 +26,13 @@ function Card({ ColorData, ProfileImageData }) {
           <RollingWriteCount>30</RollingWriteCount>
           <RollingWriteText>명이 작성했어요!</RollingWriteText>
         </CardDataSection>
-        <EmojiBadge>
-          <EmojiBadgeContent>Emoji, count</EmojiBadgeContent>
-        </EmojiBadge>
+        <EmojiBadgeSection>
+          <EmojiBadgeFrame>
+            <EmojiBadge>E, c</EmojiBadge>
+            <EmojiBadge>E, c</EmojiBadge>
+            <EmojiBadge>E, c</EmojiBadge>
+          </EmojiBadgeFrame>
+        </EmojiBadgeSection>
       </CardContainer>
     </CardStyled>
   );
@@ -42,6 +46,7 @@ const CardStyled = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${(props) => props.backgroundColor};
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+  margin-top: 1.6rem;
 `;
 
 const CardContainer = styled.div`
@@ -82,17 +87,19 @@ const RollingWriteText = styled.div`
   line-height: 2.6rem;
 `;
 
-const EmojiBadge = styled.div`
-  display: inline-flex;
-  justify-content: center;
+const EmojiBadgeSection = styled.div`
+  display: flex;
   align-items: flex-start;
-  padding: 8px 12px;
-  gap: 10px;
-  border-radius: 32px;
-  background-color: rgba(0, 0, 0, 0.54);
+  gap: 16px;
 `;
 
-const EmojiBadgeContent = styled.div`
+const EmojiBadgeFrame = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+`;
+
+const EmojiBadge = styled.div`
   display: flex;
   align-items: center;
   gap: 2px;
@@ -100,6 +107,9 @@ const EmojiBadgeContent = styled.div`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 125%;
+  padding: 8px 12px;
+  border-radius: 32px;
+  background-color: rgba(0, 0, 0, 0.54);
 `;
 
 export default Card;
