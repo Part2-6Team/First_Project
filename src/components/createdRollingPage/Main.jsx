@@ -3,8 +3,7 @@ import { styled } from 'styled-components';
 
 import AddCard from './AddCard';
 import Card from './Card';
-import UrlCopyPhrases from './UrlCopyPharases';
-import CardModal from './CardModal';
+import device from '../../config';
 
 function Main() {
   return (
@@ -19,12 +18,14 @@ function Main() {
           <Card />
           <Card />
           <Card />
+          <Card />
+          <Card />
         </CardContainer>
-        <UrlCopyPhrases />
       </Container>
 
-      {/* 모달이 존재할때만 랜더링 */}
-      {/* <CardModal /> */}
+      {/* Url을 카피했을 경우 UrlCopyPhrases가 위치할 자리 */}
+
+      {/* 모달이 존재할때 카드 모달이 위치할 자리 */}
     </>
   );
 }
@@ -32,17 +33,19 @@ function Main() {
 const Container = styled.main`
   background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : 'none')};
   background-color: var(--Orange-200);
-
+  width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 
-  // 모달이 존재할때는 50%로 어둡게 처리
-  filter: brightness(100%);
   padding: 80px 0;
   min-height: 100%;
   height: auto;
 
-  @media (max-width: 800px) {
+  // 모달이 존재할때는 50%로 어둡게 처리
+  filter: brightness(100%);
+
+  @media ${device.mobile} {
     padding: 80px 24px;
   }
 `;
@@ -53,11 +56,11 @@ const CardContainer = styled.div`
   gap: 16px;
   padding: 0 24px;
 
-  @media (max-width: 1248px) {
+  @media ${device.tablet} {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 800px) {
+  @media ${device.mobile} {
     grid-template-columns: repeat(1, 1fr);
   }
 `;

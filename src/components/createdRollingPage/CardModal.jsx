@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import profile from '../../assets/profile.png';
+import device from '../../config';
 
 function CardModal() {
   return (
@@ -59,10 +60,22 @@ const Container = styled.div`
   border-radius: 16px;
   filter: brightness(100%);
 
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -40%);
+
+  @media ${device.tablet} {
+    max-width: 382px;
+    height: 304px;
+    padding: 24px;
+  }
+
+  @media ${device.mobile} {
+    padding: 20px;
+    max-width: 320px;
+    height: 270px;
+  }
 `;
 
 const ProfileWrap = styled.div`
@@ -74,6 +87,10 @@ const ProfileWrap = styled.div`
   padding: 28px 0 15px;
 
   border-bottom: 1px solid var(--Gray-200);
+
+  @media ${device.mobile} {
+    padding: 0px 0 15px;
+  }
 `;
 
 const ProfileImg = styled.img`
@@ -96,12 +113,20 @@ const Name = styled.span`
     color: var(--Black);
     font-size: 20px;
     font-weight: 400;
+
+    @media ${device.mobile} {
+      font-size: 16px;
+    }
   }
 
   .name {
     color: var(--Black);
     font-size: 20px;
     font-weight: 700;
+
+    @media ${device.mobile} {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -125,6 +150,7 @@ const CreatedAt = styled.span`
 const Comment = styled.div`
   width: 100%;
   height: 240px;
+
   overflow-y: scroll;
   padding-right: 16px;
   &::-webkit-scrollbar {
@@ -141,6 +167,16 @@ const Comment = styled.div`
   font-weight: 400;
 
   margin-top: 16px;
+
+  @media ${device.tablet} {
+    -webkit-line-clamp: 3; // 원하는 라인수
+    height: 7em;
+  }
+
+  @media ${device.mobile} {
+    -webkit-line-clamp: 2; // 원하는 라인수
+    height: 7.2em;
+  }
 `;
 
 export default CardModal;

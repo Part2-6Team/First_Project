@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 
 import checkImg from '../../assets/checkImg.svg';
 import closeIcon from '../../assets/closeIcon.svg';
+import device from '../../config';
 
 function UrlCopyPhrases() {
   return (
@@ -27,12 +28,13 @@ const Container = styled.div`
   background: rgba(0, 0, 0, 0.8);
   width: 524px;
 
-  position: absolute;
+  z-index: 1;
+  position: fixed;
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
 
-  @media (max-width: 870px) {
+  @media ${device.mobile} {
     width: 320px;
   }
 `;

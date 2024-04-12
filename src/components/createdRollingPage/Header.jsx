@@ -11,6 +11,7 @@ import share from '../../assets/share.svg';
 
 import EmojiBadge from './EmojiBadge';
 import ProfileImg from './ProfileImg';
+import device from '../../config';
 
 function Header() {
   return (
@@ -36,7 +37,7 @@ function Header() {
         <DropArrow src={dropArrow} alt="dropArrow" />
         <AddEmojiBtn>
           <img className="addEmoji" src={addEmoji} alt="add emoji button" />
-          추가
+          <p className="addText">추가</p>
         </AddEmojiBtn>
         <DividingLine />
         <ShareButton>
@@ -48,16 +49,22 @@ function Header() {
 }
 
 const Container = styled.header`
-  max-width: 1200px;
-  margin: 0 auto;
-
+  width: 1184px;
   display: flex;
   padding: 13px 0;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: 1248px) {
-    margin: 0 24px;
+  @media ${device.tablet} {
+    width: 736px;
+    margin: 0 auto;
+  }
+
+  @media ${device.mobile} {
+    width: 320px;
+    align-items: flex-start;
+    flex-direction: column;
   }
 `;
 
@@ -72,12 +79,25 @@ const Left = styled.span`
 const Right = styled.div`
   display: flex;
   align-items: center;
+
+  @media ${device.mobile} {
+    border-top: 1px solid var(--Gray-200);
+    padding: 8px 0;
+  }
 `;
 
 const PostUserContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 11px;
+
+  @media ${device.tablet} {
+    display: none;
+  }
+
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
 const ProfileContainer = styled.div`
@@ -95,6 +115,10 @@ const PostCountText = styled.span`
 const EmojiContainer = styled.div`
   display: flex;
   gap: 10px;
+
+  @media ${device.mobile} {
+    gap: 8px;
+  }
 `;
 
 const DropArrow = styled.button`
@@ -108,6 +132,11 @@ const DropArrow = styled.button`
   height: 36px;
   padding: 6px;
   margin: 0 8px;
+
+  @media ${device.mobile} {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const AddEmojiBtn = styled.button`
@@ -118,9 +147,23 @@ const AddEmojiBtn = styled.button`
   border-radius: 6px;
   border: 1px solid var(--Gray-300);
   background: var(--White);
+
   .addEmoji {
     width: 24px;
     height: 24px;
+  }
+
+  @media ${device.mobile} {
+    padding: 8px;
+
+    .addText {
+      display: none;
+    }
+
+    .addEmoji {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 
@@ -140,6 +183,15 @@ const ShareButton = styled.button`
   .shareImg {
     width: 24px;
     height: 24px;
+  }
+
+  @media ${device.mobile} {
+    padding: 8px;
+
+    .shareImg {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 

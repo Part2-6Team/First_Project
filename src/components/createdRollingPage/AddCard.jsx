@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import plusCardIcon from '../../assets/plusCardIcon.svg';
+import device from '../../config';
 
 function AddCard() {
   return (
@@ -22,20 +23,23 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1248px) {
+  @media ${device.tablet} {
     width: 352px;
     height: 284px;
   }
 
-  @media (max-width: 800px) {
+  @media ${device.mobile} {
     width: 320px;
     height: 230px;
   }
 `;
 
-const PlusIconWrap = styled.div`
+const PlusIconWrap = styled.button`
   background-color: var(--Gray-500);
   border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 56px;
   height: 56px;
   padding: 16px;

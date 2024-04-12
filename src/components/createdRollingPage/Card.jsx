@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import profile from '../../assets/profile.png';
+import device from '../../config';
 
 function Card() {
   return (
@@ -41,12 +42,12 @@ const Container = styled.div`
 
   position: relative;
 
-  @media (max-width: 1248px) {
+  @media ${device.tablet} {
     max-width: 352px;
     height: 284px;
   }
 
-  @media (max-width: 800px) {
+  @media ${device.mobile} {
     max-width: 320px;
     height: 230px;
   }
@@ -60,7 +61,7 @@ const ProfileWrap = styled.div`
 
   border-bottom: 1px solid var(--Gray-200);
 
-  @media (max-width: 800px) {
+  @media ${device.mobile} {
     padding: 16px 0 15px;
   }
 `;
@@ -115,12 +116,12 @@ const Comment = styled.div`
   -webkit-line-clamp: 4; // 원하는 라인수
   -webkit-box-orient: vertical;
 
-  @media (max-width: 1248px) {
+  @media ${device.tablet} {
     -webkit-line-clamp: 3; // 원하는 라인수
     height: 5em;
   }
 
-  @media (max-width: 800px) {
+  @media ${device.mobile} {
     -webkit-line-clamp: 2; // 원하는 라인수
     height: 3.4em;
   }
