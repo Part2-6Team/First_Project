@@ -5,7 +5,7 @@ import SiteInfo from '../components/SiteInfo';
 function MainPage() {
   return (
     <div>
-      <GlobalNav hasButton={true} />
+      <GlobalNav hasButton />
       <Content>
         <SiteInfoWrapper>
           <SiteInfo order={1} />
