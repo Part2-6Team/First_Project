@@ -51,7 +51,6 @@ function DropDown({ display }) {
 }
 
 const OptionWrapper = styled.div`
-  box-sizing: border-box;
   width: 320px;
   list-style: none;
   color: var(--Gray-900);
@@ -64,7 +63,6 @@ const OptionWrapper = styled.div`
   .option {
     padding: 12px 16px;
     height: 50px;
-    box-sizing: border-box;
   }
 
   .option:hover {
@@ -79,14 +77,27 @@ const DropdownLabel = styled.button`
   width: 320px;
   padding: 12px 16px;
   border-radius: 8px;
-  border: 1px solid var(--Gray-300);
+  border: 2px solid var(--Gray-300);
   background: var(--White);
-  box-sizing: border-box;
 
   .label {
     color: var(--Gray-500);
     font-family: Pretendard;
     font-size: 16px;
+  }
+
+  &:focus,
+  &:active {
+    border: 2px solid var(--Gray-500);
+  }
+
+  &:hover {
+    border: 2px solid var(--Gray-400);
+  }
+
+  &:disabled {
+    border: 2px solid var(--Gray-400);
+    background: var(--Gray-100);
   }
 `;
 
