@@ -14,7 +14,7 @@ module.exports = {
     react: { version: '18.2' },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.svg'],
       },
     },
   },
