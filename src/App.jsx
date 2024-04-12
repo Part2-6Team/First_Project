@@ -1,9 +1,9 @@
 import React from 'react';
-import CreatedRolloingPage from './pages/createdRollingPage';
 import './color.css';
+import CreatedRollingPageEdit from './pages/CreatedRollingPageEdit';
 
 function App() {
-  return <CreatedRolloingPage />;
+  return <CreatedRollingPageEdit />;
 }
 
 export default App;

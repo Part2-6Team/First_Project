@@ -4,19 +4,28 @@ import { styled } from 'styled-components';
 import profile from '../../assets/profile.png';
 import device from '../../config';
 
-function Card() {
+import trashIcon from '../../assets/trashIcon.svg';
+
+function Card({ edit }) {
   return (
     <Container>
-      <ProfileWrap>
-        <ProfileImg src={profile} alt="profileImg" />
-        <div>
-          <Name>
-            <span className="from">From.</span>
-            <span className="name">김동훈</span>
-          </Name>
-          <RelrationLabel>가족</RelrationLabel>
-        </div>
-      </ProfileWrap>
+      <Wrap>
+        <ProfileWrap>
+          <ProfileImg src={profile} alt="profileImg" />
+          <div>
+            <Name>
+              <span className="from">From.</span>
+              <span className="name">김동훈</span>
+            </Name>
+            <RelrationLabel>가족</RelrationLabel>
+          </div>
+        </ProfileWrap>
+        {edit && (
+          <DeleteBtn>
+            <img className="deleteIcon" src={trashIcon} alt="trash Icon" />
+          </DeleteBtn>
+        )}
+      </Wrap>
       <Comment>
         <p className="comment">
           코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또
@@ -53,13 +62,20 @@ const Container = styled.div`
   }
 `;
 
+const Wrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+
+  border-bottom: 1px solid var(--Gray-200);
+`;
+
 const ProfileWrap = styled.div`
   display: flex;
   width: 100%;
   padding: 28px 0 15px;
   gap: 14px;
-
-  border-bottom: 1px solid var(--Gray-200);
 
   @media ${device.mobile} {
     padding: 16px 0 15px;
@@ -98,6 +114,23 @@ const RelrationLabel = styled.span`
   color: var(--Green-500);
   font-size: 14px;
   font-weight: 400;
+`;
+
+const DeleteBtn = styled.button`
+  background-image: url(${(props) => props.$image});
+  background-size: cover;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 8px;
+
+  border-radius: 6px;
+  border: 1px solid var(--Gray-300);
+
+  .deleteIcon {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const Comment = styled.div`

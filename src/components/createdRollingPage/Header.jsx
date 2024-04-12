@@ -49,20 +49,23 @@ function Header() {
 }
 
 const Container = styled.header`
-  width: 1184px;
+  max-width: 1184px;
+
   display: flex;
-  padding: 13px 0;
+  padding: 13px 24px;
+
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
 
   @media ${device.tablet} {
-    width: 736px;
+    max-width: 736px;
     margin: 0 auto;
   }
 
   @media ${device.mobile} {
-    width: 320px;
+    padding: 13px 0;
+    max-width: 320px;
     align-items: flex-start;
     flex-direction: column;
   }
