@@ -11,7 +11,7 @@ function App() {
   return (
     <Layout>
       <ListPage>
-        <GlobalNav hasButton />
+        <GlobalNav />
         <CardListTitle />
         <CardList />
         <CardListTitle />

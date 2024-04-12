@@ -5,7 +5,7 @@ import ListPage from './ListPage';
 function Layout() {
   return (
     <div>
-      <GlobalNav />
+      <GlobalNav hasButton />
       <ListPage />
     </div>
   );
