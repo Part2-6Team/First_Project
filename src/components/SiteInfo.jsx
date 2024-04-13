@@ -1,3 +1,4 @@
+import React from 'react';
 import { styled } from 'styled-components';
 import siteImage1 from '../assets/siteInfo1.png';
 import siteImage2 from '../assets/siteInfo2.png';
