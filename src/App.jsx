@@ -1,24 +1,21 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './color.css';
-import Layout from './components/Layout';
-import ListPage from './components/ListPage';
-import GlobalNav from './components/GlobalNav';
-import CardListTitle from './components/CardListTitle';
-import CardList from './components/CardList';
-import Button from './components/Button';
+import MainPage from './pages/MainPage';
+import SendMessagePage from './pages/SendMessagePage';
+import CreatedRollingPage from './pages/createdRollingPage';
+import CreatedRolloingPageEdit from './pages/CreatedRollingPageEdit';
 
 function App() {
   return (
-    <Layout>
-      <ListPage>
-        <GlobalNav />
-        <CardListTitle />
-        <CardList />
-        <CardListTitle />
-        <CardList />
-        <Button />
-      </ListPage>
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="post/:id" element={<CreatedRollingPage />} />
+        <Route path="post/:id/edit" element={<CreatedRolloingPageEdit />} />
+        <Route path="post/:id/message" element={<SendMessagePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
