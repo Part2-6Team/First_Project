@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import logoImage from '../assets/logo.svg';
-import OutlinedButton from './OutlineButton';
+import OutlinedButton from './OutlinedButton';
 
 function GlobalNav({ hasButton = false }) {
   return (
@@ -33,6 +33,7 @@ const Logo = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+
   .logoTitle {
     font-family: Poppins;
     color: var(--Gray-700);
