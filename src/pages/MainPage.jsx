@@ -1,3 +1,4 @@
+import React from 'react';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import SiteInfo from '../components/SiteInfo';
