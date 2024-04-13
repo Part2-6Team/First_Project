@@ -21,7 +21,6 @@ const ButtonStyled = styled.button`
   align-items: center;
   border-radius: 1.2rem;
   padding: 1.4rem 2.4rem;
-  margin-top: 5rem;
   background-color: ${(props) => {
     if (props.disabled) {
       return 'var(--Gray-300)';

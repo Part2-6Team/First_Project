@@ -11,7 +11,9 @@ function ListPage() {
       <CardList />
       <CardListTitle textType="Text2" />
       <CardList />
-      <Button PageName="listPage" />
+      <ButtonSection>
+        <Button PageName="listPage" />
+      </ButtonSection>
     </ListPageStyled>
   );
 }
@@ -21,6 +23,17 @@ const ListPageStyled = styled.div`
   flex-direction: column;
   margin-right: 38rem;
   margin-left: 21.8rem;
+`;
+
+const ButtonSection = styled.div`
+  display: flex;
+  width: 120rem;
+  height: 10.4rem;
+  padding: 2.4rem 0;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 4rem;
 `;
 
 export default ListPage;
