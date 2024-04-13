@@ -27,10 +27,6 @@ module.exports = {
     ],
     'object-curly-newline': 'off',
     'react/prop-types': ['off'],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      { js: 'never', jsx: 'never' },
     'linebreak-style': 0,
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/label-has-associated-control': [

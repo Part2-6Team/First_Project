@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import profileImages from '../assets/profile';
+import profileImages from '../assets/profile.png';
 import defaultProfileImage from '../assets/profile/0.png';
 
 function ProfileSelect() {
