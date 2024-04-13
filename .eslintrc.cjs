@@ -14,7 +14,7 @@ module.exports = {
     react: { version: '18.2' },
     'import/resolver': {
       node: {
-        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.svg'],
       },
     },
   },
@@ -25,6 +25,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'object-curly-newline': 'off',
     'react/prop-types': ['off'],
     'linebreak-style': 0,
     'react/react-in-jsx-scope': 'off',
