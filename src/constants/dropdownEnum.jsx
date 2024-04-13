@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const RELATIONS = [
   { id: '1', value: '지인' },
   { id: '2', value: '친구' },
