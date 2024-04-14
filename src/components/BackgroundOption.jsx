@@ -1,32 +1,75 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import check from '../assets/check.png';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Option from "../components/option";
 
-const BackgroundOption = () => {
-    const [isSelected, setIsSelected] = useState([true, false, false, false]);
-    const isColor = toggleState === '컬러';
+function backgroundOption ({ backgroundType, backgroundImage, onSelect }) {
+    const [checkColor, setCheckColor] = useState({
+        ...initialState,
+        beige: true,
+    });
 
+    const handleColorCheck = (color) => {
+        setCheckColor(() => ({
+          ...initialState,
+          [color]: true,
+        }));
+        onSelect('color', color);
+    };
 
+    const cards = [
+        { key: 'beige', color: 'beige' },
+        { key: 'purple', color: 'purple' },
+        { key: 'blue', color: 'blue' },
+        { key: 'green', color: 'green' },
+    ];
+
+    return (
+        <OptionWrapper>
+            <OptionContainer>
+                {backgroundType === 'color'
+                    ? cards.map((color) => (
+                        <Option
+                            key={color.key}
+                            usage="option"
+                            color={card.color}
+                            onClick={() => handleColorCheck(card.color)}
+                        />
+                    ))
+                    : backgroundImages['imageUrls'].map((img, idx) => (
+                        <Option
+                            key={idx}
+                            usage="option"
+                            cardUrl={img}
+                            onClick={() => handleImgCheck(img)}
+                        />
+                ))}
+            </OptionContainer>
+        </OptionWrapper>
+    );
+}
+
+const initialColorState = {
+    beige: false,
+    purple: false,
+    blue: false,
+    green: false,
 };
 
-/*
-const 큰 상자 = styled.div`
+const OptionWrapper = styled.div`
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1.2rem;
+    align-items: center;
+    justify-content: center;
+`;
 
-    .각 칸 {
-        width: 16.8rem;
-        height: 16.8rem;
-        border-radius: 1.6rem;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-size: cover;
+const OptionContainer = styled.div`
+    display: grid;
+    align-items: flex-start;
+    gap: 1.6rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 767px) {
+        grid-template-columns: repeat(2, 1fr);
     }
 `;
-*/
 
-export default BackgroundOption;
+export default backgroundOption;

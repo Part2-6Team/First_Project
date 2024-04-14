@@ -1,7 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
 import ToggleBtn from '../components/ToggleBtn';
-import BackgroundOption from '../components/BackgroundOption';
-import { useState } from 'react';
 
 function PostPage () {
     return (
@@ -61,6 +61,10 @@ const InputName = styled.input`
     font-size: 16px;
     letter-spacing: -0.01em;
     font-family: Pretendard;
+
+    @media (max-width: 767px) {
+        width: 320px;
+    }
 `;
 
 const SelectContainer = styled.div`
@@ -69,6 +73,10 @@ const SelectContainer = styled.div`
     align-items: flex-start;
     padding-top: 5rem;
     gap: 0.4rem;
+
+    @media (max-width: 767px) {
+        width: 320px;
+    }
 `;
 
 const Explanation = styled.div`
