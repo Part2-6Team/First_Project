@@ -3,10 +3,12 @@ import { styled } from 'styled-components';
 
 import Header from '../components/createdRollingPage/Header';
 import Main from '../components/createdRollingPageEdit/Main';
+import GlobalNav from '../components/GlobalNav';
 
 function CreatedRollingPageEdit() {
   return (
     <Container>
+      <GlobalNav />
       <Header />
       <Main />
     </Container>
