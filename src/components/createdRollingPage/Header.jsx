@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import EmojiPicker from 'emoji-picker-react';
 
 import profile from '../../assets/profile.png';
 import profile2 from '../../assets/profile2.png';
@@ -14,6 +15,12 @@ import ProfileImg from './profileImg';
 import device from '../../config';
 
 function Header() {
+  const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
+
+  const handleEmojiPicker = () => {
+    setIsEmojiPickerOpen((prev) => !prev);
+  };
+
   return (
     <Container>
       <Left>To. Ashley Kim</Left>
@@ -35,9 +42,12 @@ function Header() {
           <EmojiBadge />
         </EmojiContainer>
         <DropArrow src={dropArrow} alt="dropArrow" />
-        <AddEmojiBtn>
+        <AddEmojiBtn onClick={handleEmojiPicker}>
           <img className="addEmoji" src={addEmoji} alt="add emoji button" />
           <p className="addText">추가</p>
+          <EmojiPickerWrap>
+            <EmojiPicker open={isEmojiPickerOpen} />
+          </EmojiPickerWrap>
         </AddEmojiBtn>
         <DividingLine />
         <ShareButton>
@@ -150,6 +160,9 @@ const AddEmojiBtn = styled.button`
   border-radius: 6px;
   border: 1px solid var(--Gray-300);
   background: var(--White);
+  cursor: pointer;
+
+  position: relative;
 
   .addEmoji {
     width: 24px;
@@ -168,6 +181,13 @@ const AddEmojiBtn = styled.button`
       height: 20px;
     }
   }
+`;
+
+const EmojiPickerWrap = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 20px;
+  z-index: 1;
 `;
 
 const DividingLine = styled.div`
