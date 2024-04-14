@@ -14,12 +14,33 @@ import EmojiBadge from './EmojiBadge';
 import ProfileImg from './profileImg';
 import device from '../../config';
 
-function Header() {
+function Header({ handleOpenUrlShared, isUrlSharedPharases }) {
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
+  const [isClickSharedBtn, setIsClickSharedBtn] = useState(false);
 
   const handleEmojiPicker = () => {
     setIsEmojiPickerOpen((prev) => !prev);
   };
+
+  const handleClickSharedBtn = () => {
+    setIsClickSharedBtn((prev) => !prev);
+  };
+
+  const sharedContainer = (
+    <SharedContainer>
+      <button type="button" className="shared_kakao">
+        카카오톡 공유
+      </button>
+      <button
+        type="button"
+        disabled={isUrlSharedPharases}
+        onClick={handleOpenUrlShared}
+        className="shared_url"
+      >
+        URL 공유
+      </button>
+    </SharedContainer>
+  );
 
   return (
     <Container>
@@ -50,8 +71,9 @@ function Header() {
           </EmojiPickerWrap>
         </AddEmojiBtn>
         <DividingLine />
-        <ShareButton>
+        <ShareButton onClick={handleClickSharedBtn}>
           <img className="shareImg" src={share} alt="share button" />
+          {isClickSharedBtn && sharedContainer}
         </ShareButton>
       </Right>
     </Container>
@@ -202,6 +224,9 @@ const ShareButton = styled.button`
   border-radius: 6px;
   border: 1px solid var(--Gray-300);
   background: var(--White);
+  cursor: pointer;
+
+  position: relative;
 
   .shareImg {
     width: 24px;
@@ -214,6 +239,54 @@ const ShareButton = styled.button`
     .shareImg {
       width: 20px;
       height: 20px;
+    }
+  }
+`;
+
+const SharedContainer = styled.div`
+  border-radius: 8px;
+  border: 1px solid var(--Gray-300);
+  background: var(--White);
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+
+  position: absolute;
+  top: 50px;
+  right: -10px;
+
+  .shared_kakao {
+    width: 138px;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+
+    color: var(--Gray-900);
+    background: var(--White);
+
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+
+    &:hover {
+      background: var(--Gray-100);
+    }
+  }
+
+  .shared_url {
+    width: 138px;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+
+    color: var(--Gray-900);
+    background: var(--White);
+
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+
+    &:hover {
+      background: var(--Gray-100);
     }
   }
 `;
