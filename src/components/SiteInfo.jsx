@@ -22,7 +22,7 @@ function SiteInfo({ order }) {
   }
   const point = `Point. 0${order}`;
   return (
-    <SiteInfoWrapper hasGap={hasGap}>
+    <SiteInfoWrapper $hasGap={hasGap}>
       {order === 2 ? <img src={siteImage2} alt="이모지 추가" /> : null}
       <div className="description">
         <div className="point">{point}</div>
@@ -37,10 +37,10 @@ function SiteInfo({ order }) {
 const SiteInfoWrapper = styled.div`
   width: 1200px;
   display: flex;
-  justify-content: ${({ hasGap }) => (hasGap ? 'flex-end' : 'flex-start')};
+  justify-content: ${({ $hasGap }) => ($hasGap ? 'flex-end' : 'flex-start')};
   align-items: center;
   padding: 60px 0 60px 0;
-  gap: ${({ hasGap }) => (hasGap ? 50 : 0)}px;
+  gap: ${({ $hasGap }) => ($hasGap ? 50 : 0)}px;
   border-radius: 16px;
   background: var(--Surface);
   white-space: pre-line;
