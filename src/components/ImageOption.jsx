@@ -1,27 +1,25 @@
 /*이미지 부분 수정*/
 
-import React, { useState, useEffect } from 'react';
-import SelectedImg from '../assets/check.png';
+import React from 'react';
+import Check from '../assets/check.png';
 import styled from 'styled-components';
 
-function ImageOption({ img, selectImg, isSelected, selectedImg }) {
-    const onClickImgHandle = (value) => {
-      selectImg(value);
-      selectedImg(value);
+function ImageOption({ image, selectImage, onSelected, onSelcetedImage }) {
+    const handleSelectImage = (value) => {
+        selectImage(value);
+        onSelcetedImage(value);
     };
   
     return (
-      <BgItemWrapper onClick={() => onClickImgHandle(img)}>
-        {isSelected && (
-          <SelectedLayer>
-            <img src={SelectedImg} alt="selectIcon" />
-          </SelectedLayer>
-        )}
-      </BgItemWrapper>
+      <SelectContainer onClick={() => handleSelectImage(img)}>
+        { /* onSelected && (
+                <CheckImage img src = { Check } alt="checkIcon" />
+            )*/ }
+      </SelectContainer>
     );
 }
 
-const BgItemWrapper = styled.div`
+const SelectContainer = styled.div`
     position: relative;
     width: 168px;
     height: 168px;
@@ -30,21 +28,19 @@ const BgItemWrapper = styled.div`
     cursor: pointer;
 `;
 
-const SelectedLayer = styled.div`
+/* 
+const CheckImage = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    > img {
+    .img {
         width: 44px;
         height: 44px;
     }
 `;
+*/
 
 export default ImageOption;

@@ -1,50 +1,46 @@
 import React from 'react';
-import SelectedImg from '../assets/check.png';
+import Check from '../assets/check.png';
 import styled from 'styled-components';
-import { getColor } from './Colors';
+import { Colors } from './Colors';
 
-function colorOption({ color, selectColor, isSelected, selectedColor }) {
-  const handleClickColor = (value) => {
-    selectColor(value);
-    selectedColor(value);
-  };
+function colorOption({ color, selectColor, onSelected, onSelectedColor }) {
+    const handleSelectColor = (value) => {
+        selectColor(value);
+        onSelectedColor(value);
+    };
 
-  return (
-    <BgImgWrapper color={color} onClick={() => handleClickColor(color)}>
-      {isSelected && (
-        <SelectedLayer>
-          <img src={SelectedImg} alt="selectIcon" />
-        </SelectedLayer>
-      )}
-    </BgImgWrapper>
-  );
+    return (
+        <SelectContainer color={color} onClick={() => handleSelectColor(color)}>
+            { /* onSelected && (
+                <CheckImage img src = { Check } alt="checkIcon" />
+            )*/ }
+        </SelectContainer>
+    );
 }
 
-const BgImgWrapper = styled.div`
+const SelectContainer = styled.div`
     position: relative;
     width: 168px;
     height: 168px;
     border-radius: 16px;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    background-color: ${({ color }) => getColor(color)};
+    background-color: ${({ color }) => Colors(color)};
     cursor: pointer;
 `;
 
-const SelectedLayer = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
+/* 체크 표시 이미지 부분 추가해야 됨
+
+const CheckImage = styled.div`
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    > img {
+    .img {
         width: 44px;
         height: 44px;
     }
 `;
+*/
 
 export default colorOption;

@@ -1,12 +1,12 @@
-export const getColor = (item) => {
+export const Colors = (item) => {
     switch (item) {
-      case 'purple':
-        return 'var(--Purple-100)';
-      case 'green':
-        return 'var(--Green-100)';
-      case 'blue':
-        return 'var(--Blue-100)';
-      default:
-        return 'var(--Orange-100)';
+        case 'beige':
+            return 'var(--Orange-200)';
+        case 'purple':
+            return 'var(--Purple-200)';
+        case 'blue':
+            return 'var(--Blue-200)';
+        default:
+            return 'var(--Green-200)';
     }
 };

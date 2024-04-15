@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import ToggleBtn from '../components/ToggleBtn';
@@ -10,7 +10,6 @@ function PostPage () {
     const color = ['beige', 'purple', 'blue', 'green'];
     const [selectedColor, setSelectedColor] = useState(color[0]);
     const [selectedImg, setSelectedImg] = useState(null);
-    const [items, setItems] = useState([]);
 
     const onSelectColorHandle = (value) => {
         setSelectedColor(value);
@@ -23,21 +22,6 @@ function PostPage () {
     const onToggleHandle = (value) => {
         setToggleValue(value);
     };
-
-    const onLoadHandle = async () => {
-        let result;
-        try {
-          result = await getBackgroundImageURL();
-        } catch (error) {
-          return;
-        }
-        const { imageUrls } = result;
-        setItems(imageUrls);
-    };
-    
-    useEffect(() => {
-        onLoadHandle();
-    }, []);
 
     return (
         <>
@@ -107,19 +91,12 @@ const InputContainer = styled.div`
 `;
 
 const InputName = styled.input`
-    padding: 1.2rem 1.6rem;
+    padding: 12px 16px;
     border-radius: 0.8rem;
     border: 0.1rem solid var(--Gray-300);
     font-color: var(--Gray-500);
     font-size: 16px;
-    letter-spacing: -0.01em;
     font-family: Pretendard;
-
-    @media (max-width: 767px) {
-        width: 320px;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
 `;
 
 const SelectContainer = styled.div`
@@ -140,12 +117,10 @@ const Explanation = styled.div`
     h2 {
         font-size: 24px;
         font-weight: 700;
-        letter-spacing: -0.01em;
         margin: 0px;
     }
     p {
         font-size: 16px;
-        letter-spacing: -0.01em;
         text-align: left;
         color: var(--Gray-500);
         margin-top: 4px;
