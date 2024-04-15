@@ -1,33 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function ToggleBtn({ className, toggle }) {
-  const initialState = {
-    컬러: false,
-    이미지: false,
-  };
-  
-  const [isOn, setIsOn] = useState({ ...initialState, 컬러: true });
+function ToggleBtn({ onToggle, toggleValue }) {
+  const [selected, setSelected] = useState(toggleValue);
 
-  const handleToggle = (value) => {
-    setIsOn(() => ({
-      ...initialState,
-      [value]: true,
-    }));
-    toggle(value);
+  const onClickHandle = (value) => {
+    setSelected(value);
+    onToggle(value);
   };
   
   return (
-    <ToggleBox className={className}>
+    <ToggleBox>
       <ToggleOption
-        $isOn={isOn['컬러']}
-        onClick={() => handleToggle('컬러')}
+        selected={selected === 'color'}
+        onClick={() => onClickHandle('color')}
       >
         컬러
       </ToggleOption>
       <ToggleOption
-        $isOn={isOn['이미지']}
-        onClick={() => handleToggle('이미지')}
+        selected={selected === 'img'}
+        onClick={() => onClickHandle('img')}
       >
         이미지
       </ToggleOption>
@@ -56,6 +48,7 @@ const ToggleOption = styled.button`
   letter-spacing: -0.016rem;
   text-align: center;
   cursor: pointer;
+  border: 0.2rem solid var(--Gray-100);
 `;
 
 /* 눌렀을 때
