@@ -48,14 +48,10 @@ const ToggleOption = styled.button`
   letter-spacing: -0.016rem;
   text-align: center;
   cursor: pointer;
-  border: 0.2rem solid var(--Gray-100);
+  font-weight: ${({ selected }) => (selected ? '700' : '400')};
+  color: ${({ selected}) => (selected ? 'var(--Purple-700)' : 'var(--Gray-900)')};
+  background-color: ${({ selected }) => (selected ? 'var(--White)' : 'var(--Gray-100)')};
+  border: 0.2rem solid ${({ selected }) => (selected ? 'var(--Purple-700)' : 'var(--Gray-100)')};
 `;
-
-/* 눌렀을 때
-color: ${({ $isOn }) => ($isOn ? --Purple-700 : --Gray-900)};
-font-weight: ${({ $isOn }) => ($isOn ? `700` : `400`)};
-background-color: ${({ $isOn }) => ($isOn ? --White : --Gray-100)};
-border: 0.2rem solid ${({ $isOn }) => ($isOn ? --Purple-700 : --Gray-100)};
-*/
 
 export default ToggleBtn;

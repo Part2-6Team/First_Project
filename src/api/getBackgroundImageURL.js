@@ -5,4 +5,4 @@ export default async function getBackgroundImageURL () {
     }
     const data = await response.json();
     return data;
-};
+}

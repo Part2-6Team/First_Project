@@ -10,6 +10,7 @@ function PostPage () {
     const color = ['beige', 'purple', 'blue', 'green'];
     const [selectedColor, setSelectedColor] = useState(color[0]);
     const [selectedImg, setSelectedImg] = useState(null);
+    const [items, setItems] = useState([]);
 
     const onSelectColorHandle = (value) => {
         setSelectedColor(value);
@@ -23,15 +24,11 @@ function PostPage () {
         setToggleValue(value);
     };
 
-    const [loadingError, setLoadingError] = useState(null);
-
     const onLoadHandle = async () => {
         let result;
         try {
-          setLoadingError(null);
           result = await getBackgroundImageURL();
         } catch (error) {
-          setLoadingError(error);
           return;
         }
         const { imageUrls } = result;
@@ -72,7 +69,6 @@ function PostPage () {
                         selectedColor={selectedColor}
                         />
                     )}
-                    {loadingError && <div>에러가 발생했습니다.</div>}
                 </SelectContainer>
                 {/*버튼*/}
             </PostContainer>
