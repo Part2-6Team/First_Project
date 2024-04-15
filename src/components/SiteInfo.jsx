@@ -17,12 +17,12 @@ const MESSAGE = [
 ];
 
 function NewLine({ sentence }) {
-  sentence = sentence.split('\n');
+  const sentenceArr = sentence.split('\n');
   return (
     <>
-      <span>{sentence[0]}</span>
+      <span>{sentenceArr[0]}</span>
       <br />
-      <span>{sentence[1]}</span>
+      <span>{sentenceArr[1]}</span>
     </>
   );
 }
