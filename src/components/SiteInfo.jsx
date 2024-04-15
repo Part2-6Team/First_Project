@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import siteImage1 from '../assets/siteInfo1.png';
 import siteImage2 from '../assets/siteInfo2.png';
+import device from '../config';
 
 const TITLE = [
   '',
@@ -15,35 +16,44 @@ const MESSAGE = [
   '롤링 페이퍼에 이모지를 추가할 수 있어요',
 ];
 
-function SiteInfo({ order }) {
-  let hasGap = true;
-  if (order !== 1) {
-    hasGap = false;
-  }
-  const point = `Point. 0${order}`;
+function NewLine({ sentence }) {
+  sentence = sentence.split('\n');
   return (
-    <SiteInfoWrapper $hasGap={hasGap}>
-      {order === 2 ? <img src={siteImage2} alt="이모지 추가" /> : null}
-      <div className="description">
-        <div className="point">{point}</div>
-        <h2 className="title">{TITLE[order]}</h2>
-        <p className="message">{MESSAGE[order]}</p>
-      </div>
-      {order === 1 ? <img src={siteImage1} alt="롤링 페이퍼 만들기" /> : null}
-    </SiteInfoWrapper>
+    <>
+      <span>{sentence[0]}</span>
+      <br />
+      <span>{sentence[1]}</span>
+    </>
   );
 }
 
-const SiteInfoWrapper = styled.div`
-  width: 1200px;
+function SiteInfo({ order }) {
+  const point = `Point. 0${order}`;
+  return (
+    <Container order={order}>
+      <div className="description">
+        <div className="point">{point}</div>
+        {/* <h2 className="title">{TITLE[order]}</h2> */}
+        <h2 className="title">
+          <NewLine sentence={TITLE[order]} />
+        </h2>
+        <p className="message">{MESSAGE[order]}</p>
+      </div>
+      {order === 1 ? <img src={siteImage1} alt="롤링 페이퍼 만들기" /> : null}
+      {order === 2 ? <img src={siteImage2} alt="이모지 추가" /> : null}
+    </Container>
+  );
+}
+
+const Container = styled.div`
   display: flex;
-  justify-content: ${({ $hasGap }) => ($hasGap ? 'flex-end' : 'flex-start')};
+  flex-direction: ${({ order }) => (order === 1 ? 'row' : 'row-reverse')};
+  justify-content: flex-end;
   align-items: center;
-  padding: 60px 0 60px 0;
-  gap: ${({ $hasGap }) => ($hasGap ? 50 : 0)}px;
+  padding: 60px 50px;
+  gap: 50px;
   border-radius: 16px;
   background: var(--Surface);
-  white-space: pre-line;
 
   .description {
     display: flex;
@@ -73,6 +83,20 @@ const SiteInfoWrapper = styled.div`
       font-size: 18px;
       line-height: 28px;
       color: var(--Gray-500);
+    }
+  }
+
+  @media ${device.pc_small} {
+    flex-direction: column;
+    justify-content: center;
+    width: 90vw;
+
+    .description {
+      width: 100%;
+
+      .title br {
+        display: none;
+      }
     }
   }
 `;
