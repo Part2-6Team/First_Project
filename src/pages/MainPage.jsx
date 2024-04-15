@@ -32,10 +32,10 @@ function MainPage() {
         <SiteInfoWrapper>
           <SiteInfo {...SITE_INFOS[0]} />
           <SiteInfo {...SITE_INFOS[1]} />
+          <Button className="readMore" size={280} type={56}>
+            구경해보기
+          </Button>
         </SiteInfoWrapper>
-        <Button className="readMore" size={280} type={56}>
-          구경해보기
-        </Button>
       </Content>
     </div>
   );
@@ -43,23 +43,21 @@ function MainPage() {
 
 const Content = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 50px 30px;
-  gap: 30px;
-
-  @media ${device.pc_small} {
-    .readMore {
-      width: 90vw;
-    }
-  }
+  padding: 50px 24px;
 `;
 
 const SiteInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 30px;
+
+  @media ${device.pc_small} {
+    .readMore {
+      width: calc(100vw - 48px);
+    }
+  }
 `;
 
 export default MainPage;
