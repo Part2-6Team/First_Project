@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import logoImage from '../assets/logo.svg';
 import OutlinedButton from './OutlinedButton';
+import device from '../config';
 
 function GlobalNav({ hasButton = false }) {
   return (
@@ -19,11 +20,17 @@ function GlobalNav({ hasButton = false }) {
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 940px;
   align-items: center;
   height: 64px;
-  padding: 0 350px;
   border-bottom: 2px solid var(--Gray-100);
+
+  @media ${device.pc_small} {
+    justify-content: space-between;
+    padding: 0 24px;
+    gap: 0;
+  }
 `;
 
 const Logo = styled.button`
