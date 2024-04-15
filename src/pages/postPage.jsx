@@ -107,7 +107,6 @@ const InputContainer = styled.div`
 `;
 
 const InputName = styled.input`
-    width: 720px;
     padding: 1.2rem 1.6rem;
     border-radius: 0.8rem;
     border: 0.1rem solid var(--Gray-300);
@@ -124,10 +123,11 @@ const InputName = styled.input`
 `;
 
 const SelectContainer = styled.div`
+    width: 720px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding-top: 5rem;
+    align-items: left;
+    padding-top: 50px;
     gap: 0.4rem;
 
     @media (max-width: 767px) {

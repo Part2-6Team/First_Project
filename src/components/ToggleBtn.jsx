@@ -51,7 +51,7 @@ const ToggleOption = styled.button`
   font-weight: ${({ selected }) => (selected ? '700' : '400')};
   color: ${({ selected}) => (selected ? 'var(--Purple-700)' : 'var(--Gray-900)')};
   background-color: ${({ selected }) => (selected ? 'var(--White)' : 'var(--Gray-100)')};
-  border: 0.2rem solid ${({ selected }) => (selected ? 'var(--Purple-700)' : 'var(--Gray-100)')};
+  border: 2px solid ${({ selected }) => (selected ? 'var(--Purple-700)' : 'var(--Gray-100)')};
 `;
 
 export default ToggleBtn;

@@ -44,7 +44,6 @@ const SelectedLayer = styled.div`
     > img {
         width: 44px;
         height: 44px;
-        z-index: 1;
     }
 `;
 

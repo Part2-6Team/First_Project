@@ -44,8 +44,6 @@ const OptionBox = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  gap: 1.2rem;
   margin-bottom: 69px;
     @media (min-width: 360px) and (max-width: 767px) {
         display: grid;
