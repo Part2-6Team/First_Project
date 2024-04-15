@@ -54,6 +54,7 @@ const Container = styled.div`
   gap: 50px;
   border-radius: 16px;
   background: var(--Surface);
+  overflow: hidden;
 
   .description {
     display: flex;
@@ -97,6 +98,12 @@ const Container = styled.div`
       .title br {
         display: none;
       }
+    }
+  }
+
+  @media ${device.mobile} {
+    .title br {
+      display: block;
     }
   }
 `;
