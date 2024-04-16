@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import ProfileSelect from '../components/ProfileSelect';
@@ -13,7 +13,9 @@ import { postMessage } from '../api/postMessage';
 
 function SendMessagePage() {
   const [senderName, setSenderName] = useState();
-  const [profileImage, setProfileImage] = useState();
+  const [profileImage, setProfileImage] = useState(
+    'https://i.ibb.co/zQGbzDz/image.png',
+  );
   const [relation, setRelation] = useState('지인');
   const [message, setMessage] = useState('');
   const [font, setFont] = useState('Noto Sans');
