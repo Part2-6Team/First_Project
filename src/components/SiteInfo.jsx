@@ -2,26 +2,33 @@ import React from 'react';
 import { styled } from 'styled-components';
 import device from '../config';
 
+// prettier-ignore
 function NewLine({ sentences }) {
-  return sentences.split('\n').map((sentence, index) => {
-    return (
-      <React.Fragment key={index}>
-        <span>{sentence} </span>
-        <br />
-      </React.Fragment>
-    );
-  });
+  return sentences.split('\n').map((sentence) => (
+    <React.Fragment key={sentence}>
+      <span>
+        {sentence}
+      </span>
+      <br />
+    </React.Fragment>
+  ));
 }
 
+// prettier-ignore
 function SiteInfo({ dir = 'ltr', index, title, message, imgUrl }) {
   return (
     <Container dir={dir}>
       <div className="description">
-        <div className="point">Point.{index}</div>
+        <div className="point">
+          Point.
+          {index}
+        </div>
         <h2 className="title">
           <NewLine sentences={title} />
         </h2>
-        <p className="message">{message}</p>
+        <p className="message">
+          {message}
+        </p>
       </div>
       <img src={imgUrl} alt="사이트 소개 이미지" />
     </Container>

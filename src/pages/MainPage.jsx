@@ -30,8 +30,20 @@ function MainPage() {
       <GlobalNav hasButton />
       <Content>
         <SiteInfoWrapper>
-          <SiteInfo {...SITE_INFOS[0]} />
-          <SiteInfo {...SITE_INFOS[1]} />
+          <SiteInfo
+            dir={SITE_INFOS[0].dir}
+            index={SITE_INFOS[0].index}
+            title={SITE_INFOS[0].title}
+            message={SITE_INFOS[0].message}
+            imgUrl={SITE_INFOS[0].imgUrl}
+          />
+          <SiteInfo
+            dir={SITE_INFOS[1].dir}
+            index={SITE_INFOS[1].index}
+            title={SITE_INFOS[1].title}
+            message={SITE_INFOS[1].message}
+            imgUrl={SITE_INFOS[1].imgUrl}
+          />
           <Button className="readMore" size={280} type={56}>
             구경해보기
           </Button>
