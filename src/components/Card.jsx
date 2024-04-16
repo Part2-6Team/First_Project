@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { styled } from 'styled-components';
 
@@ -9,30 +11,53 @@ const BackgroundColorPattern = {
 };
 
 const BackgroundColor = {
-  beige: 'beige',
-  purple: 'purple',
-  blue: 'blue',
-  green: 'green',
+  beige: 'var(--Orange-200)',
+  purple: 'var(--Purple-200)',
+  blue: 'var(--Blue-200)',
+  green: 'var(--Green-200)',
 };
 
-function Card({ ColorData, ProfileImageData }) {
+function Card({
+  colorData,
+  profileImageData,
+  toUser,
+  userName,
+  rollingWriteCount,
+  rollingWriteText,
+  emoji,
+  count,
+}) {
   return (
-    <CardStyled backgroundColor={BackgroundColor[ColorData]}>
+    <CardStyled
+      backgroundColor={BackgroundColor[colorData]}
+      backgroundImage={BackgroundColorPattern[colorData]}
+    >
       <CardContainer>
-        <img src={BackgroundColorPattern[ColorData]} alt="배경 색 패턴" />
         <CardDataSection>
-          <CardToId>To.</CardToId>
-          <ProfileImage>{ProfileImageData}</ProfileImage>
-          <RollingWriteCount>30</RollingWriteCount>
-          <RollingWriteText>명이 작성했어요!</RollingWriteText>
+          <CardToId>
+            {toUser} {userName}
+          </CardToId>
+          <ProfileImage>{profileImageData}</ProfileImage>
+          <div>
+            <RollingWriteCount>{rollingWriteCount}</RollingWriteCount>
+            <RollingWriteText>{rollingWriteText}</RollingWriteText>
+          </div>
         </CardDataSection>
         <EmojiBadgeSection>
+          <EmojiLine />
           <EmojiBadgeFrame>
-            <EmojiBadge>E, c</EmojiBadge>
-            <EmojiBadge>E, c</EmojiBadge>
-            <EmojiBadge>E, c</EmojiBadge>
+            <EmojiBadge>
+              {emoji} {count}
+            </EmojiBadge>
+            <EmojiBadge>
+              {emoji} {count}
+            </EmojiBadge>
+            <EmojiBadge>
+              {emoji} {count}
+            </EmojiBadge>
           </EmojiBadgeFrame>
         </EmojiBadgeSection>
+        <img src={BackgroundColorPattern[colorData]} alt="배경 색 패턴" />
       </CardContainer>
     </CardStyled>
   );
@@ -45,8 +70,14 @@ const CardStyled = styled.div`
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${(props) => props.backgroundColor};
+  background-image: ${(props) => props.backgroundImage};
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   margin-top: 1.6rem;
+
+  @media (max-width: 768px) {
+    width: 20.8rem;
+    height: 23.2rem;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -63,7 +94,7 @@ const CardDataSection = styled.div`
   gap: 12px;
 `;
 
-const CardToId = styled.div`
+const CardToId = styled.span`
   color: var(--Gray-900);
   text-overflow: ellipsis;
   font-size: 2.4rem;
@@ -73,14 +104,14 @@ const CardToId = styled.div`
 
 const ProfileImage = styled.div``;
 
-const RollingWriteCount = styled.div`
+const RollingWriteCount = styled.span`
   color: var(--Gray-700);
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 2.6rem;
 `;
 
-const RollingWriteText = styled.div`
+const RollingWriteText = styled.span`
   color: var(--Gray-700);
   font-size: 1.6rem;
   font-weight: 400;
@@ -89,8 +120,15 @@ const RollingWriteText = styled.div`
 
 const EmojiBadgeSection = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+`;
+
+const EmojiLine = styled.div`
+  width: 22.7rem;
+  height: 0.1rem;
+  background: rgba(0, 0, 0, 0.12);
 `;
 
 const EmojiBadgeFrame = styled.div`

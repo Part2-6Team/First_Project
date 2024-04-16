@@ -21,6 +21,8 @@ const ButtonStyled = styled.button`
   align-items: center;
   border-radius: 1.2rem;
   padding: 1.4rem 2.4rem;
+  margin-right: auto;
+  margin-left: auto;
   background-color: ${(props) => {
     if (props.disabled) {
       return 'var(--Gray-300)';
@@ -33,12 +35,21 @@ const ButtonStyled = styled.button`
   }
 
   &:focus {
-    border: ${(props) => !props.disabled && '2px solid var(--Purple-900)'}; 
+    border: ${(props) => !props.disabled && '2px solid var(--Purple-900)'};
     background-color: ${(props) => !props.disabled && 'var(--Purple-800)'};
   }
 
   &:active {
     background-color: ${(props) => !props.disabled && 'var(--Purple-800)'};
+  }
+
+  @media (max-width: 1024px) {
+    width: 72rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 32rem;
+  }
 `;
 
 export default Button;

@@ -8,7 +8,11 @@ function ListPage() {
   return (
     <ListPageStyled>
       <CardListTitle textType="Text1" />
-      <CardList />
+      <CardList
+        background="background"
+        arrowWayLeft="arrowLeft"
+        arrowWayRight="arrowRight"
+      />
       <CardListTitle textType="Text2" />
       <CardList />
       <ButtonSection>
