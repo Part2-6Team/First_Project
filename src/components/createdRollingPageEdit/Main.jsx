@@ -11,13 +11,24 @@ function Main() {
     <>
       <Container>
         <CardContainer>
-          <DeleteBtnWithWeb>삭제하기</DeleteBtnWithWeb>
+          <BtnWrap>
+            <StyledBtn>삭제하기</StyledBtn>
+            <StyledBtn>완료하기</StyledBtn>
+          </BtnWrap>
           <AddCard />
+          <Card edit />
+          <Card edit />
+          <Card edit />
+          <Card edit />
+          <Card edit />
+          <Card edit />
           <Card edit />
           <Card edit />
         </CardContainer>
       </Container>
+
       <DeleteBtn>삭제하기</DeleteBtn>
+
       {/* Url을 카피했을 경우 UrlCopyPhrases가 위치할 자리 */}
 
       {/* 모달이 존재할때 카드 모달이 위치할 자리 */}
@@ -73,14 +84,6 @@ const StyledBtn = styled.button`
   color: var(--White);
   font-size: 16px;
   font-weight: 400;
-`;
-
-const DeleteBtnWithWeb = styled(StyledBtn)`
-  position: absolute;
-  top: -45px;
-  right: 25px;
-
-  margin-bottom: 11px;
 
   @media ${device.tablet} {
     display: none;
@@ -89,6 +92,15 @@ const DeleteBtnWithWeb = styled(StyledBtn)`
   @media ${device.mobile} {
     display: none;
   }
+`;
+
+const BtnWrap = styled.div`
+  display: flex;
+  gap: 20px;
+
+  position: absolute;
+  top: -47px;
+  right: 25px;
 `;
 
 const DeleteBtn = styled(StyledBtn)`
@@ -104,8 +116,13 @@ const DeleteBtn = styled(StyledBtn)`
     display: none;
   }
 
+  @media ${device.tablet} {
+    display: block;
+  }
+
   @media ${device.mobile} {
-    padding:14px; 24px;
+    display: block;
+    padding: 14px 24px;
     width: 320px;
   }
 `;
