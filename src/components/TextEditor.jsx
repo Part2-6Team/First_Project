@@ -5,7 +5,7 @@ function TextEditor() {
   return (
     <div>
       <ReactQuill
-        style={{ width: '720px', height: '260px', marginBottom: '50px' }}
+        style={{ maxWidth: '720px', height: '260px', marginBottom: '50px' }}
       />
     </div>
   );

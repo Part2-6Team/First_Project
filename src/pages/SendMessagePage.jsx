@@ -6,6 +6,8 @@ import FormLabel from '../components/FormLabel';
 import DropDown from '../components/DropDown';
 import { RELATIONS, FONTS } from '../constants/dropdownEnum';
 import TextEditor from '../components/TextEditor';
+import Button from '../components/Button';
+import device from '../config';
 
 function SendMessagePage() {
   return (
@@ -33,7 +35,9 @@ function SendMessagePage() {
             폰트
             <DropDown display={FONTS} />
           </FormLabel>
-          {/* 버튼 추가 예정 */}
+          <Button className="submit" size={720} type={56}>
+            생성하기
+          </Button>
         </SendForm>
       </SendFormWrapper>
     </div>
@@ -44,6 +48,7 @@ const SendFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 40px 0;
+  padding: 0 24px;
 `;
 
 const SendForm = styled.form`
@@ -51,6 +56,16 @@ const SendForm = styled.form`
   flex-direction: column;
   gap: 50px;
   width: 720px;
+
+  @media ${device.tablet} {
+    .submit {
+      width: calc(100vw - 48px);
+    }
+  }
+
+  @media ${device.mobile} {
+    width: calc(100vw - 48px);
+  }
 `;
 
 export default SendMessagePage;
