@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import device from '../../config';
 
@@ -7,13 +8,19 @@ import AddCard from '../createdRollingPage/AddCard';
 import Card from '../createdRollingPage/Card';
 
 function Main() {
+  const navigate = useNavigate();
+
+  const handleToEditComplete = () => {
+    navigate('/post/:id');
+  };
+
   return (
     <>
       <Container>
         <CardContainer>
           <BtnWrap>
             <StyledBtn>삭제하기</StyledBtn>
-            <StyledBtn>완료하기</StyledBtn>
+            <StyledBtn onClick={handleToEditComplete}>완료하기</StyledBtn>
           </BtnWrap>
           <AddCard />
           <Card edit />

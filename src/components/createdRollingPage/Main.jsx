@@ -10,7 +10,7 @@ function Main() {
   const navigate = useNavigate();
 
   const handleToMoveEditPage = () => {
-    navigate('/post/:id/edit');
+    navigate('edit');
   };
 
   return (
