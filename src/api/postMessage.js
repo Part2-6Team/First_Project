@@ -1,6 +1,6 @@
 const BASE_LINK = 'https://rolling-api.vercel.app/5-6';
 
-export async function postMessage(sendData) {
+async function postMessage(sendData) {
   const { recipientId } = sendData;
   const response = await fetch(
     `${BASE_LINK}/recipients/${recipientId}/messages/`,
@@ -20,3 +20,5 @@ export async function postMessage(sendData) {
   const result = await response.json();
   return result;
 }
+
+export default postMessage;

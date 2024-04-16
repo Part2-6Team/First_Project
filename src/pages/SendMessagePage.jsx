@@ -9,7 +9,7 @@ import TextEditor from '../components/TextEditor';
 import Button from '../components/Button';
 import device from '../config';
 import NameInput from '../components/NameInput';
-import { postMessage } from '../api/postMessage';
+import postMessage from '../api/postMessage';
 
 function SendMessagePage() {
   const [senderName, setSenderName] = useState('');
@@ -28,24 +28,22 @@ function SendMessagePage() {
     profileImageURL: profileImage,
     relationship: relation,
     content: message,
-    font: font,
-  };
-
-  const handleFormValid = () => {
-    if (senderName !== '' && messageValid !== false) {
-      setIsFormVaild(true);
-    } else {
-      setIsFormVaild(false);
-    }
+    font,
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(message);
-    // postMessage(sendingData);
+    postMessage(sendingData);
   };
 
   useEffect(() => {
+    const handleFormValid = () => {
+      if (senderName !== '' && messageValid !== false) {
+        setIsFormVaild(true);
+      } else {
+        setIsFormVaild(false);
+      }
+    };
     handleFormValid();
   }, [senderName, messageValid]);
 

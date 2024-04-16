@@ -11,9 +11,8 @@ function TextEditor({ handleChange, isNotEmpty }) {
   const [editorContent, setEditorContent] = useState('');
 
   const handleChangeText = (text) => {
-    console.log(text);
     const cleanText = removeHTMLTags(text);
-    cleanText === '' ? isNotEmpty(false) : isNotEmpty(true);
+    isNotEmpty(cleanText !== '');
     handleChange(text);
     setEditorContent(text);
   };
