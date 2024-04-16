@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import checkImg from '../../assets/checkImg.svg';
-import closeIcon from '../../assets/closeIcon.svg';
 import device from '../../config';
 
 function UrlCopyPhrases() {
@@ -12,9 +11,6 @@ function UrlCopyPhrases() {
         <CheckImg className="checkImg" src={checkImg} alt="checkImg" />
         <StyledText className="Text">URL이 복사 되었습니다</StyledText>
       </CopyUrl>
-      <CloseBtn type="button" className="closeBtn">
-        <img src={closeIcon} alt="closeIcon" />
-      </CloseBtn>
     </Container>
   );
 }
@@ -33,6 +29,19 @@ const Container = styled.div`
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
+
+  opacity: 1;
+  animation: fadeOut ease-in-out 5s;
+
+  @keyframes fadeOut {
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
 
   @media ${device.mobile} {
     width: 320px;
@@ -56,10 +65,10 @@ const StyledText = styled.p`
   font-weight: 400;
 `;
 
-const CloseBtn = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-`;
+// const CloseBtn = styled.button`
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+// `;
 
 export default UrlCopyPhrases;
