@@ -35,7 +35,7 @@ function SendMessagePage() {
             폰트
             <DropDown display={FONTS} />
           </FormLabel>
-          <Button className="submit" size={720} type={56}>
+          <Button className="submit" size={720} shape={56}>
             생성하기
           </Button>
         </SendForm>

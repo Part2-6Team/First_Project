@@ -44,7 +44,7 @@ function MainPage() {
             message={SITE_INFOS[1].message}
             imgUrl={SITE_INFOS[1].imgUrl}
           />
-          <Button className="readMore" size={280} type={56}>
+          <Button className="readMore" size={280} shape={56}>
             구경해보기
           </Button>
         </SiteInfoWrapper>
