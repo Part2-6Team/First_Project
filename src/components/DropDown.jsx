@@ -3,8 +3,9 @@ import { styled } from 'styled-components';
 import arrowTop from '../assets/arrow_top.svg';
 import arrowDown from '../assets/arrow_right.svg';
 
-function OptionList({ options, onChangeSelected }) {
+function OptionList({ options, onChangeInner, onChangeSelected }) {
   const handleClickOption = (event) => {
+    onChangeInner(event.target.innerText);
     onChangeSelected(event.target.innerText);
   };
 
@@ -25,7 +26,7 @@ function OptionList({ options, onChangeSelected }) {
   );
 }
 
-function DropDown({ options }) {
+function DropDown({ options, handleChange }) {
   const [isDropdownView, setDropdownView] = useState(false);
   const [innerSelected, setInnerSelected] = useState(options[0].label);
 
@@ -44,7 +45,11 @@ function DropDown({ options }) {
         )}
       </DropdownLabel>
       {isDropdownView ? (
-        <OptionList options={options} onChangeSelected={setInnerSelected} />
+        <OptionList
+          options={options}
+          onChangeInner={setInnerSelected}
+          onChangeSelected={handleChange}
+        />
       ) : null}
     </div>
   );

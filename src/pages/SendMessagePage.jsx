@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import ProfileSelect from '../components/ProfileSelect';
@@ -8,32 +8,57 @@ import { RELATIONS, FONTS } from '../constants/dropdownEnum';
 import TextEditor from '../components/TextEditor';
 import Button from '../components/Button';
 import device from '../config';
+import NameInput from '../components/NameInput';
+import { postMessage } from '../api/postMessage';
 
 function SendMessagePage() {
+  const [senderName, setSenderName] = useState();
+  const [profileImage, setProfileImage] = useState();
+  const [relation, setRelation] = useState('지인');
+  const [message, setMessage] = useState('');
+  const [font, setFont] = useState('Noto Sans');
+  const sendingData = {
+    recipientId: 5920,
+    sender: senderName,
+    profileImageURL: profileImage,
+    relationship: relation,
+    content: message,
+    font: font,
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    postMessage(sendingData);
+  };
+
   return (
     <div>
       <GlobalNav hasButton={false} />
       <SendFormWrapper>
-        <SendForm>
+        <SendForm onSubmit={handleSubmit}>
           <FormLabel>
             From.
-            {/* 인풋 추가 예정 */}
+            <NameInput
+              className="nameInput"
+              placeholder="이름을 입력해 주세요."
+              handleChange={setSenderName}
+            />
           </FormLabel>
           <FormLabel>
             프로필 이미지
-            <ProfileSelect />
+            <ProfileSelect handleChange={setProfileImage} />
           </FormLabel>
           <FormLabel>
             상대와의 관계
-            <DropDown display={RELATIONS} />
+            <DropDown options={RELATIONS} handleChange={setRelation} />
           </FormLabel>
           <FormLabel>
             내용을 입력해 주세요
-            <TextEditor />
+            <TextEditor handleChange={setMessage} />
           </FormLabel>
           <FormLabel>
             폰트
-            <DropDown display={FONTS} />
+            <DropDown options={FONTS} handleChange={setFont} />
           </FormLabel>
           <Button className="submit" size={720} shape={56}>
             생성하기

@@ -4,11 +4,12 @@ import profileImages from '../assets/profile/index';
 import defaultProfileImage from '../assets/profile/0.png';
 import device from '../config';
 
-function ProfileSelect() {
+function ProfileSelect({ handleChange }) {
   const [selected, setSelected] = useState(defaultProfileImage);
 
-  const handleClickProfileImage = (e) => {
-    setSelected(e.target.value);
+  const handleClickProfileImage = (event) => {
+    handleChange(event.target.value);
+    setSelected(event.target.value);
   };
 
   return (
@@ -87,9 +88,6 @@ const ProfileImageListWrapper = styled.div`
     height: 56px;
     border-radius: 50px;
     border: 1px solid var(--Gray-200);
-  }
-
-  @media ${device.mobile} {
   }
 `;
 

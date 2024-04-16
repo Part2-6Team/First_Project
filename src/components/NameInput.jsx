@@ -1,11 +1,18 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import device from '../config';
 
-function NameInput({ placeholder }) {
+function NameInput({ placeholder, handleChange }) {
+  const handleChangeInput = (event) => {
+    handleChange(event.target.value);
+  };
+
   return (
     <InputWrapper>
-      <input className="nameInput" placeholder={placeholder} />
+      <input
+        className="nameInput"
+        placeholder={placeholder}
+        onChange={handleChangeInput}
+      />
     </InputWrapper>
   );
 }
