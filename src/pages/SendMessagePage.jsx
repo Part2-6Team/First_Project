@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import ProfileSelect from '../components/ProfileSelect';
@@ -12,13 +12,16 @@ import NameInput from '../components/NameInput';
 import { postMessage } from '../api/postMessage';
 
 function SendMessagePage() {
-  const [senderName, setSenderName] = useState();
+  const [senderName, setSenderName] = useState('');
   const [profileImage, setProfileImage] = useState(
     'https://i.ibb.co/zQGbzDz/image.png',
   );
   const [relation, setRelation] = useState('지인');
   const [message, setMessage] = useState('');
+  const [messageValid, setMessageValid] = useState(false);
   const [font, setFont] = useState('Noto Sans');
+  const [isFormValid, setIsFormVaild] = useState(false);
+
   const sendingData = {
     recipientId: 5920,
     sender: senderName,
@@ -28,10 +31,23 @@ function SendMessagePage() {
     font: font,
   };
 
+  const handleFormValid = () => {
+    if (senderName !== '' && messageValid !== false) {
+      setIsFormVaild(true);
+    } else {
+      setIsFormVaild(false);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    postMessage(sendingData);
+    console.log(message);
+    // postMessage(sendingData);
   };
+
+  useEffect(() => {
+    handleFormValid();
+  }, [senderName, messageValid]);
 
   return (
     <div>
@@ -56,13 +72,21 @@ function SendMessagePage() {
           </FormLabel>
           <FormLabel>
             내용을 입력해 주세요
-            <TextEditor handleChange={setMessage} />
+            <TextEditor
+              handleChange={setMessage}
+              isNotEmpty={setMessageValid}
+            />
           </FormLabel>
           <FormLabel>
             폰트
             <DropDown options={FONTS} handleChange={setFont} />
           </FormLabel>
-          <Button className="submit" size={720} shape={56}>
+          <Button
+            className="submit"
+            size={720}
+            shape={56}
+            disabled={!isFormValid}
+          >
             생성하기
           </Button>
         </SendForm>
