@@ -18,15 +18,17 @@ function GlobalNav({ hasButton = false }) {
   );
 }
 
+// prettier-ignore
 const Nav = styled.nav`
   display: flex;
-  justify-content: ${({ $hasButton }) =>
-    $hasButton ? 'center' : 'flex-start'};
+  justify-content: ${({ $hasButton }) => ($hasButton ? 'center' : 'flex-start')};
   gap: ${({ $hasButton }) => ($hasButton ? '940px' : '0')};
   align-items: center;
   height: 64px;
   border-bottom: 2px solid var(--Gray-100);
-  padding: ${({ $hasButton }) => ($hasButton ? '0' : '0 360px')};
+  max-width: 1184px;
+  padding: 0 24px;
+  margin: 0 auto;
 
   @media ${device.pc_small} {
     justify-content: space-between;
