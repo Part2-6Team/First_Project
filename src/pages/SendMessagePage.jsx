@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import ProfileSelect from '../components/ProfileSelect';
@@ -22,8 +23,10 @@ function SendMessagePage() {
   const [font, setFont] = useState('Noto Sans');
   const [isFormValid, setIsFormVaild] = useState(false);
 
+  const { id } = useParams();
+
   const sendingData = {
-    recipientId: 5920,
+    recipientId: id,
     sender: senderName,
     profileImageURL: profileImage,
     relationship: relation,
