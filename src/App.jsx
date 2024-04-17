@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './color.css';
 import MainPage from './pages/MainPage';
 import SendMessagePage from './pages/SendMessagePage';
-import CreatedRollingPage from './pages/createdRollingPage';
+import CreatedRollingPage from './pages/CreatedRollingPage';
 import CreatedRolloingPageEdit from './pages/CreatedRollingPageEdit';
 
 function App() {
