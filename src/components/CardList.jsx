@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
 
@@ -9,26 +9,10 @@ const arrowButton = {
 };
 
 function CardList() {
-  // eslint-disable-next-line no-unused-vars
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const handleScroll = (direction) => {
-    const container = document.getElementById('cardListContainer');
-    if (container) {
-      const scrollAmount = direction === 'left' ? -100 : 100;
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-      setScrollLeft(container.scrollLeft + scrollAmount);
-    }
-  };
-
   return (
     <CardListContainer id="cardListContainer">
       <CardListStyled>
         <ArrowButtonLeft
-          onClick={() => handleScroll('left')}
           src={`url(${arrowButton.background})`}
           alt="화살표 배경"
         >
@@ -78,7 +62,6 @@ function CardList() {
           count="20"
         />
         <ArrowButtonRight
-          onClick={() => handleScroll('right')}
           src={`url(${arrowButton.background})`}
           alt="화살표 배경"
         >
@@ -118,8 +101,6 @@ const ArrowButtonLeft = styled.div`
   border: none;
   font-size: 24px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
 `;
 
 const ArrowButtonRight = styled.div`
@@ -131,13 +112,8 @@ const ArrowButtonRight = styled.div`
   border: none;
   font-size: 24px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
 `;
 
-const ArrowButtonWay = styled.div`
-  width: 100px;
-  height: 100px;
-`;
+const ArrowButtonWay = styled.div``;
 
 export default CardList;
