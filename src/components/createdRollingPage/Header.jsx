@@ -91,7 +91,7 @@ const Container = styled.header`
   align-items: center;
 
   @media ${device.tablet} {
-    max-width: 736px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
