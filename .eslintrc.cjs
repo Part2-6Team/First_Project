@@ -2,18 +2,38 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-    "airbnb",
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'airbnb',
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-  settings: { react: { version: "18.2" } },
-  plugins: ["react-refresh"],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  settings: {
+    react: { version: '18.2' },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.svg'],
+      },
+    },
+  },
+  plugins: ['react-refresh'],
   rules: {
-    "react/jsx-no-target-blank": "off",
-    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+    'react/jsx-no-target-blank': 'off',
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    'object-curly-newline': 'off',
+    'react/prop-types': ['off'],
+    'linebreak-style': 0,
+    'react/react-in-jsx-scope': 'off',
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        some: ['nesting', 'id'],
+      },
+    ],
   },
 };
