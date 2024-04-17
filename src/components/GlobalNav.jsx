@@ -24,6 +24,20 @@ const Nav = styled.nav`
   height: 64px;
   padding: 0 350px;
   border-bottom: 2px solid var(--Gray-100);
+
+  @media (max-width: 1024px) {
+    width: 76rem;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (max-width: 768px) {
+    width: 36rem;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+  }
 `;
 
 const Logo = styled.button`

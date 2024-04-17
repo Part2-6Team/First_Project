@@ -16,7 +16,7 @@ function Button({ disabled, PageName }) {
 const ButtonStyled = styled.button`
   width: 28rem;
   color: var(--White);
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 1.2rem;
