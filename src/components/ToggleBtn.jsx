@@ -8,7 +8,7 @@ function ToggleBtn({ onToggle, toggleValue }) {
     setSelected(value);
     onToggle(value);
   };
-  
+
   return (
     <ToggleBox>
       <ToggleOption
@@ -25,7 +25,7 @@ function ToggleBtn({ onToggle, toggleValue }) {
       </ToggleOption>
     </ToggleBox>
   );
-};
+}
 
 const ToggleBox = styled.div`
   width: 24.4rem;
@@ -49,7 +49,7 @@ const ToggleOption = styled.button`
   text-align: center;
   cursor: pointer;
   font-weight: ${({ selected }) => (selected ? '700' : '400')};
-  color: ${({ selected}) => (selected ? 'var(--Purple-700)' : 'var(--Gray-900)')};
+  color: ${({ selected }) => (selected ? 'var(--Purple-700)' : 'var(--Gray-900)')};
   background-color: ${({ selected }) => (selected ? 'var(--White)' : 'var(--Gray-100)')};
   border: 2px solid ${({ selected }) => (selected ? 'var(--Purple-700)' : 'var(--Gray-100)')};
 `;
