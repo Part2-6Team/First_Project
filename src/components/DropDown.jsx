@@ -30,19 +30,27 @@ function DropDown({ options, handleChange }) {
   const [isDropdownView, setDropdownView] = useState(false);
   const [innerSelected, setInnerSelected] = useState(options[0].label);
 
-  const handlerOnClickDropDown = () => {
+  const handleOnClickDropDown = () => {
     setDropdownView(!isDropdownView);
+  };
+
+  const handleOnBlurDropDown = () => {
+    setDropdownView(false);
   };
 
   return (
     <div>
-      <DropdownLabel type="button" onClick={handlerOnClickDropDown}>
+      <DropdownLabel
+        type="button"
+        onClick={handleOnClickDropDown}
+        onBlur={handleOnBlurDropDown}
+      >
         <div className="label">{innerSelected}</div>
-        {isDropdownView ? (
-          <img className="icon" src={arrowTop} alt="화살표" />
-        ) : (
-          <img className="icon" src={arrowDown} alt="화살표" />
-        )}
+        <img
+          className="icon"
+          src={isDropdownView ? arrowTop : arrowDown}
+          alt="화살표 이미지"
+        />
       </DropdownLabel>
       {isDropdownView ? (
         <OptionList
