@@ -21,8 +21,8 @@ function ListPage() {
 const ListPageStyled = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 38rem;
-  margin-left: 21.8rem;
+  margin-right: auto;
+  margin-left: auto;
 
   @media (max-width: 1024px) {
     margin-right: auto;

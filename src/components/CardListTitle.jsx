@@ -18,6 +18,8 @@ const CardListTitleStyled = styled.div`
   font-weight: 700;
   line-height: 150%;
   margin-top: 5rem;
+  margin-right: auto;
+  margin-left: 15rem;
 
   @media (max-width: 1024px) {
     padding: 0;

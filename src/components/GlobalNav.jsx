@@ -5,7 +5,7 @@ import OutlinedButton from './OutlineButton';
 
 function GlobalNav({ hasButton = false }) {
   return (
-    <Nav>
+    <Nav $hasButton={hasButton}>
       <Logo>
         <img className="logoImage" src={logoImage} alt="로고이미지" />
         <div className="logoTitle">Rolling</div>
@@ -17,26 +17,22 @@ function GlobalNav({ hasButton = false }) {
   );
 }
 
+// prettier-ignore
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ $hasButton }) => ($hasButton ? 'center' : 'flex-start')};
+  gap: ${({ $hasButton }) => ($hasButton ? '940px' : '0')};
   align-items: center;
   height: 64px;
-  padding: 0 350px;
   border-bottom: 2px solid var(--Gray-100);
+  max-width: 1184px;
+  padding: 0 24px;
+  margin: 0 auto;
 
   @media (max-width: 1024px) {
-    width: 76rem;
-    padding: 0;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  @media (max-width: 768px) {
-    width: 36rem;
-    padding: 0;
-    margin-right: auto;
-    margin-left: auto;
+    justify-content: space-between;
+    padding: 0 24px;
+    gap: 0;
   }
 `;
 
@@ -47,6 +43,7 @@ const Logo = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+
   .logoTitle {
     font-family: Poppins;
     color: var(--Gray-700);
