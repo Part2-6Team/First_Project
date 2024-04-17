@@ -4,8 +4,8 @@ const Button = styled.button`
   width: ${({ size }) => size}px;
   color: var(--White);
   border: none;
-  border-radius: ${({ type }) => (type === 56 ? '12px' : '6px')};
-  padding: ${({ type }) => (type === 56 ? '14px 24px' : '7px 16px')};
+  border-radius: ${({ shape }) => (shape === 56 ? '12px' : '6px')};
+  padding: ${({ shape }) => (shape === 56 ? '14px 24px' : '7px 16px')};
   font-size: 18px;
   background-color: ${({ disabled }) => {
     if (disabled) {

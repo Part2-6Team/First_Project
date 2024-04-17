@@ -1,55 +1,56 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import siteImage1 from '../assets/siteInfo1.png';
-import siteImage2 from '../assets/siteInfo2.png';
+import device from '../config';
 
-const TITLE = [
-  '',
-  '누구나 손쉽게, 온라인\n롤링 페이퍼를 만들 수 있어요',
-  '서로에게 이모지로 감정을\n표현해보세요',
-];
+// prettier-ignore
+function NewLine({ sentences }) {
+  return sentences.split('\n').map((sentence) => (
+    <React.Fragment key={sentence}>
+      <span>
+        {sentence}
+      </span>
+      <br />
+    </React.Fragment>
+  ));
+}
 
-const MESSAGE = [
-  '',
-  '로그인 없이 자유롭게 만들어요',
-  '롤링 페이퍼에 이모지를 추가할 수 있어요',
-];
-
-function SiteInfo({ order }) {
-  let hasGap = true;
-  if (order !== 1) {
-    hasGap = false;
-  }
-  const point = `Point. 0${order}`;
+// prettier-ignore
+function SiteInfo({ dir = 'ltr', index, title, message, imgUrl }) {
   return (
-    <SiteInfoWrapper $hasGap={hasGap}>
-      {order === 2 ? <img src={siteImage2} alt="이모지 추가" /> : null}
+    <Container dir={dir}>
       <div className="description">
-        <div className="point">{point}</div>
-        <h2 className="title">{TITLE[order]}</h2>
-        <p className="message">{MESSAGE[order]}</p>
+        <div className="point">
+          Point.
+          {index}
+        </div>
+        <h2 className="title">
+          <NewLine sentences={title} />
+        </h2>
+        <p className="message">
+          {message}
+        </p>
       </div>
-      {order === 1 ? <img src={siteImage1} alt="롤링 페이퍼 만들기" /> : null}
-    </SiteInfoWrapper>
+      <img src={imgUrl} alt="사이트 소개 이미지" />
+    </Container>
   );
 }
 
-const SiteInfoWrapper = styled.div`
-  width: 1200px;
+const Container = styled.div`
   display: flex;
-  justify-content: ${({ $hasGap }) => ($hasGap ? 'flex-end' : 'flex-start')};
+  width: 1200px;
+  justify-content: space-around;
   align-items: center;
-  padding: 60px 0 60px 0;
-  gap: ${({ $hasGap }) => ($hasGap ? 50 : 0)}px;
-  border-radius: 16px;
   background: var(--Surface);
-  white-space: pre-line;
+  border-radius: 16px;
+  padding: 60px;
+  gap: 50px;
 
   .description {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    align-items: ${({ dir }) => (dir === 'rtl' ? 'flex-end' : 'flex-start')};
+    gap: 8px;
+    text-align: left;
     font-family: Pretendard;
 
     .point {
@@ -57,22 +58,36 @@ const SiteInfoWrapper = styled.div`
       border-radius: 50px;
       background: var(--Purple-600);
       color: var(--White);
-      font-size: 14px;
       font-weight: 700;
-      line-height: 20px;
+      font-size: 14px;
     }
 
     .title {
-      margin: 0;
+      white-space: nowrap;
       font-weight: 700;
-      line-height: 36px;
     }
 
     .message {
-      margin: 0;
       font-size: 18px;
-      line-height: 28px;
       color: var(--Gray-500);
+    }
+  }
+
+  @media ${device.pc_small} {
+    width: calc(100vw - 48px);
+    flex-direction: column;
+    overflow: hidden;
+
+    .description {
+      width: 100%;
+
+      .title {
+        white-space: wrap;
+      }
+
+      .title br {
+        display: none;
+      }
     }
   }
 `;

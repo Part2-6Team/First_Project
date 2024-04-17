@@ -20,6 +20,7 @@ const OutlinedButton = styled.button`
   background: var(--White);
   color: var(--Black);
   cursor: pointer;
+  white-space: nowrap;
 
   &:disabled {
     background: var(--Gray-300);

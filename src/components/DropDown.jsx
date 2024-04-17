@@ -3,31 +3,32 @@ import { styled } from 'styled-components';
 import arrowTop from '../assets/arrow_top.svg';
 import arrowDown from '../assets/arrow_right.svg';
 
-function OptionList({ display, setSelected }) {
-  const handleClickOption = (e) => {
-    setSelected(e.target.innerText);
+function OptionList({ options, onChangeInner, onChangeSelected }) {
+  const handleClickOption = (event) => {
+    onChangeInner(event.target.innerText);
+    onChangeSelected(event.target.innerText);
   };
 
   return (
     <OptionWrapper>
-      {display.map((item) => (
+      {options.map((option) => (
         <li
           role="presentation"
           className="option"
-          key={item.id}
-          onClick={() => {}}
-          onKeyDown={(e) => handleClickOption(e)}
+          key={option.value}
+          onClick={handleClickOption}
+          onKeyDown={handleClickOption}
         >
-          {item.value}
+          {option.label}
         </li>
       ))}
     </OptionWrapper>
   );
 }
 
-function DropDown({ display }) {
+function DropDown({ options, handleChange }) {
   const [isDropdownView, setDropdownView] = useState(false);
-  const [selected, setSelected] = useState(display[0].value);
+  const [innerSelected, setInnerSelected] = useState(options[0].label);
 
   const handlerOnClickDropDown = () => {
     setDropdownView(!isDropdownView);
@@ -36,7 +37,7 @@ function DropDown({ display }) {
   return (
     <div>
       <DropdownLabel type="button" onClick={handlerOnClickDropDown}>
-        <div className="label">{selected}</div>
+        <div className="label">{innerSelected}</div>
         {isDropdownView ? (
           <img className="icon" src={arrowTop} alt="화살표" />
         ) : (
@@ -44,7 +45,11 @@ function DropDown({ display }) {
         )}
       </DropdownLabel>
       {isDropdownView ? (
-        <OptionList display={display} setSelected={setSelected} />
+        <OptionList
+          options={options}
+          onChangeInner={setInnerSelected}
+          onChangeSelected={handleChange}
+        />
       ) : null}
     </div>
   );
