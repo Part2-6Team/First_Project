@@ -65,10 +65,6 @@ const Container = styled.main`
 
   // 모달이 존재할때는 50%로 어둡게 처리
   filter: brightness(100%);
-
-  @media ${device.mobile} {
-    padding: 80px 24px;
-  }
 `;
 
 const EditBtnWithWeb = styled(StyledBtn)`

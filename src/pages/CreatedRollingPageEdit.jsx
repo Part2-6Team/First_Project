@@ -5,6 +5,7 @@ import Header from '../components/createdRollingPage/Header';
 import Main from '../components/createdRollingPageEdit/Main';
 import GlobalNav from '../components/GlobalNav';
 import UrlCopyPhrases from '../components/createdRollingPage/UrlCopyPharases';
+import device from '../config';
 
 function CreatedRollingPageEdit() {
   const [isUrlSharedPharases, setIsUrlSharedPharases] = useState(false);
@@ -24,7 +25,9 @@ function CreatedRollingPageEdit() {
 
   return (
     <Container>
-      <GlobalNav />
+      <GlobalNavWrap>
+        <GlobalNav />
+      </GlobalNavWrap>
       <Header
         handleOpenUrlShared={onClickUrlShared}
         isUrlSharedPharases={isUrlSharedPharases}
@@ -37,6 +40,12 @@ function CreatedRollingPageEdit() {
 
 const Container = styled.div`
   height: calc(100vh - 68px);
+`;
+
+const GlobalNavWrap = styled.div`
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
 export default CreatedRollingPageEdit;

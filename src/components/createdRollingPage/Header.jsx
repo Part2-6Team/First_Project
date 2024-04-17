@@ -96,8 +96,8 @@ const Container = styled.header`
   }
 
   @media ${device.mobile} {
-    padding: 13px 0;
-    max-width: 320px;
+    // max-width: 320px;
+    width: 100%;
     align-items: flex-start;
     flex-direction: column;
   }

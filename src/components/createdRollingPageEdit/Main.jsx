@@ -53,23 +53,20 @@ const Container = styled.main`
   align-items: center;
   position: relative;
 
-  padding: 80px 0;
+  padding: 80px 24px;
   min-height: 100%;
   height: auto;
 
   // 모달이 존재할때는 50%로 어둡게 처리
   filter: brightness(100%);
-
-  @media ${device.mobile} {
-    padding: 80px 24px;
-  }
 `;
 
 const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  padding: 0 24px;
+  width: 100%;
+  max-width: 1184px;
 
   position: relative;
 
