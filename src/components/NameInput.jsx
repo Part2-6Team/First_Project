@@ -37,6 +37,7 @@ const InputWrapper = styled.div`
 
   .nameInput {
     width: 100%;
+    height: 50px;
     padding: 12px 16px;
     border-radius: 8px;
     border: 1px solid var(--Gray-300);

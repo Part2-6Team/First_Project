@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import ProfileSelect from '../components/ProfileSelect';
@@ -12,6 +13,9 @@ import NameInput from '../components/NameInput';
 import postMessage from '../api/postMessage';
 
 function SendMessagePage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [senderName, setSenderName] = useState('');
   const [profileImage, setProfileImage] = useState(
     'https://i.ibb.co/zQGbzDz/image.png',
@@ -23,7 +27,7 @@ function SendMessagePage() {
   const [isFormValid, setIsFormVaild] = useState(false);
 
   const sendingData = {
-    recipientId: 5920,
+    recipientId: id,
     sender: senderName,
     profileImageURL: profileImage,
     relationship: relation,
@@ -34,6 +38,7 @@ function SendMessagePage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     postMessage(sendingData);
+    navigate(`/post/${id}`);
   };
 
   useEffect(() => {
