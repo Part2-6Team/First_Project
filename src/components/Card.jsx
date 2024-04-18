@@ -1,3 +1,5 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { styled } from 'styled-components';
@@ -5,6 +7,11 @@ import BackgroundPatternBeige from '../assets/pattern_beige.svg';
 import BackgroundPatternPurple from '../assets/pattern_purple.svg';
 import BackgroundPatternBlue from '../assets/pattern_blue.svg';
 import BackgroundPatterGreen from '../assets/pattern_green.svg';
+import profileImages from '../assets/profile';
+
+const randomIndexes = Array.from({ length: 3 }, () =>
+  Math.floor(Math.random() * profileImages.length),
+);
 
 const BackgroundColorPattern = {
   beige: BackgroundPatternBeige,
@@ -22,7 +29,6 @@ const BackgroundColor = {
 
 function Card({
   colorData,
-  profileImageData,
   toUser,
   userName,
   rollingWriteCount,
@@ -40,7 +46,21 @@ function Card({
           <CardToId>
             {toUser} {userName}
           </CardToId>
-          <ProfileImage>{profileImageData}</ProfileImage>
+          <ProfileImageContainer>
+            <ProfileImageFirst
+              src={profileImages[randomIndexes[0]].img}
+              alt={profileImages[randomIndexes[0]].name}
+            />
+            <ProfileImage
+              src={profileImages[randomIndexes[1]].img}
+              alt={profileImages[randomIndexes[1]].name}
+            />
+            <ProfileImage
+              src={profileImages[randomIndexes[2]].img}
+              alt={profileImages[randomIndexes[2]].name}
+            />
+            <ProfilePlus>+27</ProfilePlus>
+          </ProfileImageContainer>
           <div>
             <RollingWriteCount>{rollingWriteCount}</RollingWriteCount>
             <RollingWriteText>{rollingWriteText}</RollingWriteText>
@@ -106,7 +126,43 @@ const CardToId = styled.span`
   line-height: 3.6rem;
 `;
 
-const ProfileImage = styled.div``;
+const ProfileImageContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+`;
+
+const ProfileImage = styled.img`
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  margin-left: -12px;
+  border-radius: 50px;
+  border: 1.5px solid var(--White);
+  background: var(--White);
+`;
+
+const ProfileImageFirst = styled(ProfileImage)`
+  margin-left: 0px;
+`;
+
+const ProfilePlus = styled.div`
+  display: flex;
+  padding: 5px 6px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-left: -12px;
+  border-radius: 30px;
+  background: var(--White);
+  
+  color: var(--Gray-500);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%
+  letter-spacing: -0.06px;
+  `;
 
 const RollingWriteCount = styled.span`
   color: var(--Gray-700);

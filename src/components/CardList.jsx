@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
@@ -13,6 +14,7 @@ const arrowButton = {
 
 function CardList() {
   const handleScroll = (direction) => {
+    console.log('handleScroll 호출됨');
     const container = document.getElementById('cardListContainer');
     if (container) {
       const scrollAmount = direction === 'left' ? -100 : 100;
@@ -34,7 +36,6 @@ function CardList() {
       <CardListStyled>
         <Card
           colorData="beige"
-          profileImageData=""
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
@@ -44,7 +45,6 @@ function CardList() {
         />
         <Card
           colorData="purple"
-          profileImageData=""
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
@@ -54,7 +54,6 @@ function CardList() {
         />
         <Card
           colorData="green"
-          profileImageData=""
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
@@ -64,7 +63,6 @@ function CardList() {
         />
         <Card
           colorData="blue"
-          profileImageData=""
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
@@ -74,7 +72,6 @@ function CardList() {
         />
         <Card
           colorData="beige"
-          profileImageData=""
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
