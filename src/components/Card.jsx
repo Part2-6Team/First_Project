@@ -1,12 +1,16 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { styled } from 'styled-components';
+import BackgroundPatternBeige from '../assets/pattern_beige.svg';
+import BackgroundPatternPurple from '../assets/pattern_purple.svg';
+import BackgroundPatternBlue from '../assets/pattern_blue.svg';
+import BackgroundPatterGreen from '../assets/pattern_green.svg';
 
 const BackgroundColorPattern = {
-  beige: '../assets/pattern_beige.svg',
-  purple: '../assets/pattern_purple.svg',
-  blue: '../assets/pattern_blue.svg',
-  green: '../assets/pattern_green.svg',
+  beige: BackgroundPatternBeige,
+  purple: BackgroundPatternPurple,
+  blue: BackgroundPatternBlue,
+  green: BackgroundPatterGreen,
 };
 
 const BackgroundColor = {
@@ -56,7 +60,6 @@ function Card({
             </EmojiBadge>
           </EmojiBadgeFrame>
         </EmojiBadgeSection>
-        <img src={BackgroundColorPattern[colorData]} alt="배경 색 패턴" />
       </CardContainer>
     </CardStyled>
   );
@@ -70,6 +73,8 @@ const CardStyled = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${(props) => props.backgroundColor};
   background-image: ${(props) => `url("${props.backgroundImage}")`};
+  background-repeat: no-repeat;
+  background-position: right bottom;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   margin-top: 1.6rem;
 

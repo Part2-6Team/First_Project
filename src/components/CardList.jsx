@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
+import Background from '../assets/Ellipse1.svg';
+import ArrowLeft from '../assets/arrow_left.svg';
+import ArrowRight from '../assets/arrow_right.svg';
 
 const arrowButton = {
-  background: '../assets/Ellipse 1.svg',
-  arrowLeft: '../assets/arrow_left.svg',
-  arrowRight: '../assets/arrow_right.svg',
+  background: Background,
+  arrowLeft: ArrowLeft,
+  arrowRight: ArrowRight,
 };
 
 function CardList() {
@@ -24,9 +27,10 @@ function CardList() {
     <CardListContainer id="cardListContainer">
       <ArrowButtonLeft
         onClick={() => handleScroll('left')}
-        backgroundImage={arrowButton.background}
-        alt="왼쪽화살표"
-      />
+        backgroundImage={`url(${arrowButton.background})`}
+      >
+        <img src={ArrowLeft} alt="왼쪽화살표" />
+      </ArrowButtonLeft>
       <CardListStyled>
         <Card
           colorData="beige"
@@ -39,7 +43,7 @@ function CardList() {
           count="20"
         />
         <Card
-          colorData="beige"
+          colorData="purple"
           profileImageData=""
           toUser="To."
           userName="Sowon"
@@ -49,7 +53,7 @@ function CardList() {
           count="20"
         />
         <Card
-          colorData="beige"
+          colorData="green"
           profileImageData=""
           toUser="To."
           userName="Sowon"
@@ -59,7 +63,7 @@ function CardList() {
           count="20"
         />
         <Card
-          colorData="beige"
+          colorData="blue"
           profileImageData=""
           toUser="To."
           userName="Sowon"
@@ -81,9 +85,10 @@ function CardList() {
       </CardListStyled>
       <ArrowButtonRight
         onClick={() => handleScroll('right')}
-        backgroundImage={arrowButton.arrowRight}
-        alt="오른쪽화살표"
-      />
+        backgroundImage={`url(${arrowButton.background})`}
+      >
+        <img src={ArrowRight} alt="오른쪽화살표" />
+      </ArrowButtonRight>
     </CardListContainer>
   );
 }
@@ -126,10 +131,14 @@ const ArrowButton = styled.button`
 
 const ArrowButtonLeft = styled(ArrowButton)`
   left: 0;
+  background-image: ${(props) => props.backgroundImage};
+  background-size: cover;
 `;
 
 const ArrowButtonRight = styled(ArrowButton)`
   right: 0;
+  background-image: ${(props) => props.backgroundImage};
+  background-size: cover;
 `;
 
 export default CardList;
