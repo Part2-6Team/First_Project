@@ -69,7 +69,7 @@ const CardStyled = styled.div`
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${(props) => props.backgroundColor};
-  background-image: ${(props) => `url(${props.backgroundImage})`};
+  background-image: ${(props) => `url("${props.backgroundImage}")`};
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   margin-top: 1.6rem;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
 
@@ -9,18 +9,25 @@ const arrowButton = {
 };
 
 function CardList() {
+  const handleScroll = (direction) => {
+    const container = document.getElementById('cardListContainer');
+    if (container) {
+      const scrollAmount = direction === 'left' ? -100 : 100;
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <CardListContainer id="cardListContainer">
+      <ArrowButtonLeft
+        onClick={() => handleScroll('left')}
+        backgroundImage={arrowButton.background}
+        alt="왼쪽화살표"
+      />
       <CardListStyled>
-        <ArrowButtonLeft
-          src={`url(${arrowButton.background})`}
-          alt="화살표 배경"
-        >
-          <ArrowButtonWay
-            src={`url(${arrowButton.arrowLeft})`}
-            alt="왼쪽화살표"
-          />
-        </ArrowButtonLeft>
         <Card
           colorData="beige"
           profileImageData=""
@@ -71,16 +78,12 @@ function CardList() {
           emoji="👍"
           count="20"
         />
-        <ArrowButtonRight
-          src={`url(${arrowButton.background})`}
-          alt="화살표 배경"
-        >
-          <ArrowButtonWay
-            src={`url(${arrowButton.arrowRight})`}
-            alt="오른쪽화살표"
-          />
-        </ArrowButtonRight>
       </CardListStyled>
+      <ArrowButtonRight
+        onClick={() => handleScroll('right')}
+        backgroundImage={arrowButton.arrowRight}
+        alt="오른쪽화살표"
+      />
     </CardListContainer>
   );
 }
@@ -92,6 +95,8 @@ const CardListContainer = styled.div`
   margin-left: auto;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 `;
 
 const CardListStyled = styled.div`
@@ -101,30 +106,30 @@ const CardListStyled = styled.div`
   margin-right: auto;
   margin-left: auto;
   overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-const ArrowButtonLeft = styled.div`
+const ArrowButton = styled.button`
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-image: ${(props) => `url("${props.backgroundImage}")`};
+  background-size: contain;
+`;
+
+const ArrowButtonLeft = styled(ArrowButton)`
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-image: ${(props) => props.backgroundImage};
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
 `;
 
-const ArrowButtonRight = styled.div`
-  position: absolute;
+const ArrowButtonRight = styled(ArrowButton)`
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-image: ${(props) => props.backgroundImage};
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
 `;
-
-const ArrowButtonWay = styled.div``;
 
 export default CardList;
