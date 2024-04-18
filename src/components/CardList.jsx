@@ -61,6 +61,16 @@ function CardList() {
           emoji="👍"
           count="20"
         />
+        <Card
+          colorData="beige"
+          profileImageData=""
+          toUser="To."
+          userName="Sowon"
+          rollingWriteCount="30"
+          rollingWriteText="명이 작성했어요!"
+          emoji="👍"
+          count="20"
+        />
         <ArrowButtonRight
           src={`url(${arrowButton.background})`}
           alt="화살표 배경"
@@ -77,8 +87,9 @@ function CardList() {
 
 const CardListContainer = styled.div`
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 80%;
+  margin-right: auto;
+  margin-left: auto;
   position: relative;
   overflow: hidden;
 `;
