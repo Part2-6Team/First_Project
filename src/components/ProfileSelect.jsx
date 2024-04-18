@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import profileImages from '../assets/profile';
+import profileImages from '../assets/profile/index';
 import defaultProfileImage from '../assets/profile/0.png';
+import device from '../config';
 
-function ProfileSelect() {
+function ProfileSelect({ handleChange }) {
   const [selected, setSelected] = useState(defaultProfileImage);
 
-  const handleClickProfileImage = (e) => {
-    setSelected(e.target.value);
+  const handleClickProfileImage = (event) => {
+    handleChange(event.target.value);
+    setSelected(event.target.value);
   };
 
   return (
@@ -49,6 +51,10 @@ const ProfileSelectWrapper = styled.div`
     border-radius: 100px;
     border: 3px solid var(--Gray-200);
   }
+
+  @media ${device.mobile} {
+    max-height: 200px;
+  }
 `;
 
 const ProfileImageListWrapper = styled.div`
@@ -67,8 +73,9 @@ const ProfileImageListWrapper = styled.div`
   .profileImageList {
     display: flex;
     gap: 5px;
-    width: 605px;
-    height: 56px;
+    max-width: 605px;
+    max-height: 112px;
+    flex-wrap: wrap;
   }
 
   .input-hidden {

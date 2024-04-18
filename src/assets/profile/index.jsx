@@ -1,25 +1,14 @@
-import profile1 from './1.png';
-import profile2 from './2.png';
-import profile3 from './3.png';
-import profile4 from './4.png';
-import profile5 from './5.png';
-import profile6 from './6.png';
-import profile7 from './7.png';
-import profile8 from './8.png';
-import profile9 from './9.png';
-import profile10 from './10.png';
-
 const profileImages = [
-  { name: 'profile1', img: profile1 },
-  { name: 'profile2', img: profile2 },
-  { name: 'profile3', img: profile3 },
-  { name: 'profile4', img: profile4 },
-  { name: 'profile5', img: profile5 },
-  { name: 'profile6', img: profile6 },
-  { name: 'profile7', img: profile7 },
-  { name: 'profile8', img: profile8 },
-  { name: 'profile9', img: profile9 },
-  { name: 'profile10', img: profile10 },
+  { name: 'profile1', img: 'https://i.ibb.co/JzzWScq/1.png' },
+  { name: 'profile2', img: 'https://i.ibb.co/sCMsFrM/2.png' },
+  { name: 'profile3', img: 'https://i.ibb.co/cFwNYSm/3.png' },
+  { name: 'profile4', img: 'https://i.ibb.co/yYVYvSc/4.png' },
+  { name: 'profile5', img: 'https://i.ibb.co/SmqJFdy/5.png' },
+  { name: 'profile6', img: 'https://i.ibb.co/wSdDgmQ/6.png' },
+  { name: 'profile7', img: 'https://i.ibb.co/wwp8kDT/7.png' },
+  { name: 'profile8', img: 'https://i.ibb.co/L5gXRhm/8.png' },
+  { name: 'profile9', img: 'https://i.ibb.co/82WrBQR/9.png' },
+  { name: 'profile10', img: 'https://i.ibb.co/Kq81HbD/10.png' },
 ];
 
 export default profileImages;
