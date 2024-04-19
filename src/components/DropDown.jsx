@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { styled } from 'styled-components';
 import arrowTop from '../assets/arrow_top.svg';
 import arrowDown from '../assets/arrow_right.svg';
 
-function OptionList({ options, onChangeInner, onChangeSelected }) {
+function OptionList({ options, onChangeInner, onChangeSelected, onBlur }) {
   const handleClickOption = (event) => {
     onChangeInner(event.target.innerText);
     onChangeSelected(event.target.innerText);
+    onBlur(false);
   };
 
   return (
@@ -40,11 +41,7 @@ function DropDown({ options, handleChange }) {
 
   return (
     <div>
-      <DropdownLabel
-        type="button"
-        onClick={handleOnClickDropDown}
-        onBlur={handleOnBlurDropDown}
-      >
+      <DropdownLabel type="button" onClick={handleOnClickDropDown}>
         <div className="label">{innerSelected}</div>
         <img
           className="icon"
@@ -57,6 +54,7 @@ function DropDown({ options, handleChange }) {
           options={options}
           onChangeInner={setInnerSelected}
           onChangeSelected={handleChange}
+          onBlur={setDropdownView}
         />
       ) : null}
     </div>
