@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 import Header from '../components/createdRollingPage/Header';
 import Main from '../components/createdRollingPage/Main';
 import GlobalNav from '../components/GlobalNav';
 import UrlCopyPharases from '../components/createdRollingPage/UrlCopyPharases';
 import device from '../config';
+import useRecipients from '../hooks/useRecipients';
 
 function CreatedRolloingPage() {
+  const { id } = useParams();
+  const recipients = useRecipients(id);
   const [isUrlSharedPharases, setIsUrlSharedPharases] = useState(false);
 
-  const handleCopyClipBoard = async (text) => {
+  const CopyClipBoard = async (text) => {
     await navigator.clipboard.writeText(text);
   };
 
   const onClickUrlShared = () => {
     setIsUrlSharedPharases(true);
-    handleCopyClipBoard(window.location.href);
+    CopyClipBoard(window.location.href);
 
     setTimeout(() => {
       setIsUrlSharedPharases(false);
@@ -29,6 +33,7 @@ function CreatedRolloingPage() {
         <GlobalNav />
       </GlobalNavWrap>
       <Header
+        recipients={recipients}
         handleOpenUrlShared={onClickUrlShared}
         isUrlSharedPharases={isUrlSharedPharases}
       />

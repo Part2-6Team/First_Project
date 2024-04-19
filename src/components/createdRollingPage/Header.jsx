@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import EmojiPicker from 'emoji-picker-react';
 
-import profile from '../../assets/profile.png';
-import profile2 from '../../assets/profile2.png';
-import profile3 from '../../assets/profile3.png';
+import { useParams } from 'react-router-dom';
 import plusProfile from '../../assets/plusProfile.svg';
 import dropArrow from '../../assets/dropArrow.svg';
 import addEmoji from '../../assets/addEmoji.svg';
@@ -13,13 +11,30 @@ import share from '../../assets/share.svg';
 import EmojiBadge from './EmojiBadge';
 import ProfileImg from './profileImg';
 import device from '../../config';
+import useReactions from '../../hooks/useReactions';
 
-function Header({ handleOpenUrlShared, isUrlSharedPharases }) {
+function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
+  const { id } = useParams();
+  const reactions = useReactions({ id, limit: 8, offset: 0 });
+  const mostReactions = reactions?.results.slice(0, 3);
+  const otherReactions = reactions?.results.slice(3, 11);
+
+  console.log(recipients);
+  const messages = recipients?.recentMessages;
+  const recentMessages = messages?.slice(0, 3);
+
+  // const reactions = recipients?.topReactions;
+
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const [isClickSharedBtn, setIsClickSharedBtn] = useState(false);
+  const [isClickEmojiMore, setIsClickEmojiMore] = useState(false);
 
   const handleEmojiPicker = () => {
     setIsEmojiPickerOpen((prev) => !prev);
+  };
+
+  const handleEmojiMore = () => {
+    setIsClickEmojiMore((prev) => !prev);
   };
 
   const handleClickSharedBtn = () => {
@@ -42,27 +57,61 @@ function Header({ handleOpenUrlShared, isUrlSharedPharases }) {
     </SharedContainer>
   );
 
+  const emojiContainer = otherReactions ? (
+    <EmojiContainer>
+      {otherReactions.map((reaction) => (
+        <EmojiBadge
+          key={reaction.id}
+          emoji={reaction.emoji}
+          count={reaction.count}
+        />
+      ))}
+    </EmojiContainer>
+  ) : (
+    <EmojiContainer>리액션을 추가해 주세요.</EmojiContainer>
+  );
+
   return (
     <Container>
-      <Left>To. Ashley Kim</Left>
+      <Left>{recipients?.name}</Left>
       <Right>
         <PostUserContainer>
           <ProfileContainer>
-            {/* TODO: 반복되는 부분 map으로 처리하기 */}
-            <ProfileImg src={profile} alt="profileImg" border translate />
-            <ProfileImg src={profile2} alt="profileImg" border translate />
-            <ProfileImg src={profile3} alt="profileImg" border translate />
-            <ProfileImg src={plusProfile} alt="profileImg" translate />
+            {recentMessages?.map((message) => (
+              <ProfileImg
+                key={message.id}
+                src={message.profileImageURL}
+                alt="profileImg"
+                border
+                translate
+              />
+            ))}
+            {recipients?.messageCount > 3 ? (
+              <ProfileImg
+                src={plusProfile}
+                alt="profileImg"
+                translate
+                plusProfile={Number(recipients?.messageCount) - 3}
+              />
+            ) : null}
           </ProfileContainer>
-          <PostCountText>9명이 작성했어요!</PostCountText>
+          <PostCountText>
+            {recipients?.messageCount}
+            명이 작성했어요!
+          </PostCountText>
         </PostUserContainer>
-        <EmojiContainer>
-          {/* TODO: 반복되는 부분 map으로 처리하기 */}
-          <EmojiBadge />
-          <EmojiBadge />
-          <EmojiBadge />
-        </EmojiContainer>
-        <DropArrow src={dropArrow} alt="dropArrow" />
+        <MostEmojiContainer>
+          {mostReactions?.map((reaction) => (
+            <EmojiBadge
+              key={reaction.id}
+              emoji={reaction.emoji}
+              count={reaction.count}
+            />
+          ))}
+          {isClickEmojiMore && emojiContainer}
+        </MostEmojiContainer>
+        <DropArrow src={dropArrow} alt="dropArrow" onClick={handleEmojiMore} />
+
         <AddEmojiBtn onClick={handleEmojiPicker}>
           <img className="addEmoji" src={addEmoji} alt="add emoji button" />
           <p className="addText">추가</p>
@@ -70,7 +119,9 @@ function Header({ handleOpenUrlShared, isUrlSharedPharases }) {
             <EmojiPicker open={isEmojiPickerOpen} />
           </EmojiPickerWrap>
         </AddEmojiBtn>
+
         <DividingLine />
+
         <ShareButton onClick={handleClickSharedBtn}>
           <img className="shareImg" src={share} alt="share button" />
           {isClickSharedBtn && sharedContainer}
@@ -147,13 +198,32 @@ const PostCountText = styled.span`
   margin-right: 28px;
 `;
 
-const EmojiContainer = styled.div`
+const MostEmojiContainer = styled.div`
+  position: relative;
+
   display: flex;
   gap: 10px;
 
   @media ${device.mobile} {
     gap: 8px;
   }
+`;
+
+const EmojiContainer = styled.div`
+  position: absolute;
+  top: 45px;
+  right: -45px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  gap: 8px;
+
+  border-radius: 32px;
+  border: 1px solid #b6b6b6;
+  background: var(--White);
+  z-index: 1;
 `;
 
 const DropArrow = styled.button`
@@ -167,6 +237,7 @@ const DropArrow = styled.button`
   height: 36px;
   padding: 6px;
   margin: 0 8px;
+  cursor: pointer;
 
   @media ${device.mobile} {
     width: 24px;
