@@ -3,15 +3,23 @@ import getRequest from '../api/getRequest';
 
 export default function useRecipients(id) {
   const [recipients, setRecipients] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    let res;
     async function getRecipients() {
-      const res = await getRequest(`recipients/${id}/`);
+      setIsLoading(true);
+      res = await getRequest(`recipients/${id}/`);
+      setIsLoading(false);
       setRecipients(res);
+
+      if (res === 404) {
+        setRecipients(404);
+      }
     }
 
     getRecipients();
   }, [id]);
 
-  return recipients;
+  return { recipients, isLoading };
 }

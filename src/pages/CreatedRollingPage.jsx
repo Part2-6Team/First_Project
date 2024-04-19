@@ -8,11 +8,10 @@ import GlobalNav from '../components/GlobalNav';
 import UrlCopyPharases from '../components/createdRollingPage/UrlCopyPharases';
 import device from '../config';
 import useRecipients from '../hooks/useRecipients';
-import NotFoundPage from './NotFound';
 
 function CreatedRolloingPage() {
   const { id } = useParams();
-  const recipients = useRecipients(id);
+  const { recipients, isLoading } = useRecipients(id);
   const [isUrlSharedPharases, setIsUrlSharedPharases] = useState(false);
 
   const CopyClipBoard = async (text) => {
@@ -30,7 +29,8 @@ function CreatedRolloingPage() {
 
   return (
     <Container>
-      {recipients !== null ? (
+      {!isLoading && recipients === 404 && <div>404</div>}
+      {!isLoading && recipients !== 404 && (
         <>
           <GlobalNavWrap>
             <GlobalNav />
@@ -41,10 +41,9 @@ function CreatedRolloingPage() {
             isUrlSharedPharases={isUrlSharedPharases}
           />
           <Main />
+
           {isUrlSharedPharases && <UrlCopyPharases />}
         </>
-      ) : (
-        <NotFoundPage />
       )}
     </Container>
   );

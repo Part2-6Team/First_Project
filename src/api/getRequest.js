@@ -9,7 +9,7 @@ async function getRequest(path) {
   });
 
   if (!response.ok) {
-    throw new Error();
+    return response.status;
   }
 
   const result = await response.json();
