@@ -3,9 +3,15 @@ import ReactQuill from 'react-quill';
 import { styled } from 'styled-components';
 import useTextEditor from '../hooks/useTextEditor';
 
+// prettier-ignore
 function TextEditor({ handleChange, isNotEmpty }) {
-  const { isValid, editorContent, handleChangeText, handleBlur, handleFocus } =
-    useTextEditor({ handleChange, isNotEmpty });
+  const {
+    isValid,
+    editorContent,
+    handleChangeText,
+    handleBlur,
+    handleFocus,
+  } = useTextEditor({ handleChange, isNotEmpty });
 
   return (
     <QuillWrapper>

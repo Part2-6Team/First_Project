@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useDropdown() {
+function useDropdown() {
   const [isDropdownView, setDropdownView] = useState(false);
 
   const toggleDropdown = () => {
@@ -12,3 +12,5 @@ export function useDropdown() {
     toggleDropdown,
   };
 }
+
+export default useDropdown;

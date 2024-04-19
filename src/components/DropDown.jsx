@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import arrowTop from '../assets/arrow_top.svg';
 import arrowDown from '../assets/arrow_right.svg';
-import { useDropdown } from '../hooks/useDropDown';
+import useDropdown from '../hooks/useDropDown';
 
 function OptionList({ options, onChangeInner, onChangeSelected, onBlur }) {
   const handleClickOption = (event) => {
