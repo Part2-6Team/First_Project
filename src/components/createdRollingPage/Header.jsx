@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import EmojiPicker from 'emoji-picker-react';
+import { useLocation, useParams } from 'react-router-dom';
 
-import { useParams } from 'react-router-dom';
 import plusProfile from '../../assets/plusProfile.svg';
 import dropArrow from '../../assets/dropArrow.svg';
 import addEmoji from '../../assets/addEmoji.svg';
@@ -13,9 +13,14 @@ import ProfileImg from './profileImg';
 import device from '../../config';
 import useReactions from '../../hooks/useReactions';
 import postRequest from '../../api/postRequest';
+import shareKakao from '../../utils/shareKakaoLink';
+
+const BASE_URL = 'http://localhost:5173';
 
 function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
   const { id } = useParams();
+  const { pathname } = useLocation();
+  const PATH = BASE_URL + pathname;
   const reactions = useReactions({ id, limit: 11, offset: 0 });
 
   const mostReactions = reactions?.results.slice(0, 3);
@@ -27,6 +32,14 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const [isClickSharedBtn, setIsClickSharedBtn] = useState(false);
   const [isClickEmojiMore, setIsClickEmojiMore] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
 
   const handleEmojiPicker = () => {
     setIsEmojiPickerOpen((prev) => !prev);
@@ -51,7 +64,11 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
 
   const sharedContainer = (
     <SharedContainer>
-      <button type="button" className="shared_kakao">
+      <button
+        type="button"
+        className="shared_kakao"
+        onClick={() => shareKakao(PATH, '나만의 롤링페이퍼')}
+      >
         카카오톡 공유
       </button>
       <button
