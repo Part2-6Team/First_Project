@@ -8,6 +8,7 @@ import GlobalNav from '../components/GlobalNav';
 import UrlCopyPharases from '../components/createdRollingPage/UrlCopyPharases';
 import device from '../config';
 import useRecipients from '../hooks/useRecipients';
+import NotFoundPage from './NotFound';
 
 function CreatedRolloingPage() {
   const { id } = useParams();
@@ -29,16 +30,22 @@ function CreatedRolloingPage() {
 
   return (
     <Container>
-      <GlobalNavWrap>
-        <GlobalNav />
-      </GlobalNavWrap>
-      <Header
-        recipients={recipients}
-        handleOpenUrlShared={onClickUrlShared}
-        isUrlSharedPharases={isUrlSharedPharases}
-      />
-      <Main />
-      {isUrlSharedPharases && <UrlCopyPharases />}
+      {recipients !== null ? (
+        <>
+          <GlobalNavWrap>
+            <GlobalNav />
+          </GlobalNavWrap>
+          <Header
+            recipients={recipients}
+            handleOpenUrlShared={onClickUrlShared}
+            isUrlSharedPharases={isUrlSharedPharases}
+          />
+          <Main />
+          {isUrlSharedPharases && <UrlCopyPharases />}
+        </>
+      ) : (
+        <NotFoundPage />
+      )}
     </Container>
   );
 }
