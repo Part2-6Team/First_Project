@@ -12,18 +12,17 @@ import EmojiBadge from './EmojiBadge';
 import ProfileImg from './profileImg';
 import device from '../../config';
 import useReactions from '../../hooks/useReactions';
+import postRequest from '../../api/postRequest';
 
 function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
   const { id } = useParams();
-  const reactions = useReactions({ id, limit: 8, offset: 0 });
-  const mostReactions = reactions?.results.slice(0, 3);
-  const otherReactions = reactions?.results.slice(3, 11);
+  const reactions = useReactions({ id, limit: 11, offset: 0 });
 
-  console.log(recipients);
+  const mostReactions = reactions?.results.slice(0, 3);
+  const otherReactions = reactions?.results.slice(3);
+
   const messages = recipients?.recentMessages;
   const recentMessages = messages?.slice(0, 3);
-
-  // const reactions = recipients?.topReactions;
 
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const [isClickSharedBtn, setIsClickSharedBtn] = useState(false);
@@ -39,6 +38,15 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
 
   const handleClickSharedBtn = () => {
     setIsClickSharedBtn((prev) => !prev);
+  };
+
+  const handleEmojiClick = async (emojiData) => {
+    await postRequest(`recipients/${id}/reactions/`, {
+      emoji: emojiData.emoji,
+      type: 'increase',
+    });
+
+    setIsEmojiPickerOpen(false);
   };
 
   const sharedContainer = (
@@ -112,13 +120,18 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
         </MostEmojiContainer>
         <DropArrow src={dropArrow} alt="dropArrow" onClick={handleEmojiMore} />
 
-        <AddEmojiBtn onClick={handleEmojiPicker}>
-          <img className="addEmoji" src={addEmoji} alt="add emoji button" />
-          <p className="addText">추가</p>
+        <AddEmojiWrap>
+          <AddEmojiBtn onClick={handleEmojiPicker}>
+            <img className="addEmoji" src={addEmoji} alt="add emoji button" />
+            <p className="addText">추가</p>
+          </AddEmojiBtn>
           <EmojiPickerWrap>
-            <EmojiPicker open={isEmojiPickerOpen} />
+            <EmojiPicker
+              open={isEmojiPickerOpen}
+              onEmojiClick={handleEmojiClick}
+            />
           </EmojiPickerWrap>
-        </AddEmojiBtn>
+        </AddEmojiWrap>
 
         <DividingLine />
 
@@ -214,9 +227,8 @@ const EmojiContainer = styled.div`
   top: 45px;
   right: -45px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   padding: 24px;
   gap: 8px;
 
@@ -243,6 +255,10 @@ const DropArrow = styled.button`
     width: 24px;
     height: 24px;
   }
+`;
+
+const AddEmojiWrap = styled.div`
+  position: relative;
 `;
 
 const AddEmojiBtn = styled.button`
@@ -278,8 +294,8 @@ const AddEmojiBtn = styled.button`
 
 const EmojiPickerWrap = styled.div`
   position: absolute;
-  top: 48px;
-  right: 20px;
+  top: 45px;
+  right: -15px;
   z-index: 1;
 `;
 
