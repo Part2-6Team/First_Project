@@ -40,7 +40,6 @@ function Main() {
   }, [handleObserver]);
 
   useEffect(() => {
-    console.log(offset);
     const getCardList = async () => {
       if (hasNext === null) return;
 
@@ -82,7 +81,6 @@ function Main() {
         </CardContainer>
       </Container>
       <EditBtn onClick={handleToMoveEditPage}>수정하기</EditBtn>
-      {/* Url을 카피했을 경우 UrlCopyPhrases가 위치할 자리 */}
 
       {/* 모달이 존재할때 카드 모달이 위치할 자리 */}
       <div id="observer" style={{ height: '10px' }} />

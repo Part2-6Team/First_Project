@@ -98,6 +98,14 @@ const Name = styled.span`
     color: var(--Black);
     font-size: 20px;
     font-weight: 700;
+
+    overflow: hidden;
+    color: var(--gray-600);
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1; // 원하는 라인수
+    -webkit-box-orient: vertical;
   }
 `;
 
