@@ -72,6 +72,7 @@ function Main() {
           {cardList?.map((card) => (
             <Card
               key={card.id}
+              id={card.id}
               name={card.sender}
               relationship={card.relationship}
               comment={card.content}

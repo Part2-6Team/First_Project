@@ -20,6 +20,7 @@ function Main() {
   const handleObserver = useCallback(
     (entries) => {
       const target = entries[0];
+
       if (target.isIntersecting && !isLoading) {
         setPage((prevPage) => prevPage + 1);
       }
@@ -34,6 +35,7 @@ function Main() {
     // 최하단 요소를 관찰 대상으로 지정함
     const observerTarget = document.getElementById('observer');
     // 관찰 시작
+
     if (observerTarget) {
       observer.observe(observerTarget);
     }
