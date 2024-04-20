@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
 import { styled } from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
