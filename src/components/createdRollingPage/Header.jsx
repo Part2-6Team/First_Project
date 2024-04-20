@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import EmojiPicker from 'emoji-picker-react';
+import { useLocation, useParams } from 'react-router-dom';
 
-import profile from '../../assets/profile.png';
-import profile2 from '../../assets/profile2.png';
-import profile3 from '../../assets/profile3.png';
 import plusProfile from '../../assets/plusProfile.svg';
 import dropArrow from '../../assets/dropArrow.svg';
 import addEmoji from '../../assets/addEmoji.svg';
@@ -13,22 +11,64 @@ import share from '../../assets/share.svg';
 import EmojiBadge from './EmojiBadge';
 import ProfileImg from './profileImg';
 import device from '../../config';
+import useReactions from '../../hooks/useReactions';
+import postRequest from '../../api/postRequest';
+import shareKakao from '../../utils/shareKakaoLink';
 
-function Header({ handleOpenUrlShared, isUrlSharedPharases }) {
+const BASE_URL = 'http://localhost:5173';
+
+function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
+  const { id } = useParams();
+  const { pathname } = useLocation();
+  const PATH = BASE_URL + pathname;
+  const reactions = useReactions({ id, limit: 11, offset: 0 });
+
+  const mostReactions = reactions?.results.slice(0, 3);
+  const otherReactions = reactions?.results.slice(3);
+
+  const messages = recipients?.recentMessages;
+  const recentMessages = messages?.slice(0, 3);
+
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const [isClickSharedBtn, setIsClickSharedBtn] = useState(false);
+  const [isClickEmojiMore, setIsClickEmojiMore] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
 
   const handleEmojiPicker = () => {
     setIsEmojiPickerOpen((prev) => !prev);
+  };
+
+  const handleEmojiMore = () => {
+    setIsClickEmojiMore((prev) => !prev);
   };
 
   const handleClickSharedBtn = () => {
     setIsClickSharedBtn((prev) => !prev);
   };
 
+  const handleEmojiClick = async (emojiData) => {
+    await postRequest(`recipients/${id}/reactions/`, {
+      emoji: emojiData.emoji,
+      type: 'increase',
+    });
+
+    setIsEmojiPickerOpen(false);
+  };
+
   const sharedContainer = (
     <SharedContainer>
-      <button type="button" className="shared_kakao">
+      <button
+        type="button"
+        className="shared_kakao"
+        onClick={() => shareKakao(PATH, '나만의 롤링페이퍼')}
+      >
         카카오톡 공유
       </button>
       <button
@@ -42,35 +82,76 @@ function Header({ handleOpenUrlShared, isUrlSharedPharases }) {
     </SharedContainer>
   );
 
+  const emojiContainer = otherReactions ? (
+    <EmojiContainer>
+      {otherReactions.map((reaction) => (
+        <EmojiBadge
+          key={reaction.id}
+          emoji={reaction.emoji}
+          count={reaction.count}
+        />
+      ))}
+    </EmojiContainer>
+  ) : (
+    <EmojiContainer>리액션을 추가해 주세요.</EmojiContainer>
+  );
+
   return (
     <Container>
-      <Left>To. Ashley Kim</Left>
+      <Left>{recipients?.name}</Left>
       <Right>
         <PostUserContainer>
           <ProfileContainer>
-            {/* TODO: 반복되는 부분 map으로 처리하기 */}
-            <ProfileImg src={profile} alt="profileImg" border translate />
-            <ProfileImg src={profile2} alt="profileImg" border translate />
-            <ProfileImg src={profile3} alt="profileImg" border translate />
-            <ProfileImg src={plusProfile} alt="profileImg" translate />
+            {recentMessages?.map((message) => (
+              <ProfileImg
+                key={message.id}
+                src={message.profileImageURL}
+                alt="profileImg"
+                border
+                translate
+              />
+            ))}
+            {recipients?.messageCount > 3 ? (
+              <ProfileImg
+                src={plusProfile}
+                alt="profileImg"
+                translate
+                plusProfile={Number(recipients?.messageCount) - 3}
+              />
+            ) : null}
           </ProfileContainer>
-          <PostCountText>9명이 작성했어요!</PostCountText>
+          <PostCountText>
+            {recipients?.messageCount}
+            명이 작성했어요!
+          </PostCountText>
         </PostUserContainer>
-        <EmojiContainer>
-          {/* TODO: 반복되는 부분 map으로 처리하기 */}
-          <EmojiBadge />
-          <EmojiBadge />
-          <EmojiBadge />
-        </EmojiContainer>
-        <DropArrow src={dropArrow} alt="dropArrow" />
-        <AddEmojiBtn onClick={handleEmojiPicker}>
-          <img className="addEmoji" src={addEmoji} alt="add emoji button" />
-          <p className="addText">추가</p>
+        <MostEmojiContainer>
+          {mostReactions?.map((reaction) => (
+            <EmojiBadge
+              key={reaction.id}
+              emoji={reaction.emoji}
+              count={reaction.count}
+            />
+          ))}
+          {isClickEmojiMore && emojiContainer}
+        </MostEmojiContainer>
+        <DropArrow src={dropArrow} alt="dropArrow" onClick={handleEmojiMore} />
+
+        <AddEmojiWrap>
+          <AddEmojiBtn onClick={handleEmojiPicker}>
+            <img className="addEmoji" src={addEmoji} alt="add emoji button" />
+            <p className="addText">추가</p>
+          </AddEmojiBtn>
           <EmojiPickerWrap>
-            <EmojiPicker open={isEmojiPickerOpen} />
+            <EmojiPicker
+              open={isEmojiPickerOpen}
+              onEmojiClick={handleEmojiClick}
+            />
           </EmojiPickerWrap>
-        </AddEmojiBtn>
+        </AddEmojiWrap>
+
         <DividingLine />
+
         <ShareButton onClick={handleClickSharedBtn}>
           <img className="shareImg" src={share} alt="share button" />
           {isClickSharedBtn && sharedContainer}
@@ -91,13 +172,13 @@ const Container = styled.header`
   align-items: center;
 
   @media ${device.tablet} {
-    max-width: 736px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
   @media ${device.mobile} {
-    padding: 13px 0;
-    max-width: 320px;
+    // max-width: 320px;
+    width: 100%;
     align-items: flex-start;
     flex-direction: column;
   }
@@ -147,13 +228,31 @@ const PostCountText = styled.span`
   margin-right: 28px;
 `;
 
-const EmojiContainer = styled.div`
+const MostEmojiContainer = styled.div`
+  position: relative;
+
   display: flex;
   gap: 10px;
 
   @media ${device.mobile} {
     gap: 8px;
   }
+`;
+
+const EmojiContainer = styled.div`
+  position: absolute;
+  top: 45px;
+  right: -45px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 24px;
+  gap: 8px;
+
+  border-radius: 32px;
+  border: 1px solid #b6b6b6;
+  background: var(--White);
+  z-index: 1;
 `;
 
 const DropArrow = styled.button`
@@ -167,11 +266,16 @@ const DropArrow = styled.button`
   height: 36px;
   padding: 6px;
   margin: 0 8px;
+  cursor: pointer;
 
   @media ${device.mobile} {
     width: 24px;
     height: 24px;
   }
+`;
+
+const AddEmojiWrap = styled.div`
+  position: relative;
 `;
 
 const AddEmojiBtn = styled.button`
@@ -207,8 +311,8 @@ const AddEmojiBtn = styled.button`
 
 const EmojiPickerWrap = styled.div`
   position: absolute;
-  top: 48px;
-  right: 20px;
+  top: 45px;
+  right: -15px;
   z-index: 1;
 `;
 
