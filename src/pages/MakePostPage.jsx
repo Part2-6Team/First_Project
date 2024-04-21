@@ -7,7 +7,7 @@ import getBackgroundImageURL from '../api/getBackgroundImageURL';
 import Option from '../components/OptionBox';
 import GlobalNav from '../components/GlobalNav';
 import Button from '../components/Button';
-import Toinput from '../components/Toinput';
+import ToInput from '../components/ToInputComponent';
 
 function PostPage() {
   const [name, setName] = useState('');
@@ -86,7 +86,7 @@ function PostPage() {
       <GlobalNav hasButton={false} />
       <PostContainer>
         <Form onSubmit={onSubmitHandle}>
-          <Toinput
+          <ToInput
             value={name}
             setValue={setName}
             touched={nameTouched}
