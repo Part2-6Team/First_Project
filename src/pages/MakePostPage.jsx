@@ -8,6 +8,7 @@ import Option from '../components/OptionBox';
 import GlobalNav from '../components/GlobalNav';
 import Button from '../components/Button';
 import ToInput from '../components/ToInputComponent';
+import device from '../config';
 
 function PostPage() {
   const [name, setName] = useState('');
@@ -153,7 +154,7 @@ const SelectContainer = styled.div`
   padding-top: 50px;
   gap: 0.4rem;
 
-  @media (max-width: 767px) {
+  @media ${device.mobile} {
     width: 320px;
 }
 `;

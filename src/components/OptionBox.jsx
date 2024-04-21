@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ColorOption from './ColorOption';
 import ImageOption from './ImageOption';
+import device from '../config';
 
 function Option({ images, onSelectColor, onSelectImage, selectedColor }) {
   const [selectedImage, setSelectedImage] = useState('');
@@ -45,7 +46,7 @@ const OptionBox = styled.div`
   justify-content: space-between;
   margin-bottom: 69px;
   
-  @media (min-width: 360px) and (max-width: 767px) {
+  @media ${device.mobile} {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 58px;
