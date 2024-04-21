@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage';
 import SendMessagePage from './pages/SendMessagePage';
 import CreatedRollingPage from './pages/CreatedRollingPage';
 import CreatedRolloingPageEdit from './pages/CreatedRollingPageEdit';
-import PostPage from './pages/MakePostPage';
+import MakePostPage from './pages/MakePostPage';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="post/:id" element={<CreatedRollingPage />} />
         <Route path="post/:id/edit" element={<CreatedRolloingPageEdit />} />
         <Route path="post/:id/message" element={<SendMessagePage />} />
-        <Route path="post" elemet={<PostPage />} />
+        <Route path="post" elemet={<MakePostPage />} />
       </Routes>
     </BrowserRouter>
   );
