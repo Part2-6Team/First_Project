@@ -2,16 +2,21 @@ import React from 'react';
 import { styled } from 'styled-components';
 import logoImage from '../assets/logo.svg';
 import OutlinedButton from './OutlinedButton';
+import device from '../config';
 
 function GlobalNav({ hasButton = false }) {
   return (
     <Nav $hasButton={hasButton}>
-      <Logo>
-        <img className="logoImage" src={logoImage} alt="로고이미지" />
-        <div className="logoTitle">Rolling</div>
-      </Logo>
+      <a href="/" className="logoLink">
+        <Logo>
+          <img className="logoImage" src={logoImage} alt="로고이미지" />
+          <div className="logoTitle">Rolling</div>
+        </Logo>
+      </a>
       {hasButton ? (
-        <OutlinedButton size={40}>롤링 페이퍼 만들기</OutlinedButton>
+        <a href="post/:id" className="postLink">
+          <OutlinedButton size={40}>롤링 페이퍼 만들기</OutlinedButton>
+        </a>
       ) : null}
     </Nav>
   );
@@ -29,7 +34,11 @@ const Nav = styled.nav`
   padding: 0 24px;
   margin: 0 auto;
 
-  @media (max-width: 1024px) {
+  .logoLink, .postLink {
+    text-decoration-line: none;
+  }
+
+  @media ${device.pc_small} {
     justify-content: space-between;
     padding: 0 24px;
     gap: 0;

@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import CardListTitle from './CardListTitle';
 import CardList from './CardList';
 
-function ListPage() {
+function ListPageComponent() {
   return (
     <ListPageStyled>
       <CardListTitle textType="Text1" />
@@ -35,4 +35,4 @@ const ListPageStyled = styled.div`
   }
 `;
 
-export default ListPage;
+export default ListPageComponent;

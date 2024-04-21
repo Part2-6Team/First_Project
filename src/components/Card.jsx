@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -86,9 +87,9 @@ function Card({
 }
 
 const CardStyled = styled.div`
-  width: 27.5rem;
-  height: 26rem;
-  padding: 3rem 2.4rem 2rem 2.4rem;
+  width: 275px;
+  height: 260px;
+  padding: 30px 24px 20px 24px;
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${(props) => props.backgroundColor};
@@ -96,11 +97,11 @@ const CardStyled = styled.div`
   background-repeat: no-repeat;
   background-position: right bottom;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
-  margin-top: 1.6rem;
+  margin-top: 16px;
 
   @media (max-width: 768px) {
-    width: 20.8rem;
-    height: 23.2rem;
+    width: 208px;
+    height: 232px;
   }
 `;
 
@@ -121,9 +122,9 @@ const CardDataSection = styled.div`
 const CardToId = styled.span`
   color: var(--Gray-900);
   text-overflow: ellipsis;
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 3.6rem;
+  line-height: 36px;
 `;
 
 const ProfileImageContainer = styled.div`
@@ -168,14 +169,14 @@ const RollingWriteCount = styled.span`
   color: var(--Gray-700);
   font-size: 1.6rem;
   font-weight: 700;
-  line-height: 2.6rem;
+  line-height: 26px;
 `;
 
 const RollingWriteText = styled.span`
   color: var(--Gray-700);
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 2.6rem;
+  line-height: 26px;
 `;
 
 const EmojiBadgeSection = styled.div`
@@ -186,8 +187,8 @@ const EmojiBadgeSection = styled.div`
 `;
 
 const EmojiLine = styled.div`
-  width: 22.7rem;
-  height: 0.1rem;
+  width: 227px;
+  height: 1px;
   background: rgba(0, 0, 0, 0.12);
 `;
 
@@ -202,7 +203,7 @@ const EmojiBadge = styled.div`
   align-items: center;
   gap: 2px;
   color: var(--White);
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 125%;
   padding: 8px 12px;

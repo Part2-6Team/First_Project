@@ -14,13 +14,13 @@ function Button({ disabled, PageName }) {
 }
 
 const ButtonStyled = styled.button`
-  width: 28rem;
+  width: 280px;
   color: var(--White);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1.2rem;
-  padding: 1.4rem 2.4rem;
+  border-radius: 12px;
+  padding: 14px 24px;
   margin-right: auto;
   margin-left: auto;
   background-color: ${(props) => {
@@ -44,11 +44,11 @@ const ButtonStyled = styled.button`
   }
 
   @media (max-width: 1024px) {
-    width: 72rem;
+    width: 720px;
   }
 
   @media (max-width: 768px) {
-    width: 32rem;
+    width: 320px;
   }
 `;
 

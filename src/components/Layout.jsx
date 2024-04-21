@@ -1,14 +1,14 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import GlobalNav from './GlobalNav';
-import ListPage from './ListPage';
+import ListPageComponent from './ListPageComponent';
 import Button from './Button';
 
 function Layout() {
   return (
     <div>
       <GlobalNav hasButton />
-      <ListPage />
+      <ListPageComponent />
       <ButtonSection>
         <Button PageName="listPage" />
       </ButtonSection>
@@ -18,22 +18,22 @@ function Layout() {
 
 const ButtonSection = styled.div`
   display: flex;
-  width: 120rem;
-  height: 10.4rem;
-  padding: 2.4rem 0;
+  width: 1200px;
+  height: 104px;
+  padding: 24px 0;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  margin-top: 4rem;
+  margin-top: 40px;
   margin-right: auto;
   margin-left: auto;
 
   @media (max-width: 1024px) {
-    width: 72rem;
+    width: 720px;
   }
 
   @media (max-width: 768px) {
-    width: 32rem;
+    width: 320px;
   }
 `;
 
