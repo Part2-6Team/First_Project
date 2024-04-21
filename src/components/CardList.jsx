@@ -14,7 +14,6 @@ const arrowButton = {
 
 function CardList() {
   const handleScroll = (direction) => {
-    console.log('handleScroll 호출됨');
     const container = document.getElementById('cardListContainer');
     if (container) {
       const scrollAmount = direction === 'left' ? -100 : 100;
@@ -28,60 +27,80 @@ function CardList() {
   return (
     <CardListContainer id="cardListContainer">
       <ArrowButtonLeft
-        onClick={() => handleScroll('left')}
+        onClick={handleScroll('left')}
         backgroundImage={`url(${arrowButton.background})`}
       >
         <img src={ArrowLeft} alt="왼쪽화살표" />
       </ArrowButtonLeft>
       <CardListStyled>
         <Card
-          colorData="beige"
+          className="cardComponent"
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
           rollingWriteText="명이 작성했어요!"
-          emoji="👍"
-          count="20"
+          emoji1="👍"
+          count1="20"
+          emoji2="😍"
+          count2="12"
+          emoji3="😢"
+          count3="7"
         />
         <Card
-          colorData="purple"
+          className="cardComponent"
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
           rollingWriteText="명이 작성했어요!"
-          emoji="👍"
-          count="20"
+          emoji1="👍"
+          count1="20"
+          emoji2="😍"
+          count2="12"
+          emoji3="😢"
+          count3="7"
         />
         <Card
-          colorData="green"
+          className="cardComponent"
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
           rollingWriteText="명이 작성했어요!"
-          emoji="👍"
-          count="20"
+          emoji1="👍"
+          count1="20"
+          emoji2="😍"
+          count2="12"
+          emoji3="😢"
+          count3="7"
         />
         <Card
-          colorData="blue"
+          className="cardComponent"
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
           rollingWriteText="명이 작성했어요!"
-          emoji="👍"
-          count="20"
+          emoji1="👍"
+          count1="20"
+          emoji2="😍"
+          count2="12"
+          emoji3="😢"
+          count3="7"
         />
         <Card
-          colorData="beige"
+          className="cardComponent"
           toUser="To."
           userName="Sowon"
           rollingWriteCount="30"
           rollingWriteText="명이 작성했어요!"
-          emoji="👍"
-          count="20"
+          emoji1="👍"
+          count1="20"
+          emoji2="😍"
+          count2="12"
+          emoji3="😢"
+          count3="7"
         />
       </CardListStyled>
       <ArrowButtonRight
-        onClick={() => handleScroll('right')}
+        onClick={handleScroll('right')}
         backgroundImage={`url(${arrowButton.background})`}
       >
         <img src={ArrowRight} alt="오른쪽화살표" />

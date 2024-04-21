@@ -14,7 +14,7 @@ function GlobalNav({ hasButton = false }) {
         </Logo>
       </a>
       {hasButton ? (
-        <a href="post/:id" className="postLink">
+        <a href="/post" className="postLink">
           <OutlinedButton size={40}>롤링 페이퍼 만들기</OutlinedButton>
         </a>
       ) : null}
@@ -38,7 +38,7 @@ const Nav = styled.nav`
     text-decoration-line: none;
   }
 
-  @media ${device.pc_small} {
+  @media ${device.tablet} {
     justify-content: space-between;
     padding: 0 24px;
     gap: 0;

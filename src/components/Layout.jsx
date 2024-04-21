@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import GlobalNav from './GlobalNav';
 import ListPageComponent from './ListPageComponent';
 import Button from './Button';
+import device from '../config';
 
 function Layout() {
   return (
@@ -10,7 +11,11 @@ function Layout() {
       <GlobalNav hasButton />
       <ListPageComponent />
       <ButtonSection>
-        <Button PageName="listPage" />
+        <a href="/post" className="postLinkButton">
+          <Button className="readMore" size={280} shape={56}>
+            나도 만들어보기
+          </Button>
+        </a>
       </ButtonSection>
     </div>
   );
@@ -27,13 +32,18 @@ const ButtonSection = styled.div`
   margin-top: 40px;
   margin-right: auto;
   margin-left: auto;
-
-  @media (max-width: 1024px) {
-    width: 720px;
+  .postLinkButton {
+    text-decoration-line: none;
   }
 
-  @media (max-width: 768px) {
+  @media ${device.tablet} {
+    width: 720px;
+    justify-content: space-between;
+  }
+
+  @media ${device.mobile} {
     width: 320px;
+    justify-content: space-between;
   }
 `;
 

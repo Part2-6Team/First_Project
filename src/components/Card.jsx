@@ -1,14 +1,19 @@
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React from 'react';
-import { styled } from 'styled-components';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import BackgroundPatternBeige from '../assets/pattern_beige.svg';
 import BackgroundPatternPurple from '../assets/pattern_purple.svg';
 import BackgroundPatternBlue from '../assets/pattern_blue.svg';
 import BackgroundPatterGreen from '../assets/pattern_green.svg';
+import BackgroundImage1 from '../assets/card_background_image1.png';
+import BackgroundImage2 from '../assets/card_background_image2.png';
 import profileImages from '../assets/profile';
+import device from '../config';
 
 const randomIndexes = Array.from({ length: 3 }, () =>
   Math.floor(Math.random() * profileImages.length),
@@ -28,19 +33,63 @@ const BackgroundColor = {
   green: 'var(--Green-200)',
 };
 
+const BackgroundImages = {
+  one: BackgroundImage1,
+  two: BackgroundImage2,
+};
+
 function Card({
-  colorData,
+  backgroundColor,
+  backgroundImage,
   toUser,
   userName,
   rollingWriteCount,
   rollingWriteText,
-  emoji,
-  count,
+  emoji1,
+  emoji2,
+  emoji3,
+  count1,
+  count2,
+  count3,
 }) {
+  const [pageLink, setPageLink] = useState('');
+
+  const handleClick = () => {
+    setPageLink('/post/:id');
+  };
+
+  if (pageLink) {
+    window.location.href = pageLink;
+  }
+
+  const randomChoice = Math.random() < 0.8 ? 'pattern' : 'image';
+
+  function getRandomImage() {
+    const keys = Object.keys(BackgroundImages);
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+    return randomKey;
+  }
+
+  function getRandomColorData() {
+    const keys = Object.keys(BackgroundColorPattern);
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+    return randomKey;
+  }
+
+  if (randomChoice === 'pattern') {
+    const randomColorData = getRandomColorData();
+    backgroundColor = BackgroundColor[randomColorData];
+    backgroundImage = BackgroundColorPattern[randomColorData];
+  } else {
+    const randomImage = getRandomImage();
+    backgroundImage = BackgroundImages[randomImage];
+  }
+
   return (
     <CardStyled
-      backgroundColor={BackgroundColor[colorData]}
-      backgroundImage={BackgroundColorPattern[colorData]}
+      onClick={handleClick}
+      backgroundColor={backgroundColor}
+      backgroundImage={backgroundImage}
     >
       <CardContainer>
         <CardDataSection>
@@ -71,13 +120,13 @@ function Card({
           <EmojiLine />
           <EmojiBadgeFrame>
             <EmojiBadge>
-              {emoji} {count}
+              {emoji1} {count1}
             </EmojiBadge>
             <EmojiBadge>
-              {emoji} {count}
+              {emoji2} {count2}
             </EmojiBadge>
             <EmojiBadge>
-              {emoji} {count}
+              {emoji3} {count3}
             </EmojiBadge>
           </EmojiBadgeFrame>
         </EmojiBadgeSection>
@@ -98,11 +147,17 @@ const CardStyled = styled.div`
   background-position: right bottom;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   margin-top: 16px;
+  cursor: pointer;
 
-  @media (max-width: 768px) {
-    width: 208px;
-    height: 232px;
-  }
+  ${(props) =>
+    props.backgroundImage === BackgroundColorPattern
+      ? `
+      url("${props.backgroundImage}")
+    `
+      : `
+      linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url("${props.backgroundImage}")
+      color: var(--White)
+    `}
 `;
 
 const CardContainer = styled.div`
@@ -110,6 +165,11 @@ const CardContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 43px;
+
+  @media ${device.mobile} {
+    width: 208px;
+    height: 232px;
+  }
 `;
 
 const CardDataSection = styled.div`
@@ -157,7 +217,6 @@ const ProfilePlus = styled.div`
   margin-left: -12px;
   border-radius: 30px;
   background: var(--White);
-  
   color: var(--Gray-500);
   font-size: 12px;
   font-weight: 400;
@@ -196,6 +255,10 @@ const EmojiBadgeFrame = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 8px;
+
+  @media ${device.mobile} {
+    gap: 4px;
+  }
 `;
 
 const EmojiBadge = styled.div`
