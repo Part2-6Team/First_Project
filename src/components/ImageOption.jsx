@@ -11,10 +11,10 @@ function ImageOption({ image, selectImage, onSelected, onSelcetedImage }) {
   };
 
   return (
-    <SelectContainer onClick={() => handleSelectImage(img)}>
-      { /* onSelected && (
-        <CheckImage img src = { Check } alt="checkIcon" />
-      ) */ }
+    <SelectContainer onClick={() => handleSelectImage(image)}>
+      { onSelected && (
+        <CheckImage img src={Check} alt="checkIcon" />
+      )}
     </SelectContainer>
   );
 }
@@ -28,9 +28,13 @@ const SelectContainer = styled.div`
   cursor: pointer;
 `;
 
-/*
+// 수정하기
 const CheckImage = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
   display: flex;
   justify-content: center;
@@ -41,6 +45,5 @@ const CheckImage = styled.div`
     height: 44px;
   }
 `;
-*/
 
 export default ImageOption;

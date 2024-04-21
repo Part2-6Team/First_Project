@@ -11,9 +11,9 @@ function colorOption({ color, selectColor, onSelected, onSelectedColor }) {
 
   return (
     <SelectContainer color={color} onClick={() => handleSelectColor(color)}>
-      { /* onSelected && (
-        <CheckImage img src = { Check } alt="checkIcon" />
-      ) */ }
+      { onSelected && (
+        <CheckImage img src={Check} alt="checkIcon" />
+      )}
     </SelectContainer>
   );
 }
@@ -28,10 +28,13 @@ const SelectContainer = styled.div`
   cursor: pointer;
 `;
 
-/* 체크 표시 이미지 부분 추가해야 됨
-
 const CheckImage = styled.div`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,6 +44,5 @@ const CheckImage = styled.div`
     height: 44px;
   }
 `;
-*/
 
 export default colorOption;
