@@ -76,9 +76,10 @@ function PostPage() {
         navigate(`/post/${result.id}`);
       }
     } catch (error) {
+      /* eslint-disable no-console */
       console.log(error);
     }
-  }
+  };
 
   return (
     <>
@@ -91,7 +92,6 @@ function PostPage() {
             touched={nameTouched}
             setTouched={setNameTouched}
             placeholder="받는 사람 이름을 입력해 주세요"
-            id="To"
           />
           <SelectContainer>
             <Explanation>

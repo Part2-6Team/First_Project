@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Toinput ({ value, setValue, touched, setTouched, placeholder, id }) {
+function Toinput({ value, setValue, touched, setTouched, placeholder }) {
   const isValid = value.length > 0;
 
   const onBlurHandle = () => {
     if (!value) {
       setTouched(true);
-      }
+    }
   };
-    
+
   const onFocusHandle = () => {
     setTouched(false);
   };
-    
+
   const onChangeHandle = (e) => {
     const { value: newValue } = e.target;
     setValue(newValue);
@@ -21,9 +21,8 @@ function Toinput ({ value, setValue, touched, setTouched, placeholder, id }) {
 
   return (
     <InputContainer>
-      <label htmlFor={id}>{id}.</label>
+      <h2>To.</h2>
       <Input
-        id={id}
         type="text"
         placeholder={placeholder}
         onChange={onChangeHandle}
@@ -48,7 +47,7 @@ const InputContainer = styled.div`
   margin-bottom: 50px;
   gap: 12px;
 
-  label {
+  h2 {
     font-family: Pretendard;
     font-size: 24px;
     font-style: normal;

@@ -28,7 +28,6 @@ const SelectContainer = styled.div`
   cursor: pointer;
 `;
 
-// 수정하기
 const CheckImage = styled.div`
   position: absolute;
   top: 0;

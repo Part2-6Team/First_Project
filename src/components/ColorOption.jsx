@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Check from '../assets/check.png';
-import { Colors } from './Colors';
+import { Colors } from './BackgroundColors';
 
 function colorOption({ color, selectColor, onSelected, onSelectedColor }) {
   const handleSelectColor = (value) => {
