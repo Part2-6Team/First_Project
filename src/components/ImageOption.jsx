@@ -12,6 +12,7 @@ function ImageOption({ image, selectImage, onSelected, onSelcetedImage }) {
 
   return (
     <SelectContainer onClick={() => handleSelectImage(image)}>
+      <BgImgWrapper src={image} alt={image} />
       { onSelected && (
         <CheckImage img src={Check} alt="checkIcon" />
       )}
@@ -23,9 +24,14 @@ const SelectContainer = styled.div`
   position: relative;
   width: 168px;
   height: 168px;
+  cursor: pointer;
+`;
+
+const BgImgWrapper = styled.img`
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  cursor: pointer;
 `;
 
 const CheckImage = styled.div`
