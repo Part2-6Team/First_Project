@@ -1,31 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import { styled } from 'styled-components';
+import useTextEditor from '../hooks/useTextEditor';
 
-function removeHTMLTags(html) {
-  return html.replace(/<[^>]+>/g, '');
-}
-
+// prettier-ignore
 function TextEditor({ handleChange, isNotEmpty }) {
-  const [isValid, setIsValid] = useState(true);
-  const [editorContent, setEditorContent] = useState('');
-
-  const handleChangeText = (text) => {
-    const cleanText = removeHTMLTags(text);
-    isNotEmpty(cleanText !== '');
-    handleChange(text);
-    setEditorContent(text);
-  };
-
-  const handleBlur = () => {
-    if (editorContent === '') {
-      setIsValid(false);
-    }
-  };
-
-  const handleFocus = () => {
-    setIsValid(true);
-  };
+  const {
+    isValid,
+    editorContent,
+    handleChangeText,
+    handleBlur,
+    handleFocus,
+  } = useTextEditor({ handleChange, isNotEmpty });
 
   return (
     <QuillWrapper>

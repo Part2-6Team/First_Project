@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import arrowTop from '../assets/arrow_top.svg';
 import arrowDown from '../assets/arrow_right.svg';
+import useDropdown from '../hooks/useDropDown';
 
-function OptionList({ options, onChangeInner, onChangeSelected }) {
+function OptionList({ options, onChangeInner, onChangeSelected, onBlur }) {
   const handleClickOption = (event) => {
     onChangeInner(event.target.innerText);
     onChangeSelected(event.target.innerText);
+    onBlur(false);
   };
 
   return (
@@ -27,28 +29,25 @@ function OptionList({ options, onChangeInner, onChangeSelected }) {
 }
 
 function DropDown({ options, handleChange }) {
-  const [isDropdownView, setDropdownView] = useState(false);
   const [innerSelected, setInnerSelected] = useState(options[0].label);
-
-  const handlerOnClickDropDown = () => {
-    setDropdownView(!isDropdownView);
-  };
+  const { isDropdownView, toggleDropdown } = useDropdown();
 
   return (
     <div>
-      <DropdownLabel type="button" onClick={handlerOnClickDropDown}>
+      <DropdownLabel type="button" onClick={toggleDropdown}>
         <div className="label">{innerSelected}</div>
-        {isDropdownView ? (
-          <img className="icon" src={arrowTop} alt="화살표" />
-        ) : (
-          <img className="icon" src={arrowDown} alt="화살표" />
-        )}
+        <img
+          className="icon"
+          src={isDropdownView ? arrowTop : arrowDown}
+          alt="화살표 이미지"
+        />
       </DropdownLabel>
       {isDropdownView ? (
         <OptionList
           options={options}
           onChangeInner={setInnerSelected}
           onChangeSelected={handleChange}
+          onBlur={toggleDropdown}
         />
       ) : null}
     </div>

@@ -2,10 +2,14 @@ import React from 'react';
 import { styled } from 'styled-components';
 import device from '../../config';
 
-function EmojiBadge() {
+function EmojiBadge({ emoji, count }) {
   return (
     <Container>
-      <StyledText>👍 24</StyledText>
+      <StyledText>
+        {emoji}
+        &nbsp;
+        {count}
+      </StyledText>
     </Container>
   );
 }

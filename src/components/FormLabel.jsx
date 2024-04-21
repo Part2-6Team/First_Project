@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const FormLabel = styled.label`
+const FormLabel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;

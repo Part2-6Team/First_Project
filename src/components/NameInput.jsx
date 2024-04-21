@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
+import useNameInput from '../hooks/useNameInput';
 
+// prettier-ignore
 function NameInput({ placeholder, handleChange }) {
-  const [isValid, setIsValid] = useState(true);
-
-  const handleChangeInput = (event) => {
-    handleChange(event.target.value);
-  };
-
-  const handleFocus = () => {
-    setIsValid(true);
-  };
-
-  const handleBlur = (event) => {
-    if (event.target.value === '') {
-      setIsValid(false);
-    }
-  };
+  const { isValid, handleChangeInput, handleFocus, handleBlur } = useNameInput(handleChange);
 
   return (
     <InputWrapper>
@@ -37,6 +25,7 @@ const InputWrapper = styled.div`
 
   .nameInput {
     width: 100%;
+    height: 50px;
     padding: 12px 16px;
     border-radius: 8px;
     border: 1px solid var(--Gray-300);
