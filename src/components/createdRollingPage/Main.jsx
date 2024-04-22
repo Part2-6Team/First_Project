@@ -71,11 +71,13 @@ function Main() {
             수정하기
           </EditBtnWithWeb>
           <AddCard />
+
           {cardList?.map((card) => (
             <Card
               key={card.id}
               name={card.sender}
               relationship={card.relationship}
+              profileImg={card.profileImageURL}
               comment={card.content}
               createdAt={card.createdAt}
             />

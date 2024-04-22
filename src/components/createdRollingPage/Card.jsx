@@ -3,13 +3,20 @@ import React from 'react';
 import { styled } from 'styled-components';
 import DOMPurify from 'dompurify';
 
-import profile from '../../assets/profile.png';
 import device from '../../config';
 
 import trashIcon from '../../assets/trashIcon.svg';
 import deleteRequest from '../../api/deleteRequest';
 
-function Card({ id, name, relationship, comment, createdAt, edit }) {
+function Card({
+  id,
+  name,
+  relationship,
+  profileImg,
+  comment,
+  createdAt,
+  edit,
+}) {
   const safetyComment = DOMPurify.sanitize(comment);
 
   const handleDeleteCard = async (cardId) => {
@@ -21,7 +28,7 @@ function Card({ id, name, relationship, comment, createdAt, edit }) {
     <Container>
       <Wrap>
         <ProfileWrap>
-          <ProfileImg src={profile} alt="profileImg" />
+          <ProfileImg src={profileImg} alt="profileImg" />
           <div>
             <Name>
               <span className="from">From.</span>
