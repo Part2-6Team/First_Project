@@ -57,7 +57,7 @@ function PostPage() {
     const data = {
       team: '5-6',
       name,
-      backgroundColor: toggleValue === 'color' ? selectedColor : 'beige',
+      backgroundColor: toggleValue === 'color' ? selectedColor : null,
       backgroundImageURL: toggleValue === 'img' ? selectedImg : null,
     };
 
