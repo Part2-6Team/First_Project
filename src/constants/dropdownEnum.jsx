@@ -8,6 +8,6 @@ export const RELATIONS = [
 export const FONTS = [
   { value: '1', label: 'Noto Sans' },
   { value: '2', label: 'Pretendard' },
-  { value: '3', label: '나눔 명조' },
+  { value: '3', label: '나눔명조' },
   { value: '4', label: '나눔손글씨 손편지체' },
 ];

@@ -1,22 +1,31 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import logoImage from '../assets/logo.svg';
 import OutlinedButton from './OutlinedButton';
 import device from '../config';
 
 function GlobalNav({ hasButton = false }) {
+  const navigate = useNavigate();
+
+  const handleClickLogo = () => {
+    navigate('/');
+  };
+
+  const handleClickMake = () => {
+    navigate('/post');
+  };
+
   return (
     <Nav $hasButton={hasButton}>
-      <a href="/" className="logoLink">
-        <Logo>
-          <img className="logoImage" src={logoImage} alt="로고이미지" />
-          <div className="logoTitle">Rolling</div>
-        </Logo>
-      </a>
+      <Logo onClick={handleClickLogo}>
+        <img className="logoImage" src={logoImage} alt="로고이미지" />
+        <div className="logoTitle">Rolling</div>
+      </Logo>
       {hasButton ? (
-        <a href="/post" className="postLink">
-          <OutlinedButton size={40}>롤링 페이퍼 만들기</OutlinedButton>
-        </a>
+        <OutlinedButton onClick={handleClickMake} size={40}>
+          롤링 페이퍼 만들기
+        </OutlinedButton>
       ) : null}
     </Nav>
   );

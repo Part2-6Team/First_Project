@@ -77,6 +77,7 @@ function Main() {
               relationship={card.relationship}
               comment={card.content}
               createdAt={card.createdAt}
+              profileImg={card.profileImageURL}
               edit
             />
           ))}
@@ -135,6 +136,8 @@ const StyledBtn = styled.button`
   font-size: 16px;
   font-weight: 400;
 
+  cursor: pointer;
+
   @media ${device.tablet} {
     display: none;
   }
@@ -152,29 +155,5 @@ const BtnWrap = styled.div`
   top: -47px;
   right: 25px;
 `;
-
-// const DeleteBtn = styled(StyledBtn)`
-//   width: 720px;
-//   padding: 14px 0;
-
-//   position: fixed;
-//   bottom: 19px;
-//   left: 50%;
-//   transform: translateX(-50%);
-
-//   @media (min-width: 1025px) {
-//     display: none;
-//   }
-
-//   @media ${device.tablet} {
-//     display: block;
-//   }
-
-//   @media ${device.mobile} {
-//     display: block;
-//     padding: 14px 24px;
-//     width: 320px;
-//   }
-// `;
 
 export default Main;
