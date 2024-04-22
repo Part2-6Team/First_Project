@@ -1,16 +1,10 @@
-import { useState } from 'react';
 import { styled } from 'styled-components';
 import profileImages from '../assets/profile/index';
-import defaultProfileImage from '../assets/profile/0.png';
+import useProfileSelect from '../hooks/useProfileSelect';
 import device from '../config';
 
 function ProfileSelect({ handleChange }) {
-  const [selected, setSelected] = useState(defaultProfileImage);
-
-  const handleClickProfileImage = (event) => {
-    handleChange(event.target.value);
-    setSelected(event.target.value);
-  };
+  const { selected, handleClickProfileImage } = useProfileSelect(handleChange);
 
   return (
     <ProfileSelectWrapper>

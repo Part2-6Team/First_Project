@@ -35,5 +35,6 @@ module.exports = {
         some: ['nesting', 'id'],
       },
     ],
+    'import/prefer-default-export': 'off',
   },
 };

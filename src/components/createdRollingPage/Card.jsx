@@ -6,7 +6,7 @@ import device from '../../config';
 
 import trashIcon from '../../assets/trashIcon.svg';
 
-function Card({ edit }) {
+function Card({ name, relationship, comment, createdAt, edit }) {
   return (
     <Container>
       <Wrap>
@@ -15,9 +15,9 @@ function Card({ edit }) {
           <div>
             <Name>
               <span className="from">From.</span>
-              <span className="name">김동훈</span>
+              <span className="name">{name}</span>
             </Name>
-            <RelrationLabel>가족</RelrationLabel>
+            <RelrationLabel>{relationship}</RelrationLabel>
           </div>
         </ProfileWrap>
         {edit && (
@@ -27,14 +27,9 @@ function Card({ edit }) {
         )}
       </Wrap>
       <Comment>
-        <p className="comment">
-          코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또
-          하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-          또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두
-          조심 또 하세요!
-        </p>
+        <p className="comment">{comment}</p>
       </Comment>
-      <CreatedAt>2021.09.01</CreatedAt>
+      <CreatedAt>{createdAt}</CreatedAt>
     </Container>
   );
 }
@@ -42,7 +37,8 @@ function Card({ edit }) {
 const Container = styled.div`
   padding: 24px;
   background-color: var(--White);
-  max-width: 384px;
+  min-width: 100%;
+
   height: 280px;
   border-radius: 16px;
   display: flex;
@@ -102,6 +98,14 @@ const Name = styled.span`
     color: var(--Black);
     font-size: 20px;
     font-weight: 700;
+
+    overflow: hidden;
+    color: var(--gray-600);
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1; // 원하는 라인수
+    -webkit-box-orient: vertical;
   }
 `;
 
