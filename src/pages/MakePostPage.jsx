@@ -15,7 +15,6 @@ function PostPage() {
   const [nameTouched, setNameTouched] = useState(false);
   const [toggleValue, setToggleValue] = useState('color');
   const [items, setItems] = useState([]);
-  const [loadingError, setLoadingError] = useState(null);
   const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
   const [selectedImg, setSelectedImg] = useState(null);
@@ -36,7 +35,6 @@ function PostPage() {
       setLoadingError(null);
       result = await getBackgroundImageURL();
     } catch (error) {
-      setLoadingError(error);
       return;
     }
     const { imageUrls } = result;
@@ -57,8 +55,8 @@ function PostPage() {
     const data = {
       team: '5-6',
       name,
-      backgroundColor: selectedColor,
-      backgroundImageURL: selectedImg,
+      backgroundColor: toggleValue === 'color' ? selectedColor : 'beige',
+      backgroundImageURL: toggleValue === 'img' ? selectedImg : null,
     };
 
     try {
@@ -115,7 +113,6 @@ function PostPage() {
               />
             )}
           </SelectContainer>
-          {loadingError && <div>에러가 발생했습니다.</div>}
           <Button
             className="submit"
             size={720}
