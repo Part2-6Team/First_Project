@@ -8,6 +8,25 @@ import device from '../../config';
 import trashIcon from '../../assets/trashIcon.svg';
 import deleteRequest from '../../api/deleteRequest';
 
+const relationshipLabel = {
+  지인: {
+    background: 'var(--Orange-100, #FFF0D6)',
+    color: 'var(--Orange-500, #FF8832)',
+  },
+  가족: {
+    background: 'var(--Green-100, #E4FBDC)',
+    color: 'var(--Green-500, #2BA600)',
+  },
+  친구: {
+    background: 'var(--Blue-100, #E2F5FF)',
+    color: 'var(--Blue-500, #00A2FE)',
+  },
+  동료: {
+    background: 'var(--Purple-100, #F8F0FF)',
+    color: 'var(--Purple-600, #9935FF)',
+  },
+};
+
 function Card({
   id,
   name,
@@ -34,7 +53,9 @@ function Card({
               <span className="from">From.</span>
               <span className="name">{name}</span>
             </Name>
-            <RelrationLabel>{relationship}</RelrationLabel>
+            <RelrationLabel $relation={relationship}>
+              {relationship}
+            </RelrationLabel>
           </div>
         </ProfileWrap>
         {edit && (
@@ -133,9 +154,9 @@ const RelrationLabel = styled.span`
   padding: 0 8px;
   text-align: center;
   border-radius: 4px;
-  background-color: var(--Green-100);
+  background: ${({ $relation }) => relationshipLabel[$relation].background};
 
-  color: var(--Green-500);
+  color: ${({ $relation }) => relationshipLabel[$relation].color};
   font-size: 14px;
   font-weight: 400;
 `;
