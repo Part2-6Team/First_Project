@@ -16,8 +16,8 @@ function App() {
         <Route path="post/:id" element={<CreatedRollingPage />} />
         <Route path="post/:id/edit" element={<CreatedRolloingPageEdit />} />
         <Route path="post/:id/message" element={<SendMessagePage />} />
-        <Route path="/list" element={<ListPage />} />
-        <Route path="post" element={<MakePostPage />} />
+        <Route path="list" element={<ListPage />} />
+        <Route path="post" elemet={<MakePostPage />} />
       </Routes>
     </BrowserRouter>
   );
