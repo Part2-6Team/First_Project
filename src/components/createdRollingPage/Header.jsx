@@ -70,7 +70,7 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
 
   useEffect(() => {
     getReactions(id, 11, 0);
-  }, [refresh]);
+  }, [refresh, getReactions, id]);
 
   const sharedContainer = (
     <SharedContainer>
