@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import device from '../config';
 import PropTypes from 'prop-types';
+import device from '../config';
 
 function Toinput({ value, setValue, touched, setTouched, placeholder }) {
-
   Toinput.propTypes = {
     value: PropTypes.string.isRequired,
     setValue: PropTypes.func.isRequired,

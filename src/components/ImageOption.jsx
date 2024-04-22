@@ -1,12 +1,10 @@
-/* 이미지 부분 수정 */
-
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
+import PropTypes from 'prop-types';
 import Check from '../assets/check.png';
 import 'react-loading-skeleton/dist/skeleton.css';
 import device from '../config';
-import Skeleton from 'react-loading-skeleton';
-import PropTypes from 'prop-types';
 
 function ImageOption({ img, onSelectImg, isSelected, onSelectedImg }) {
   const [loading, setLoading] = useState(true);
