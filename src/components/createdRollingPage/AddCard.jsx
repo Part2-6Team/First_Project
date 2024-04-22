@@ -1,15 +1,19 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { Link, useParams } from 'react-router-dom';
 
 import plusCardIcon from '../../assets/plusCardIcon.svg';
 import device from '../../config';
 
 function AddCard() {
+  const { id } = useParams();
   return (
     <Container>
-      <PlusIconWrap>
-        <PlusIcon src={plusCardIcon} alt="plusCardIcon" />
-      </PlusIconWrap>
+      <Link to={`/post/${id}/message`}>
+        <PlusIconWrap>
+          <PlusIcon src={plusCardIcon} alt="plusCardIcon" />
+        </PlusIconWrap>
+      </Link>
     </Container>
   );
 }
@@ -34,7 +38,7 @@ const Container = styled.div`
   }
 `;
 
-const PlusIconWrap = styled.button`
+const PlusIconWrap = styled.div`
   background-color: var(--Gray-500);
   border-radius: 100%;
   display: flex;
