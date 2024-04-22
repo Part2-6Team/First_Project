@@ -8,6 +8,8 @@ import Card from './Card';
 import device from '../../config';
 import getRequest from '../../api/getRequest';
 
+import CardModal from './CardModal';
+
 function Main() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -16,6 +18,22 @@ function Main() {
   const [hasNext, setHasNext] = useState();
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCardModal, setIsCardModal] = useState(false);
+  const [cardModalData, setCardModalData] = useState();
+
+  const handleViewCardModal = async (cardId) => {
+    if (isCardModal) {
+      setIsCardModal(false);
+      return;
+    }
+    const res = await getRequest(`messages/${cardId}/`);
+    setIsCardModal(true);
+    setCardModalData(res);
+  };
+
+  const handleCloseCardModal = () => {
+    setIsCardModal(false);
+  };
 
   const handleObserver = useCallback(
     (entries) => {
@@ -65,7 +83,7 @@ function Main() {
 
   return (
     <>
-      <Container>
+      <Container $isCardModal={isCardModal} onClick={handleCloseCardModal}>
         <CardContainer>
           <EditBtnWithWeb onClick={handleToMoveEditPage}>
             수정하기
@@ -75,11 +93,13 @@ function Main() {
           {cardList?.map((card) => (
             <Card
               key={card.id}
+              id={card.id}
               name={card.sender}
               relationship={card.relationship}
               profileImg={card.profileImageURL}
               comment={card.content}
               createdAt={card.createdAt}
+              onClickCard={handleViewCardModal}
             />
           ))}
         </CardContainer>
@@ -87,9 +107,14 @@ function Main() {
       <EditBtn onClick={handleToMoveEditPage}>수정하기</EditBtn>
 
       {/* 모달이 존재할때 카드 모달이 위치할 자리 */}
+      {isCardModal && <CardModal cardData={cardModalData} />}
       <div id="observer" style={{ height: '10px' }} />
     </>
   );
+}
+
+function filterBrightness(isCardModal) {
+  return isCardModal ? 'brightness(50%)' : 'brightness(100%)';
 }
 
 const StyledBtn = styled.button`
@@ -116,7 +141,7 @@ const Container = styled.main`
   height: auto;
 
   // 모달이 존재할때는 50%로 어둡게 처리
-  filter: brightness(100%);
+  filter: ${({ $isCardModal }) => filterBrightness($isCardModal)};
 `;
 
 const EditBtnWithWeb = styled(StyledBtn)`

@@ -7,6 +7,7 @@ import device from '../../config';
 import getRequest from '../../api/getRequest';
 import AddCard from '../createdRollingPage/AddCard';
 import Card from '../createdRollingPage/Card';
+import CardModal from '../createdRollingPage/CardModal';
 
 function Main() {
   const { id } = useParams();
@@ -16,6 +17,22 @@ function Main() {
   const [hasNext, setHasNext] = useState();
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCardModal, setIsCardModal] = useState(false);
+  const [cardModalData, setCardModalData] = useState();
+
+  const handleViewCardModal = async (cardId) => {
+    if (isCardModal) {
+      setIsCardModal(false);
+      return;
+    }
+    const res = await getRequest(`messages/${cardId}/`);
+    setIsCardModal(true);
+    setCardModalData(res);
+  };
+
+  const handleCloseCardModal = () => {
+    setIsCardModal(false);
+  };
 
   const handleToEditComplete = () => {
     navigate(`/post/${id}`);
@@ -63,7 +80,7 @@ function Main() {
 
   return (
     <>
-      <Container>
+      <Container $isCardModal={isCardModal} onClick={handleCloseCardModal}>
         <CardContainer>
           <BtnWrap>
             <StyledBtn onClick={handleToEditComplete}>완료하기</StyledBtn>
@@ -78,6 +95,7 @@ function Main() {
               comment={card.content}
               createdAt={card.createdAt}
               profileImg={card.profileImageURL}
+              onClickCard={handleViewCardModal}
               edit
             />
           ))}
@@ -85,9 +103,14 @@ function Main() {
       </Container>
 
       {/* 모달이 존재할때 카드 모달이 위치할 자리 */}
+      {isCardModal && <CardModal cardData={cardModalData} />}
       <div id="observer" style={{ height: '10px' }} />
     </>
   );
+}
+
+function filterBrightness(isCardModal) {
+  return isCardModal ? 'brightness(50%)' : 'brightness(100%)';
 }
 
 const Container = styled.main`
@@ -105,7 +128,7 @@ const Container = styled.main`
   height: auto;
 
   // 모달이 존재할때는 50%로 어둡게 처리
-  filter: brightness(100%);
+  filter: ${({ $isCardModal }) => filterBrightness($isCardModal)};
 `;
 
 const CardContainer = styled.div`
