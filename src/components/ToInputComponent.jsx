@@ -1,8 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import device from '../config';
+import PropTypes from 'prop-types';
 
 function Toinput({ value, setValue, touched, setTouched, placeholder }) {
+
+  Toinput.propTypes = {
+    value: PropTypes.string.isRequired,
+    setValue: PropTypes.func.isRequired,
+    touched: PropTypes.bool.isRequired,
+    setTouched: PropTypes.func.isRequired,
+    placeholder: PropTypes.string.isRequired,
+  };
+
   const isValid = value.length > 0;
 
   const onBlurHandle = () => {

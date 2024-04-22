@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ColorOption from './ColorOption';
 import ImageOption from './ImageOption';
 import device from '../config';
 
-function Option({ images, onSelectColor, onSelectImage, selectedColor }) {
-  const [selectedImage, setSelectedImage] = useState('');
-  const [onSelectedColor, setOnSelectedColor] = useState(selectedColor);
+function Option({ images, onSelectColor, onSelectImg, selectedColor }) {
+  const [selectedImg, setSelectedImg] = useState('');
+  const [userSelectedColor, setUserSelectedColor] = useState(selectedColor);
 
-  const handleSelectedImage = (image) => {
-    setSelectedImage(image);
+  const onSelectedImgHandle = (img) => {
+    setSelectedImg(img);
   };
 
-  const handleSelectedColor = (color) => {
-    setOnSelectedColor(color);
+  const onSelectedColorHandle = (color) => {
+    setUserSelectedColor(color);
   };
 
   return (
@@ -22,17 +23,17 @@ function Option({ images, onSelectColor, onSelectImage, selectedColor }) {
         <ImageOption
           key={image}
           img={image}
-          onSelectImg={onSelectImage}
-          isSelected={selectedImage === image}
-          onSelectedImg={handleSelectedImage}
+          onSelectImg={onSelectImg}
+          isSelected={selectedImg === image}
+          onSelectedImg={onSelectedImgHandle}
         />
       ) : (
         <ColorOption
           key={image}
           color={image}
           onSelectColor={onSelectColor}
-          isSelected={onSelectedColor === image}
-          onSelectedColor={handleSelectedColor}
+          isSelected={userSelectedColor === image}
+          onSelectedColor={onSelectedColorHandle}
         />
       )))}
     </OptionBox>
@@ -54,5 +55,19 @@ const OptionBox = styled.div`
     gap: 12px;
   }
 `;
+
+Option.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string),
+  onSelectColor: PropTypes.func,
+  onSelectImg: PropTypes.func,
+  selectedColor: PropTypes.string,
+};
+
+Option.defaultProps = {
+  images: [],
+  onSelectColor: () => {},
+  onSelectImg: () => {},
+  selectedColor: 'beige',
+};
 
 export default Option;

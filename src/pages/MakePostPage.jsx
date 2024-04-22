@@ -14,8 +14,9 @@ function PostPage() {
   const [name, setName] = useState('');
   const [nameTouched, setNameTouched] = useState(false);
   const [toggleValue, setToggleValue] = useState('color');
-  const color = ['beige', 'purple', 'blue', 'green'];
   const [items, setItems] = useState([]);
+  const [loadingError, setLoadingError] = useState(null);
+  const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
   const [selectedImg, setSelectedImg] = useState(null);
 
@@ -29,19 +30,15 @@ function PostPage() {
     setSelectedImg(value);
   };
 
-  const onToggleHandle = (value) => {
-    setToggleValue(value);
-  };
-
   const onLoadHandle = async () => {
     let result;
-
     try {
+      setLoadingError(null);
       result = await getBackgroundImageURL();
     } catch (error) {
+      setLoadingError(error);
       return;
     }
-
     const { imageUrls } = result;
     setItems(imageUrls);
   };
@@ -49,6 +46,10 @@ function PostPage() {
   useEffect(() => {
     onLoadHandle();
   }, []);
+
+  const onToggleHandle = (value) => {
+    setToggleValue(value);
+  };
 
   const onSubmitHandle = async (event) => {
     event.preventDefault();
@@ -71,7 +72,6 @@ function PostPage() {
           body: JSON.stringify(data),
         },
       );
-
       if (response.ok) {
         const result = await response.json();
         navigate(`/post/${result.id}`);
@@ -115,6 +115,7 @@ function PostPage() {
               />
             )}
           </SelectContainer>
+          {loadingError && <div>에러가 발생했습니다.</div>}
           <Button
             className="submit"
             size={720}
