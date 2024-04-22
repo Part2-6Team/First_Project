@@ -135,7 +135,11 @@ const PostContainer = styled.div`
   align-items: center;
   position: relative;
   inset: 0;
-  padding: 5.7rem 0 35rem;
+  padding: 57px 0 35rem;
+
+  @media ${device.mobile} {
+    width: 320px;
+  }
 `;
 
 const Form = styled.form`
@@ -156,7 +160,7 @@ const SelectContainer = styled.div`
 
   @media ${device.mobile} {
     width: 320px;
-}
+  }
 `;
 
 const Explanation = styled.div`

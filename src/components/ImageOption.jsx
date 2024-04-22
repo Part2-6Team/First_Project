@@ -1,10 +1,22 @@
 /* 이미지 부분 수정 */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Check from '../assets/check.png';
 
-function ImageOption({ image, selectImage, onSelected, onSelcetedImage }) {
+function ImageOption({ img, selectImage, onSelected, onSelcetedImage }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = img;
+    image.onload = () => setLoading(false);
+
+    return () => {
+      image.onload = null;
+    };
+  }, [img]);
+  
   const handleSelectImage = (value) => {
     selectImage(value);
     onSelcetedImage(value);
@@ -12,7 +24,7 @@ function ImageOption({ image, selectImage, onSelected, onSelcetedImage }) {
 
   return (
     <SelectContainer onClick={() => handleSelectImage(image)}>
-      <BgImgWrapper src={image} alt={image} />
+      <BgImgWrapper src={img} alt={img} />
       { onSelected && (
         <CheckImage img src={Check} alt="checkIcon" />
       )}

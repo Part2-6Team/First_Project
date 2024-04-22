@@ -42,6 +42,7 @@ const ToggleOption = styled.button`
   align-items: center;
   padding: 0.7rem 1.6rem;
   border-radius: 0.6rem;
+  margin-top: 24px;
 
   font-size: 16px;
   line-height: 2.6rem;

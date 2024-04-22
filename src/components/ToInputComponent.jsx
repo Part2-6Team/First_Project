@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import device from '../config';
 
 function Toinput({ value, setValue, touched, setTouched, placeholder }) {
   const isValid = value.length > 0;
@@ -44,7 +45,6 @@ const InputContainer = styled.div`
   align-items: start;
   justify-content: center;
   width: 100%;
-  margin-bottom: 50px;
   gap: 12px;
 
   h2 {
@@ -65,6 +65,10 @@ const Input = styled.input`
   font-color: var(--Gray-500);
   font-size: 16px;
   font-family: Pretendard;
+
+  @media ${device.mobile} {
+    width: 320px;
+  }
 `;
 
 const WarningText = styled.div`

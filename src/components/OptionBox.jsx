@@ -45,6 +45,7 @@ const OptionBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 69px;
+  margin-top: 45px;
   
   @media ${device.mobile} {
     display: grid;
