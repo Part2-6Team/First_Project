@@ -21,7 +21,11 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
   const { id } = useParams();
   const { pathname } = useLocation();
   const PATH = BASE_URL + pathname;
-  const reactions = useReactions({ id, limit: 11, offset: 0 });
+  const { reactions, getReactions } = useReactions({
+    id,
+    limit: 11,
+    offset: 0,
+  });
 
   const mostReactions = reactions?.results.slice(0, 3);
   const otherReactions = reactions?.results.slice(3);
@@ -32,6 +36,7 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const [isClickSharedBtn, setIsClickSharedBtn] = useState(false);
   const [isClickEmojiMore, setIsClickEmojiMore] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -60,7 +65,12 @@ function Header({ recipients, handleOpenUrlShared, isUrlSharedPharases }) {
     });
 
     setIsEmojiPickerOpen(false);
+    setRefresh((prev) => !prev);
   };
+
+  useEffect(() => {
+    getReactions(id, 11, 0);
+  }, [refresh]);
 
   const sharedContainer = (
     <SharedContainer>

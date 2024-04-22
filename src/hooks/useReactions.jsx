@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import getRequest from '../api/getRequest';
 
 export default function useReactions({ id, limit, offset }) {
   const [reactions, setReaction] = useState();
 
+  async function getReactions(recipientsId, getLimit, getOffset) {
+    const res = await getRequest(
+      `recipients/${recipientsId}/reactions/?limit=${getLimit}&offset=${getOffset}/`,
+    );
+    setReaction(res);
+  }
+
   useEffect(() => {
-    async function getRecipients() {
-      const res = await getRequest(
-        `recipients/${id}/reactions/?limit=${limit}&offset=${offset}/`,
-      );
-      setReaction(res);
-    }
+    getReactions(id, limit, offset);
+  }, []);
 
-    getRecipients();
-  }, [id, limit, offset]);
-
-  return reactions;
+  return { reactions, getReactions };
 }
