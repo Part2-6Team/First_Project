@@ -3,7 +3,6 @@ import React from 'react';
 import { styled } from 'styled-components';
 import DOMPurify from 'dompurify';
 
-import profile from '../../assets/profile.png';
 import device from '../../config';
 
 import trashIcon from '../../assets/trashIcon.svg';
