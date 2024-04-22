@@ -1,12 +1,22 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { styled } from 'styled-components';
+import DOMPurify from 'dompurify';
 
 import profile from '../../assets/profile.png';
 import device from '../../config';
 
 import trashIcon from '../../assets/trashIcon.svg';
+import deleteRequest from '../../api/deleteRequest';
 
-function Card({ name, relationship, comment, createdAt, edit }) {
+function Card({ id, name, relationship, comment, createdAt, edit }) {
+  const safetyComment = DOMPurify.sanitize(comment);
+
+  const handleDeleteCard = async (cardId) => {
+    await deleteRequest(`messages/${cardId}/`);
+    window.location.reload();
+  };
+
   return (
     <Container>
       <Wrap>
@@ -21,13 +31,16 @@ function Card({ name, relationship, comment, createdAt, edit }) {
           </div>
         </ProfileWrap>
         {edit && (
-          <DeleteBtn>
+          <DeleteBtn onClick={() => handleDeleteCard(id)}>
             <img className="deleteIcon" src={trashIcon} alt="trash Icon" />
           </DeleteBtn>
         )}
       </Wrap>
       <Comment>
-        <p className="comment">{comment}</p>
+        <p
+          className="comment"
+          dangerouslySetInnerHTML={{ __html: safetyComment }}
+        />
       </Comment>
       <CreatedAt>{createdAt}</CreatedAt>
     </Container>
