@@ -3,8 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Check from '../assets/check.png';
+import 'react-loading-skeleton/dist/skeleton.css';
+import device from '../config';
+import Skeleton from 'react-loading-skeleton';
+import PropTypes from 'prop-types';
 
-function ImageOption({ img, selectImage, onSelected, onSelcetedImage }) {
+function ImageOption({ img, onSelectImg, isSelected, onSelectedImg }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,17 +20,23 @@ function ImageOption({ img, selectImage, onSelected, onSelcetedImage }) {
       image.onload = null;
     };
   }, [img]);
-  
-  const handleSelectImage = (value) => {
-    selectImage(value);
-    onSelcetedImage(value);
+
+  const onClickImgHandle = (value) => {
+    onSelectImg(value);
+    onSelectedImg(value);
   };
 
   return (
-    <SelectContainer onClick={() => handleSelectImage(image)}>
-      <BgImgWrapper src={img} alt={img} />
-      { onSelected && (
-        <CheckImage img src={Check} alt="checkIcon" />
+    <SelectContainer onClick={() => onClickImgHandle(img)}>
+      {loading ? (
+        <BgImgWrapperSkeleton height={168} borderRadius={16} />
+      ) : (
+        <BgImgWrapper src={img} alt={img} />
+      )}
+      {isSelected && !loading && (
+        <SelectedLayer>
+          <img src={Check} alt="selectIcon" />
+        </SelectedLayer>
       )}
     </SelectContainer>
   );
@@ -37,6 +47,11 @@ const SelectContainer = styled.div`
   width: 168px;
   height: 168px;
   cursor: pointer;
+
+  @media ${device.mobile} {
+    width: 154px;
+    height: 154px;
+  }
 `;
 
 const BgImgWrapper = styled.img`
@@ -46,7 +61,7 @@ const BgImgWrapper = styled.img`
   border: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
-const CheckImage = styled.div`
+const SelectedLayer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -57,10 +72,32 @@ const CheckImage = styled.div`
   justify-content: center;
   align-items: center;
 
-  .img {
+  img {
     width: 44px;
     height: 44px;
   }
 `;
+
+const BgImgWrapperSkeleton = styled(Skeleton)`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+`;
+
+ImageOption.propTypes = {
+  img: PropTypes.string,
+  onSelectImg: PropTypes.func,
+  isSelected: PropTypes.bool,
+  onSelectedImg: PropTypes.func,
+};
+
+ImageOption.defaultProps = {
+  img: '',
+  onSelectImg: () => {},
+  isSelected: false,
+  onSelectedImg: () => {},
+};
 
 export default ImageOption;
