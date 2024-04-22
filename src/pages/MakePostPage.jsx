@@ -15,6 +15,7 @@ function PostPage() {
   const [nameTouched, setNameTouched] = useState(false);
   const [toggleValue, setToggleValue] = useState('color');
   const [items, setItems] = useState([]);
+  const [loadingError, setLoadingError] = useState(null);
   const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
   const [selectedImg, setSelectedImg] = useState(null);
@@ -35,6 +36,7 @@ function PostPage() {
       setLoadingError(null);
       result = await getBackgroundImageURL();
     } catch (error) {
+      setLoadingError(error);
       return;
     }
     const { imageUrls } = result;
@@ -120,6 +122,7 @@ function PostPage() {
           >
             생성하기
           </Button>
+          {loadingError && <div>에러 발생</div>}
         </Form>
       </PostContainer>
     </>
