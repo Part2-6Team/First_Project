@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React from 'react';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import ProfileSelect from '../components/ProfileSelect';
@@ -10,47 +9,19 @@ import TextEditor from '../components/TextEditor';
 import Button from '../components/Button';
 import device from '../config';
 import NameInput from '../components/NameInput';
-import postMessage from '../api/postMessage';
+import useSendMessage from '../hooks/useSendMessage';
 
 function SendMessagePage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const [senderName, setSenderName] = useState('');
-  const [profileImage, setProfileImage] = useState(
-    'https://i.ibb.co/zQGbzDz/image.png',
-  );
-  const [relation, setRelation] = useState('지인');
-  const [message, setMessage] = useState('');
-  const [messageValid, setMessageValid] = useState(false);
-  const [font, setFont] = useState('Noto Sans');
-  const [isFormValid, setIsFormVaild] = useState(false);
-
-  const sendingData = {
-    recipientId: id,
-    sender: senderName,
-    profileImageURL: profileImage,
-    relationship: relation,
-    content: message,
-    font,
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    postMessage(sendingData);
-    navigate(`/post/${id}`);
-  };
-
-  useEffect(() => {
-    const handleFormValid = () => {
-      if (senderName !== '' && messageValid !== false) {
-        setIsFormVaild(true);
-      } else {
-        setIsFormVaild(false);
-      }
-    };
-    handleFormValid();
-  }, [senderName, messageValid]);
+  const {
+    setSenderName,
+    setProfileImage,
+    setRelation,
+    setMessage,
+    setMessageValid,
+    setFont,
+    isFormValid,
+    handleSubmit,
+  } = useSendMessage();
 
   return (
     <div>

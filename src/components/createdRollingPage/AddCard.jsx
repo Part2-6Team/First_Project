@@ -16,7 +16,7 @@ function AddCard() {
 
 const Container = styled.div`
   background-color: var(--White);
-  max-width: 384px;
+  min-width: 100%;
   height: 280px;
   border-radius: 16px;
   display: flex;
