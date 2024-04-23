@@ -10,10 +10,10 @@ function ListPageComponent() {
 
   useEffect(() => {
     async function getData() {
-      let recipients = await getRecipients('like');
-      setRecipientsPopular(recipients.results);
-      recipients = await getRecipients();
-      setRecipientsNewest(recipients.results);
+      const recipients1 = await getRecipients('like');
+      setRecipientsPopular(recipients1.results);
+      const recipients2 = await getRecipients();
+      setRecipientsNewest(recipients2.results);
     }
     getData();
   }, []);

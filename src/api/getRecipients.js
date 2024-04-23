@@ -5,7 +5,6 @@ async function getRecipients(sort = '', offset = '1') {
   if (sort !== '') {
     query = `${query}&sort=${sort}`;
   }
-  console.log(query);
   const response = await fetch(`${BASE_URL}/recipients/${query}`);
 
   if (!response.ok) {
