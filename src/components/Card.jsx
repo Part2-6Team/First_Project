@@ -10,14 +10,8 @@ import BackgroundPatternBeige from '../assets/pattern_beige.svg';
 import BackgroundPatternPurple from '../assets/pattern_purple.svg';
 import BackgroundPatternBlue from '../assets/pattern_blue.svg';
 import BackgroundPatterGreen from '../assets/pattern_green.svg';
-import BackgroundImage1 from '../assets/card_background_image1.png';
-import BackgroundImage2 from '../assets/card_background_image2.png';
-import profileImages from '../assets/profile';
+import defaultProfileImage from '../assets/profile/0.png';
 import device from '../config';
-
-const randomIndexes = Array.from({ length: 3 }, () =>
-  Math.floor(Math.random() * profileImages.length),
-);
 
 const BackgroundColorPattern = {
   beige: BackgroundPatternBeige,
@@ -26,23 +20,14 @@ const BackgroundColorPattern = {
   green: BackgroundPatterGreen,
 };
 
-const BackgroundColor = {
-  beige: 'var(--Orange-200)',
-  purple: 'var(--Purple-200)',
-  blue: 'var(--Blue-200)',
-  green: 'var(--Green-200)',
-};
-
-const BackgroundImages = {
-  one: BackgroundImage1,
-  two: BackgroundImage2,
-};
-
 function Card({
+  id,
   backgroundColor,
   backgroundImage,
   userName,
   rollingWriteCount,
+  profileImages,
+  emojiCount,
   emoji1,
   emoji2,
   emoji3,
@@ -53,12 +38,17 @@ function Card({
   const [pageLink, setPageLink] = useState('');
 
   const handleClick = () => {
-    setPageLink('/post/:id');
+    setPageLink(`/post/${id}`);
   };
 
   if (pageLink) {
     window.location.href = pageLink;
   }
+
+  const profileImage = [];
+  profileImages.map((image) => {
+    profileImage.push(image.profileImageURL);
+  });
 
   return (
     <CardStyled
@@ -71,18 +61,18 @@ function Card({
           <CardToId>To. {userName}</CardToId>
           <ProfileImageContainer>
             <ProfileImageFirst
-              src={profileImages[randomIndexes[0]].img}
-              alt={profileImages[randomIndexes[0]].name}
+              src={profileImage[0] ?? defaultProfileImage}
+              alt="프로필이미지1"
             />
             <ProfileImage
-              src={profileImages[randomIndexes[1]].img}
-              alt={profileImages[randomIndexes[1]].name}
+              src={profileImage[1] ?? defaultProfileImage}
+              alt="프로필이미지2"
             />
             <ProfileImage
-              src={profileImages[randomIndexes[2]].img}
-              alt={profileImages[randomIndexes[2]].name}
+              src={profileImage[2] ?? defaultProfileImage}
+              alt="프로필이미지3"
             />
-            <ProfilePlus>+27</ProfilePlus>
+            <ProfilePlus>+{emojiCount}</ProfilePlus>
           </ProfileImageContainer>
           <div>
             <RollingWriteCount>{rollingWriteCount}</RollingWriteCount>

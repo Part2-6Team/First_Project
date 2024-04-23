@@ -53,11 +53,15 @@ function CardList() {
           return (
             !isLoading && (
               <Card
+                key={recipient.id}
                 className="cardComponent"
+                id={recipient.id}
                 userName={recipient.name}
                 rollingWriteCount={recipient.messageCount}
                 backgroundColor={recipient.backgroundColor}
                 backgroundImage={recipient.backgroundImageURL}
+                profileImages={recipient.recentMessages}
+                emojiCount={recipient.reactionCount}
                 emoji1="👍"
                 count1="20"
                 emoji2="😍"
