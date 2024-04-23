@@ -76,7 +76,7 @@ function Card({
               src={profileImage[2] ?? defaultProfileImage}
               alt="프로필이미지3"
             />
-            <ProfilePlus>+{emojiCount}</ProfilePlus>
+            <ProfilePlus>+{rollingWriteCount}</ProfilePlus>
           </ProfileImageContainer>
           <div>
             <RollingWriteCount>{rollingWriteCount}</RollingWriteCount>

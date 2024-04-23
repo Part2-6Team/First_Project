@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import CardListTitle from './CardListTitle';
 import CardList from './CardList';
+import getRecipients from '../api/getRecipients';
 
 function ListPageComponent() {
+  const [recipientsPopular, setRecipientsPopular] = useState([]);
+  const [recipientsNewest, setRecipientsNewest] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      let recipients = await getRecipients('like');
+      setRecipientsPopular(recipients.results);
+      recipients = await getRecipients();
+      setRecipientsNewest(recipients.results);
+    }
+    getData();
+  }, []);
+
   return (
     <ListPageStyled>
       <CardListTitle textType="Text1" />
-      <CardList />
+      <CardList recipientsData={recipientsPopular} />
       <CardListTitle textType="Text2" />
-      <CardList />
+      <CardList recipientsData={recipientsNewest} />
     </ListPageStyled>
   );
 }

@@ -4,7 +4,6 @@ import Card from './Card';
 import Background from '../assets/Ellipse1.svg';
 import ArrowLeft from '../assets/arrow_left.svg';
 import ArrowRight from '../assets/arrow_right.svg';
-import getRecipients from '../api/getRecipients';
 
 const arrowButton = {
   background: Background,
@@ -12,11 +11,8 @@ const arrowButton = {
   arrowRight: ArrowRight,
 };
 
-const recipientsData = [];
-
-function CardList() {
-  const [isLoading, setIsLoading] = useState(true);
-
+function CardList({ recipientsData }) {
+  console.log(recipientsData);
   const handleScroll = (direction) => {
     const container = document.getElementById('cardListContainer');
     if (container) {
@@ -27,18 +23,6 @@ function CardList() {
       });
     }
   };
-
-  useEffect(() => {
-    async function getData() {
-      const recipients = await getRecipients();
-      recipientsData.length = 0;
-      recipientsData.push(...recipients.results);
-    }
-    getData().then(() => {
-      console.log(recipientsData);
-      setIsLoading(false);
-    });
-  }, []);
 
   return (
     <CardListContainer id="cardListContainer">
@@ -51,20 +35,18 @@ function CardList() {
       <CardListStyled>
         {recipientsData.map((recipient) => {
           return (
-            !isLoading && (
-              <Card
-                key={recipient.id}
-                className="cardComponent"
-                id={recipient.id}
-                userName={recipient.name}
-                rollingWriteCount={recipient.messageCount}
-                backgroundColor={recipient.backgroundColor}
-                backgroundImage={recipient.backgroundImageURL}
-                profileImages={recipient.recentMessages}
-                emojiCount={recipient.reactionCount}
-                emojis={recipient.topReactions}
-              />
-            )
+            <Card
+              key={recipient.id}
+              className="cardComponent"
+              id={recipient.id}
+              userName={recipient.name}
+              rollingWriteCount={recipient.messageCount}
+              backgroundColor={recipient.backgroundColor}
+              backgroundImage={recipient.backgroundImageURL}
+              profileImages={recipient.recentMessages}
+              emojiCount={recipient.reactionCount}
+              emojis={recipient.topReactions}
+            />
           );
         })}
       </CardListStyled>
