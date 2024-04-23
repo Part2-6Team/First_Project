@@ -40,7 +40,7 @@ function CreatedRolloingPage() {
             handleOpenUrlShared={onClickUrlShared}
             isUrlSharedPharases={isUrlSharedPharases}
           />
-          <Main />
+          <Main recipients={recipients} />
 
           {isUrlSharedPharases && <UrlCopyPharases />}
         </>

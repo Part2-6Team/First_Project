@@ -9,7 +9,7 @@ import AddCard from '../createdRollingPage/AddCard';
 import Card from '../createdRollingPage/Card';
 import CardModal from '../createdRollingPage/CardModal';
 
-function Main() {
+function Main({ recipients }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [cardList, setCardList] = useState([]);
@@ -80,7 +80,12 @@ function Main() {
 
   return (
     <>
-      <Container $isCardModal={isCardModal} onClick={handleCloseCardModal}>
+      <Container
+        $isCardModal={isCardModal}
+        $backgroundColor={recipients?.backgroundColor}
+        $img={recipients?.backgroundImageURL}
+        onClick={handleCloseCardModal}
+      >
         <CardContainer>
           <BtnWrap>
             <StyledBtn onClick={handleToEditComplete}>완료하기</StyledBtn>
@@ -101,6 +106,7 @@ function Main() {
           ))}
         </CardContainer>
       </Container>
+      <EditBtn onClick={handleToEditComplete}>완료하기</EditBtn>
 
       {/* 모달이 존재할때 카드 모달이 위치할 자리 */}
       {isCardModal && <CardModal cardData={cardModalData} />}
@@ -114,8 +120,8 @@ function filterBrightness(isCardModal) {
 }
 
 const Container = styled.main`
-  background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : 'none')};
-  background-color: var(--Orange-200);
+  background-image: ${({ $img }) => ($img ? `url(${$img})` : 'none')};
+  background: ${({ $backgroundColor }) => $backgroundColor};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -158,16 +164,6 @@ const StyledBtn = styled.button`
   color: var(--White);
   font-size: 16px;
   font-weight: 400;
-
-  cursor: pointer;
-
-  @media ${device.tablet} {
-    display: none;
-  }
-
-  @media ${device.mobile} {
-    display: none;
-  }
 `;
 
 const BtnWrap = styled.div`
@@ -177,6 +173,26 @@ const BtnWrap = styled.div`
   position: absolute;
   top: -47px;
   right: 25px;
+`;
+
+const EditBtn = styled(StyledBtn)`
+  width: 720px;
+  padding: 14px 0;
+  cursor: pointer;
+
+  position: fixed;
+  bottom: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
+  
+  @media ${device.mobile} {
+    padding:14px; 24px;
+    width: 320px;
+  }
 `;
 
 export default Main;

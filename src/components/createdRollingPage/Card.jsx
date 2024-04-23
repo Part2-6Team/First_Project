@@ -27,6 +27,13 @@ const relationshipLabel = {
   },
 };
 
+const fontWrapping = {
+  '나눔손글씨 손편지체': "'Nanum Pen Script'",
+  'Noto Sans': "'Noto Sans', sans-serif;",
+  나눔명조: '"Nanum Myeongjo", serif;',
+  Pretendard: "'Pretendard'",
+};
+
 function Card({
   id,
   name,
@@ -35,6 +42,7 @@ function Card({
   comment,
   createdAt,
   edit,
+  font,
   onClickCard,
 }) {
   const safetyComment = DOMPurify.sanitize(comment);
@@ -66,7 +74,7 @@ function Card({
           </DeleteBtn>
         )}
       </Wrap>
-      <Comment>
+      <Comment $font={font}>
         <p
           className="comment"
           dangerouslySetInnerHTML={{ __html: safetyComment }}
@@ -185,6 +193,8 @@ const DeleteBtn = styled.button`
 const Comment = styled.div`
   width: 100%;
   padding-top: 16px;
+
+  font-family: ${({ $font }) => fontWrapping[$font]};
 
   overflow: hidden;
   color: var(--gray-600);
