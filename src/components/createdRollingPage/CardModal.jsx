@@ -1,52 +1,28 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import DOMPurify from 'dompurify';
 
-import profile from '../../assets/profile.png';
 import device from '../../config';
 
-function CardModal() {
+function CardModal({ cardData }) {
+  const safetyComment = DOMPurify.sanitize(cardData.content);
+
   return (
     <Container>
       <ProfileWrap>
         <Wrap>
-          <ProfileImg src={profile} alt="profileImg" />
+          <ProfileImg src={cardData.profileImageURL} alt="profileImg" />
           <div>
             <Name>
               <span className="from">From.</span>
-              <span className="name">김동훈</span>
+              <span className="name">{cardData.sender}</span>
             </Name>
-            <RelrationLabel>가족</RelrationLabel>
+            <RelrationLabel>{cardData.relationship}</RelrationLabel>
           </div>
         </Wrap>
-        <CreatedAt>2023.07.08</CreatedAt>
+        <CreatedAt>{cardData.createdAt}</CreatedAt>
       </ProfileWrap>
-      <Comment>
-        코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또
-        하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-        또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-        또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-        또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-        또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-        또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두
-        조심 또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력
-        모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력
-        모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력
-        모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력
-        모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력
-        모두 조심 또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강,
-        체력 모두 조심 또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요.
-        건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요.
-        건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요.
-        건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요.
-        건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요.
-        건강, 체력 모두 조심 또 하세요! 코로나가 또다시 기승을 부리는
-        요즘이네요. 건강, 체력 모두 조심 또 하세요! 코로나가 또다시 기승을
-        부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을
-        부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을
-        부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을
-        부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을
-        부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!
-      </Comment>
+      <Comment dangerouslySetInnerHTML={{ __html: safetyComment }} />
     </Container>
   );
 }

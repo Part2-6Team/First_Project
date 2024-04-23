@@ -1,18 +1,31 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import logoImage from '../assets/logo.svg';
 import OutlinedButton from './OutlinedButton';
 import device from '../config';
 
 function GlobalNav({ hasButton = false }) {
+  const navigate = useNavigate();
+
+  const handleClickLogo = () => {
+    navigate('/');
+  };
+
+  const handleClickMake = () => {
+    navigate('/post');
+  };
+
   return (
     <Nav $hasButton={hasButton}>
-      <Logo>
+      <Logo onClick={handleClickLogo}>
         <img className="logoImage" src={logoImage} alt="로고이미지" />
         <div className="logoTitle">Rolling</div>
       </Logo>
       {hasButton ? (
-        <OutlinedButton size={40}>롤링 페이퍼 만들기</OutlinedButton>
+        <OutlinedButton onClick={handleClickMake} size={40}>
+          롤링 페이퍼 만들기
+        </OutlinedButton>
       ) : null}
     </Nav>
   );
@@ -30,7 +43,11 @@ const Nav = styled.nav`
   padding: 0 24px;
   margin: 0 auto;
 
-  @media ${device.pc_small} {
+  .logoLink, .postLink {
+    text-decoration-line: none;
+  }
+
+  @media ${device.tablet} {
     justify-content: space-between;
     padding: 0 24px;
     gap: 0;

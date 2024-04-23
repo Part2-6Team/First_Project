@@ -35,16 +35,18 @@ function Card({
   comment,
   createdAt,
   edit,
+  onClickCard,
 }) {
   const safetyComment = DOMPurify.sanitize(comment);
 
-  const handleDeleteCard = async (cardId) => {
+  const handleDeleteCard = async (event, cardId) => {
+    event.stopPropagation();
     await deleteRequest(`messages/${cardId}/`);
     window.location.reload();
   };
 
   return (
-    <Container>
+    <Container onClick={() => onClickCard(id)}>
       <Wrap>
         <ProfileWrap>
           <ProfileImg src={profileImg} alt="profileImg" />
@@ -59,7 +61,7 @@ function Card({
           </div>
         </ProfileWrap>
         {edit && (
-          <DeleteBtn onClick={() => handleDeleteCard(id)}>
+          <DeleteBtn onClick={(e) => handleDeleteCard(e, id)}>
             <img className="deleteIcon" src={trashIcon} alt="trash Icon" />
           </DeleteBtn>
         )}
@@ -87,6 +89,8 @@ const Container = styled.div`
   align-items: flex-start;
 
   position: relative;
+
+  cursor: pointer;
 
   @media ${device.tablet} {
     max-width: 352px;

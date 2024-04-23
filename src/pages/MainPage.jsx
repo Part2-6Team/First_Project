@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GlobalNav from '../components/GlobalNav';
 import SiteInfo from '../components/SiteInfo';
@@ -25,6 +26,12 @@ const SITE_INFOS = [
 ];
 
 function MainPage() {
+  const navigate = useNavigate();
+
+  const handleClickReadMore = () => {
+    navigate('/post/list');
+  };
+
   return (
     <div>
       <GlobalNav hasButton />
@@ -44,7 +51,12 @@ function MainPage() {
             message={SITE_INFOS[1].message}
             imgUrl={SITE_INFOS[1].imgUrl}
           />
-          <Button className="readMore" size={280} shape={56}>
+          <Button
+            className="readMore"
+            size={280}
+            shape={56}
+            onClick={handleClickReadMore}
+          >
             구경해보기
           </Button>
         </SiteInfoWrapper>
