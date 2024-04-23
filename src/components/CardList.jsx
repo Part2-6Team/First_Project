@@ -11,99 +11,58 @@ const arrowButton = {
   arrowRight: ArrowRight,
 };
 
-function CardList() {
-  const handleScroll = (direction) => {
-    const container = document.getElementById('cardListContainer');
-    if (container) {
-      const scrollAmount = direction === 'left' ? -100 : 100;
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
+function CardList({
+  recipientsData,
+  rightClick,
+  leftClick,
+  rightButtonVisible,
+  leftButtonVisible,
+}) {
+  // const handleScroll = (direction) => {
+  //   const container = document.getElementById('cardListContainer');
+  //   if (container) {
+  //     const scrollAmount = direction === 'left' ? -100 : 100;
+  //     container.scrollBy({
+  //       left: scrollAmount,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // };
 
   return (
     <CardListContainer id="cardListContainer">
-      <ArrowButtonLeft
-        onClick={handleScroll('left')}
-        backgroundImage={`url(${arrowButton.background})`}
-      >
-        <img src={ArrowLeft} alt="왼쪽화살표" />
-      </ArrowButtonLeft>
+      {leftButtonVisible ? (
+        <ArrowButtonLeft
+          onClick={leftClick}
+          backgroundimage={`url(${arrowButton.background})`}
+        >
+          <img src={ArrowLeft} alt="왼쪽화살표" />
+        </ArrowButtonLeft>
+      ) : null}
       <CardListStyled>
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
+        {recipientsData.map((recipient) => (
+          <Card
+            key={recipient.id}
+            className="cardComponent"
+            id={recipient.id}
+            userName={recipient.name}
+            rollingWriteCount={recipient.messageCount}
+            backgroundColor={recipient.backgroundColor}
+            backgroundImage={recipient.backgroundImageURL}
+            profileImages={recipient.recentMessages}
+            emojiCount={recipient.reactionCount}
+            emojis={recipient.topReactions}
+          />
+        ))}
       </CardListStyled>
-      <ArrowButtonRight
-        onClick={handleScroll('right')}
-        backgroundImage={`url(${arrowButton.background})`}
-      >
-        <img src={ArrowRight} alt="오른쪽화살표" />
-      </ArrowButtonRight>
+      {rightButtonVisible ? (
+        <ArrowButtonRight
+          onClick={rightClick}
+          backgroundimage={`url(${arrowButton.background})`}
+        >
+          <img src={ArrowRight} alt="오른쪽화살표" />
+        </ArrowButtonRight>
+      ) : null}
     </CardListContainer>
   );
 }
@@ -140,19 +99,19 @@ const ArrowButton = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  background-image: ${(props) => `url("${props.backgroundImage}")`};
+  background-image: ${(props) => `url("${props.backgroundimage}")`};
   background-size: contain;
 `;
 
 const ArrowButtonLeft = styled(ArrowButton)`
   left: 0;
-  background-image: ${(props) => props.backgroundImage};
+  background-image: ${(props) => props.backgroundimage};
   background-size: cover;
 `;
 
 const ArrowButtonRight = styled(ArrowButton)`
   right: 0;
-  background-image: ${(props) => props.backgroundImage};
+  background-image: ${(props) => props.backgroundimage};
   background-size: cover;
 `;
 

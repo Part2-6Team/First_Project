@@ -1,7 +1,4 @@
 /* eslint-disable no-confusing-arrow */
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/extensions */
-/* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
@@ -10,14 +7,8 @@ import BackgroundPatternBeige from '../assets/pattern_beige.svg';
 import BackgroundPatternPurple from '../assets/pattern_purple.svg';
 import BackgroundPatternBlue from '../assets/pattern_blue.svg';
 import BackgroundPatterGreen from '../assets/pattern_green.svg';
-import BackgroundImage1 from '../assets/card_background_image1.png';
-import BackgroundImage2 from '../assets/card_background_image2.png';
-import profileImages from '../assets/profile';
+import defaultProfileImage from '../assets/profile/0.png';
 import device from '../config';
-
-const randomIndexes = Array.from({ length: 3 }, () =>
-  Math.floor(Math.random() * profileImages.length),
-);
 
 const BackgroundColorPattern = {
   beige: BackgroundPatternBeige,
@@ -26,107 +17,81 @@ const BackgroundColorPattern = {
   green: BackgroundPatterGreen,
 };
 
-const BackgroundColor = {
-  beige: 'var(--Orange-200)',
-  purple: 'var(--Purple-200)',
-  blue: 'var(--Blue-200)',
-  green: 'var(--Green-200)',
-};
-
-const BackgroundImages = {
-  one: BackgroundImage1,
-  two: BackgroundImage2,
-};
-
 function Card({
+  id,
   backgroundColor,
   backgroundImage,
-  toUser,
   userName,
   rollingWriteCount,
-  rollingWriteText,
-  emoji1,
-  emoji2,
-  emoji3,
-  count1,
-  count2,
-  count3,
+  profileImages,
+  emojis,
 }) {
   const [pageLink, setPageLink] = useState('');
 
   const handleClick = () => {
-    setPageLink('/post/:id');
+    setPageLink(`/post/${id}`);
   };
 
   if (pageLink) {
     window.location.href = pageLink;
   }
 
-  const randomChoice = Math.random() < 0.8 ? 'pattern' : 'image';
+  const profileImage = [];
+  profileImages.map((image) => profileImage.push(image.profileImageURL));
 
-  function getRandomImage() {
-    const keys = Object.keys(BackgroundImages);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    return randomKey;
-  }
-
-  function getRandomColorData() {
-    const keys = Object.keys(BackgroundColorPattern);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    return randomKey;
-  }
-
-  if (randomChoice === 'pattern') {
-    const randomColorData = getRandomColorData();
-    backgroundColor = BackgroundColor[randomColorData];
-    backgroundImage = BackgroundColorPattern[randomColorData];
-  } else {
-    const randomImage = getRandomImage();
-    backgroundImage = BackgroundImages[randomImage];
-  }
+  const emoji = [
+    { emoji: '😆', count: 0 },
+    { emoji: '😇', count: 0 },
+    { emoji: '😙', count: 0 },
+  ];
+  emojis.map((item, index) => {
+    emoji[index] = { emoji: item.emoji, count: item.count };
+    return null;
+  });
 
   return (
     <CardStyled
       onClick={handleClick}
-      backgroundColor={backgroundColor}
-      backgroundImage={backgroundImage}
+      backgroundcolor={backgroundColor}
+      backgroundimage={backgroundImage}
     >
       <CardContainer>
         <CardDataSection>
-          <CardToId>
-            {toUser} {userName}
-          </CardToId>
+          <CardToId>To. {userName}</CardToId>
           <ProfileImageContainer>
             <ProfileImageFirst
-              src={profileImages[randomIndexes[0]].img}
-              alt={profileImages[randomIndexes[0]].name}
+              src={profileImage[0] ?? defaultProfileImage}
+              alt="프로필이미지1"
             />
             <ProfileImage
-              src={profileImages[randomIndexes[1]].img}
-              alt={profileImages[randomIndexes[1]].name}
+              src={profileImage[1] ?? defaultProfileImage}
+              alt="프로필이미지2"
             />
             <ProfileImage
-              src={profileImages[randomIndexes[2]].img}
-              alt={profileImages[randomIndexes[2]].name}
+              src={profileImage[2] ?? defaultProfileImage}
+              alt="프로필이미지3"
             />
-            <ProfilePlus>+27</ProfilePlus>
+            <ProfilePlus>+{rollingWriteCount}</ProfilePlus>
           </ProfileImageContainer>
           <div>
             <RollingWriteCount>{rollingWriteCount}</RollingWriteCount>
-            <RollingWriteText>{rollingWriteText}</RollingWriteText>
+            <RollingWriteText>명이 작성했어요!</RollingWriteText>
           </div>
         </CardDataSection>
         <EmojiBadgeSection>
           <EmojiLine />
           <EmojiBadgeFrame>
             <EmojiBadge>
-              {emoji1} {count1}
+              {emoji[0].emoji}
+              {emoji[0].count}
             </EmojiBadge>
             <EmojiBadge>
-              {emoji2} {count2}
+              {emoji[1].emoji}
+              {emoji[1].count}
             </EmojiBadge>
             <EmojiBadge>
-              {emoji3} {count3}
+              {emoji[2].emoji}
+              {emoji[2].count}
             </EmojiBadge>
           </EmojiBadgeFrame>
         </EmojiBadgeSection>
@@ -141,8 +106,8 @@ const CardStyled = styled.div`
   padding: 30px 24px 20px 24px;
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: ${(props) => props.backgroundColor};
-  background-image: ${(props) => `url("${props.backgroundImage}")`};
+  background-color: ${(props) => props.backgroundcolor};
+  background-image: ${(props) => `url("${props.backgroundimage}")`};
   background-repeat: no-repeat;
   background-position: right bottom;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
@@ -150,12 +115,12 @@ const CardStyled = styled.div`
   cursor: pointer;
 
   ${(props) =>
-    props.backgroundImage === BackgroundColorPattern
+    props.backgroundimage === BackgroundColorPattern
       ? `
-      url("${props.backgroundImage}")
+      url("${props.backgroundimage}")
     `
       : `
-      linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url("${props.backgroundImage}")
+      linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url("${props.backgroundimage}")
       color: var(--White)
     `}
 `;
