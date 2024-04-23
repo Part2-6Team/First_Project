@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage';
 import SendMessagePage from './pages/SendMessagePage';
 import CreatedRollingPage from './pages/CreatedRollingPage';
 import CreatedRolloingPageEdit from './pages/CreatedRollingPageEdit';
+import ListPage from './pages/ListPage';
 import PostPage from './pages/MakePostPage';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="post/:id" element={<CreatedRollingPage />} />
         <Route path="post/:id/edit" element={<CreatedRolloingPageEdit />} />
         <Route path="post/:id/message" element={<SendMessagePage />} />
+        <Route path="list" element={<ListPage />} />
         <Route path="post" element={<PostPage />} />
       </Routes>
     </BrowserRouter>

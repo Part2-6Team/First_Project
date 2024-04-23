@@ -1,7 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import device from '../config';
 
 function Toinput({ value, setValue, touched, setTouched, placeholder }) {
+  Toinput.propTypes = {
+    value: PropTypes.string.isRequired,
+    setValue: PropTypes.func.isRequired,
+    touched: PropTypes.bool.isRequired,
+    setTouched: PropTypes.func.isRequired,
+    placeholder: PropTypes.string.isRequired,
+  };
+
   const isValid = value.length > 0;
 
   const onBlurHandle = () => {
@@ -44,7 +54,6 @@ const InputContainer = styled.div`
   align-items: start;
   justify-content: center;
   width: 100%;
-  margin-bottom: 50px;
   gap: 12px;
 
   h2 {
@@ -65,6 +74,10 @@ const Input = styled.input`
   font-color: var(--Gray-500);
   font-size: 16px;
   font-family: Pretendard;
+
+  @media ${device.mobile} {
+    width: 320px;
+  }
 `;
 
 const WarningText = styled.div`

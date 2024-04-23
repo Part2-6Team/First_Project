@@ -1,4 +1,4 @@
-const BASE_LINK = 'https://rolling-api.vercel.app/5-6';
+const BASE_LINK = 'https://rolling-api.vercel.app';
 
 export default async function getBackgroundImageURL() {
   const response = await fetch(`${BASE_LINK}/background-images/`);

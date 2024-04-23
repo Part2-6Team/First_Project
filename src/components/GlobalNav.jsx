@@ -43,7 +43,11 @@ const Nav = styled.nav`
   padding: 0 24px;
   margin: 0 auto;
 
-  @media ${device.pc_small} {
+  .logoLink, .postLink {
+    text-decoration-line: none;
+  }
+
+  @media ${device.tablet} {
     justify-content: space-between;
     padding: 0 24px;
     gap: 0;

@@ -11,7 +11,7 @@ export const SelectContainer = styled.div`
   cursor: pointer;
 `;
 
-export const CheckImage = styled.div`
+export const SelectedLayer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@ export const CheckImage = styled.div`
   justify-content: center;
   align-items: center;
 
-  .img {
+  img {
     width: 44px;
     height: 44px;
   }
