@@ -1,11 +1,13 @@
-const BASE_URL = 'https://rolling-api.vercel.app/5-6';
+const BASE_URL =
+  'https://rolling-api.vercel.app/5-6/recipients/?limit=4&offset=0';
 
-async function getRecipients(sort = '', offset = '1') {
-  let query = `?limit=4&offset=${offset}`;
+async function getRecipients(sort = '', url = BASE_URL) {
+  var query = '';
   if (sort !== '') {
     query = `${query}&sort=${sort}`;
   }
-  const response = await fetch(`${BASE_URL}/recipients/${query}`);
+
+  const response = await fetch(`${url}${query}`);
 
   if (!response.ok) {
     return response.status;

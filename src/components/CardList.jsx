@@ -11,8 +11,13 @@ const arrowButton = {
   arrowRight: ArrowRight,
 };
 
-function CardList({ recipientsData }) {
-  console.log(recipientsData);
+function CardList({
+  recipientsData,
+  rightClick,
+  leftClick,
+  rightButtonVisible,
+  leftButtonVisible,
+}) {
   const handleScroll = (direction) => {
     const container = document.getElementById('cardListContainer');
     if (container) {
@@ -26,12 +31,14 @@ function CardList({ recipientsData }) {
 
   return (
     <CardListContainer id="cardListContainer">
-      <ArrowButtonLeft
-        onClick={handleScroll('left')}
-        backgroundimage={`url(${arrowButton.background})`}
-      >
-        <img src={ArrowLeft} alt="왼쪽화살표" />
-      </ArrowButtonLeft>
+      {leftButtonVisible ? (
+        <ArrowButtonLeft
+          onClick={leftClick}
+          backgroundimage={`url(${arrowButton.background})`}
+        >
+          <img src={ArrowLeft} alt="왼쪽화살표" />
+        </ArrowButtonLeft>
+      ) : null}
       <CardListStyled>
         {recipientsData.map((recipient) => {
           return (
@@ -50,12 +57,14 @@ function CardList({ recipientsData }) {
           );
         })}
       </CardListStyled>
-      <ArrowButtonRight
-        onClick={handleScroll('right')}
-        backgroundimage={`url(${arrowButton.background})`}
-      >
-        <img src={ArrowRight} alt="오른쪽화살표" />
-      </ArrowButtonRight>
+      {rightButtonVisible ? (
+        <ArrowButtonRight
+          onClick={rightClick}
+          backgroundimage={`url(${arrowButton.background})`}
+        >
+          <img src={ArrowRight} alt="오른쪽화살표" />
+        </ArrowButtonRight>
+      ) : null}
     </CardListContainer>
   );
 }
