@@ -28,12 +28,7 @@ function Card({
   rollingWriteCount,
   profileImages,
   emojiCount,
-  emoji1,
-  emoji2,
-  emoji3,
-  count1,
-  count2,
-  count3,
+  emojis,
 }) {
   const [pageLink, setPageLink] = useState('');
 
@@ -48,6 +43,15 @@ function Card({
   const profileImage = [];
   profileImages.map((image) => {
     profileImage.push(image.profileImageURL);
+  });
+
+  const emoji = [
+    { emoji: '😆', count: 0 },
+    { emoji: '😇', count: 0 },
+    { emoji: '😙', count: 0 },
+  ];
+  emojis.map((item, index) => {
+    emoji[index] = { emoji: item.emoji, count: item.count };
   });
 
   return (
@@ -83,13 +87,16 @@ function Card({
           <EmojiLine />
           <EmojiBadgeFrame>
             <EmojiBadge>
-              {emoji1} {count1}
+              {emoji[0].emoji}
+              {emoji[0].count}
             </EmojiBadge>
             <EmojiBadge>
-              {emoji2} {count2}
+              {emoji[1].emoji}
+              {emoji[1].count}
             </EmojiBadge>
             <EmojiBadge>
-              {emoji3} {count3}
+              {emoji[2].emoji}
+              {emoji[2].count}
             </EmojiBadge>
           </EmojiBadgeFrame>
         </EmojiBadgeSection>

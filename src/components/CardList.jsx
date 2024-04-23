@@ -62,12 +62,7 @@ function CardList() {
                 backgroundImage={recipient.backgroundImageURL}
                 profileImages={recipient.recentMessages}
                 emojiCount={recipient.reactionCount}
-                emoji1="👍"
-                count1="20"
-                emoji2="😍"
-                count2="12"
-                emoji3="😢"
-                count3="7"
+                emojis={recipient.topReactions}
               />
             )
           );
