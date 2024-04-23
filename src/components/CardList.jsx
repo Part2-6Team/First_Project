@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
 import Background from '../assets/Ellipse1.svg';
 import ArrowLeft from '../assets/arrow_left.svg';
 import ArrowRight from '../assets/arrow_right.svg';
+import getRecipients from '../api/getRecipients';
 
 const arrowButton = {
   background: Background,
@@ -11,7 +12,11 @@ const arrowButton = {
   arrowRight: ArrowRight,
 };
 
+const recipientsData = [];
+
 function CardList() {
+  const [isLoading, setIsLoading] = useState(true);
+
   const handleScroll = (direction) => {
     const container = document.getElementById('cardListContainer');
     if (container) {
@@ -23,84 +28,50 @@ function CardList() {
     }
   };
 
+  useEffect(() => {
+    async function getData() {
+      const recipients = await getRecipients();
+      recipientsData.length = 0;
+      recipientsData.push(...recipients.results);
+    }
+    getData().then(() => {
+      console.log(recipientsData);
+      setIsLoading(false);
+    });
+  }, []);
+
   return (
     <CardListContainer id="cardListContainer">
       <ArrowButtonLeft
         onClick={handleScroll('left')}
-        backgroundImage={`url(${arrowButton.background})`}
+        backgroundimage={`url(${arrowButton.background})`}
       >
         <img src={ArrowLeft} alt="왼쪽화살표" />
       </ArrowButtonLeft>
       <CardListStyled>
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
-        <Card
-          className="cardComponent"
-          toUser="To."
-          userName="Sowon"
-          rollingWriteCount="30"
-          rollingWriteText="명이 작성했어요!"
-          emoji1="👍"
-          count1="20"
-          emoji2="😍"
-          count2="12"
-          emoji3="😢"
-          count3="7"
-        />
+        {recipientsData.map((recipient) => {
+          return (
+            !isLoading && (
+              <Card
+                className="cardComponent"
+                userName={recipient.name}
+                rollingWriteCount={recipient.messageCount}
+                backgroundColor={recipient.backgroundColor}
+                backgroundImage={recipient.backgroundImageURL}
+                emoji1="👍"
+                count1="20"
+                emoji2="😍"
+                count2="12"
+                emoji3="😢"
+                count3="7"
+              />
+            )
+          );
+        })}
       </CardListStyled>
       <ArrowButtonRight
         onClick={handleScroll('right')}
-        backgroundImage={`url(${arrowButton.background})`}
+        backgroundimage={`url(${arrowButton.background})`}
       >
         <img src={ArrowRight} alt="오른쪽화살표" />
       </ArrowButtonRight>
@@ -140,19 +111,19 @@ const ArrowButton = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  background-image: ${(props) => `url("${props.backgroundImage}")`};
+  background-image: ${(props) => `url("${props.backgroundimage}")`};
   background-size: contain;
 `;
 
 const ArrowButtonLeft = styled(ArrowButton)`
   left: 0;
-  background-image: ${(props) => props.backgroundImage};
+  background-image: ${(props) => props.backgroundimage};
   background-size: cover;
 `;
 
 const ArrowButtonRight = styled(ArrowButton)`
   right: 0;
-  background-image: ${(props) => props.backgroundImage};
+  background-image: ${(props) => props.backgroundimage};
   background-size: cover;
 `;
 

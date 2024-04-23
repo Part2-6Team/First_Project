@@ -7,11 +7,7 @@ function ListPageComponent() {
   return (
     <ListPageStyled>
       <CardListTitle textType="Text1" />
-      <CardList
-        background="background"
-        arrowWayLeft="arrowLeft"
-        arrowWayRight="arrowRight"
-      />
+      <CardList />
       <CardListTitle textType="Text2" />
       <CardList />
     </ListPageStyled>

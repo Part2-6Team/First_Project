@@ -41,10 +41,8 @@ const BackgroundImages = {
 function Card({
   backgroundColor,
   backgroundImage,
-  toUser,
   userName,
   rollingWriteCount,
-  rollingWriteText,
   emoji1,
   emoji2,
   emoji3,
@@ -62,40 +60,15 @@ function Card({
     window.location.href = pageLink;
   }
 
-  const randomChoice = Math.random() < 0.8 ? 'pattern' : 'image';
-
-  function getRandomImage() {
-    const keys = Object.keys(BackgroundImages);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    return randomKey;
-  }
-
-  function getRandomColorData() {
-    const keys = Object.keys(BackgroundColorPattern);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    return randomKey;
-  }
-
-  if (randomChoice === 'pattern') {
-    const randomColorData = getRandomColorData();
-    backgroundColor = BackgroundColor[randomColorData];
-    backgroundImage = BackgroundColorPattern[randomColorData];
-  } else {
-    const randomImage = getRandomImage();
-    backgroundImage = BackgroundImages[randomImage];
-  }
-
   return (
     <CardStyled
       onClick={handleClick}
-      backgroundColor={backgroundColor}
-      backgroundImage={backgroundImage}
+      backgroundcolor={backgroundColor}
+      backgroundimage={backgroundImage}
     >
       <CardContainer>
         <CardDataSection>
-          <CardToId>
-            {toUser} {userName}
-          </CardToId>
+          <CardToId>To. {userName}</CardToId>
           <ProfileImageContainer>
             <ProfileImageFirst
               src={profileImages[randomIndexes[0]].img}
@@ -113,7 +86,7 @@ function Card({
           </ProfileImageContainer>
           <div>
             <RollingWriteCount>{rollingWriteCount}</RollingWriteCount>
-            <RollingWriteText>{rollingWriteText}</RollingWriteText>
+            <RollingWriteText>명이 작성했어요!</RollingWriteText>
           </div>
         </CardDataSection>
         <EmojiBadgeSection>
@@ -141,8 +114,8 @@ const CardStyled = styled.div`
   padding: 30px 24px 20px 24px;
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: ${(props) => props.backgroundColor};
-  background-image: ${(props) => `url("${props.backgroundImage}")`};
+  background-color: ${(props) => props.backgroundcolor};
+  background-image: ${(props) => `url("${props.backgroundimage}")`};
   background-repeat: no-repeat;
   background-position: right bottom;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
@@ -150,12 +123,12 @@ const CardStyled = styled.div`
   cursor: pointer;
 
   ${(props) =>
-    props.backgroundImage === BackgroundColorPattern
+    props.backgroundimage === BackgroundColorPattern
       ? `
-      url("${props.backgroundImage}")
+      url("${props.backgroundimage}")
     `
       : `
-      linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url("${props.backgroundImage}")
+      linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url("${props.backgroundimage}")
       color: var(--White)
     `}
 `;
