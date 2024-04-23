@@ -136,6 +136,9 @@ const StyledBtn = styled.button`
 
 const Container = styled.main`
   background-image: ${({ $img }) => ($img ? `url(${$img})` : 'none')};
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background: ${({ $backgroundColor }) => $backgroundColor || 'none'};
 
   width: 100%;
