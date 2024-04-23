@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import Card from './Card';
 import Background from '../assets/Ellipse1.svg';
@@ -18,16 +18,16 @@ function CardList({
   rightButtonVisible,
   leftButtonVisible,
 }) {
-  const handleScroll = (direction) => {
-    const container = document.getElementById('cardListContainer');
-    if (container) {
-      const scrollAmount = direction === 'left' ? -100 : 100;
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
+  // const handleScroll = (direction) => {
+  //   const container = document.getElementById('cardListContainer');
+  //   if (container) {
+  //     const scrollAmount = direction === 'left' ? -100 : 100;
+  //     container.scrollBy({
+  //       left: scrollAmount,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // };
 
   return (
     <CardListContainer id="cardListContainer">
@@ -40,22 +40,20 @@ function CardList({
         </ArrowButtonLeft>
       ) : null}
       <CardListStyled>
-        {recipientsData.map((recipient) => {
-          return (
-            <Card
-              key={recipient.id}
-              className="cardComponent"
-              id={recipient.id}
-              userName={recipient.name}
-              rollingWriteCount={recipient.messageCount}
-              backgroundColor={recipient.backgroundColor}
-              backgroundImage={recipient.backgroundImageURL}
-              profileImages={recipient.recentMessages}
-              emojiCount={recipient.reactionCount}
-              emojis={recipient.topReactions}
-            />
-          );
-        })}
+        {recipientsData.map((recipient) => (
+          <Card
+            key={recipient.id}
+            className="cardComponent"
+            id={recipient.id}
+            userName={recipient.name}
+            rollingWriteCount={recipient.messageCount}
+            backgroundColor={recipient.backgroundColor}
+            backgroundImage={recipient.backgroundImageURL}
+            profileImages={recipient.recentMessages}
+            emojiCount={recipient.reactionCount}
+            emojis={recipient.topReactions}
+          />
+        ))}
       </CardListStyled>
       {rightButtonVisible ? (
         <ArrowButtonRight

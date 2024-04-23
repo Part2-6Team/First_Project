@@ -1,8 +1,8 @@
-const BASE_URL =
-  'https://rolling-api.vercel.app/5-6/recipients/?limit=4&offset=0';
+// prettier-ignore
+const BASE_URL = 'https://rolling-api.vercel.app/5-6/recipients/?limit=4&offset=0';
 
 async function getRecipients(sort = '', url = BASE_URL) {
-  var query = '';
+  let query = '';
   if (sort !== '') {
     query = `${query}&sort=${sort}`;
   }

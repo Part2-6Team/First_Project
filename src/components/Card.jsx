@@ -1,7 +1,4 @@
 /* eslint-disable no-confusing-arrow */
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/extensions */
-/* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
@@ -27,7 +24,6 @@ function Card({
   userName,
   rollingWriteCount,
   profileImages,
-  emojiCount,
   emojis,
 }) {
   const [pageLink, setPageLink] = useState('');
@@ -41,9 +37,7 @@ function Card({
   }
 
   const profileImage = [];
-  profileImages.map((image) => {
-    profileImage.push(image.profileImageURL);
-  });
+  profileImages.map((image) => profileImage.push(image.profileImageURL));
 
   const emoji = [
     { emoji: '😆', count: 0 },
@@ -52,6 +46,7 @@ function Card({
   ];
   emojis.map((item, index) => {
     emoji[index] = { emoji: item.emoji, count: item.count };
+    return null;
   });
 
   return (
