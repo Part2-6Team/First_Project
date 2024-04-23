@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 function ToggleBtn({ onToggle, toggleValue }) {
   const [selected, setSelected] = useState(toggleValue);
@@ -12,12 +13,14 @@ function ToggleBtn({ onToggle, toggleValue }) {
   return (
     <ToggleBox>
       <ToggleOption
+        type="button"
         selected={selected === 'color'}
         onClick={() => onClickHandle('color')}
       >
         컬러
       </ToggleOption>
       <ToggleOption
+        type="button"
         selected={selected === 'img'}
         onClick={() => onClickHandle('img')}
       >
@@ -42,6 +45,7 @@ const ToggleOption = styled.button`
   align-items: center;
   padding: 0.7rem 1.6rem;
   border-radius: 0.6rem;
+  margin-top: 24px;
 
   font-size: 16px;
   line-height: 2.6rem;
@@ -53,5 +57,14 @@ const ToggleOption = styled.button`
   background-color: ${({ selected }) => (selected ? 'var(--White)' : 'var(--Gray-100)')};
   border: 2px solid ${({ selected }) => (selected ? 'var(--Purple-700)' : 'var(--Gray-100)')};
 `;
+
+ToggleBtn.propTypes = {
+  onToggle: PropTypes.func.isRequired,
+  toggleValue: PropTypes.string,
+};
+
+ToggleBtn.defaultProps = {
+  toggleValue: '',
+};
 
 export default ToggleBtn;

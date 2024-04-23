@@ -14,8 +14,9 @@ function PostPage() {
   const [name, setName] = useState('');
   const [nameTouched, setNameTouched] = useState(false);
   const [toggleValue, setToggleValue] = useState('color');
-  const color = ['beige', 'purple', 'blue', 'green'];
   const [items, setItems] = useState([]);
+  const [loadingError, setLoadingError] = useState(null);
+  const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
   const [selectedImg, setSelectedImg] = useState(null);
 
@@ -29,19 +30,15 @@ function PostPage() {
     setSelectedImg(value);
   };
 
-  const onToggleHandle = (value) => {
-    setToggleValue(value);
-  };
-
   const onLoadHandle = async () => {
     let result;
-
     try {
+      setLoadingError(null);
       result = await getBackgroundImageURL();
     } catch (error) {
+      setLoadingError(error);
       return;
     }
-
     const { imageUrls } = result;
     setItems(imageUrls);
   };
@@ -50,14 +47,18 @@ function PostPage() {
     onLoadHandle();
   }, []);
 
+  const onToggleHandle = (value) => {
+    setToggleValue(value);
+  };
+
   const onSubmitHandle = async (event) => {
     event.preventDefault();
 
     const data = {
       team: '5-6',
       name,
-      backgroundColor: selectedColor,
-      backgroundImageURL: selectedImg,
+      backgroundColor: toggleValue === 'color' ? selectedColor : null,
+      backgroundImageURL: toggleValue === 'img' ? selectedImg : null,
     };
 
     try {
@@ -71,7 +72,6 @@ function PostPage() {
           body: JSON.stringify(data),
         },
       );
-
       if (response.ok) {
         const result = await response.json();
         navigate(`/post/${result.id}`);
@@ -122,6 +122,7 @@ function PostPage() {
           >
             생성하기
           </Button>
+          {loadingError && <div>에러 발생</div>}
         </Form>
       </PostContainer>
     </>
@@ -135,7 +136,11 @@ const PostContainer = styled.div`
   align-items: center;
   position: relative;
   inset: 0;
-  padding: 5.7rem 0 35rem;
+  padding: 57px 0 35rem;
+
+  @media ${device.mobile} {
+    width: 320px;
+  }
 `;
 
 const Form = styled.form`
@@ -156,7 +161,7 @@ const SelectContainer = styled.div`
 
   @media ${device.mobile} {
     width: 320px;
-}
+  }
 `;
 
 const Explanation = styled.div`
