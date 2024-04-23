@@ -10,7 +10,7 @@ import getRequest from '../../api/getRequest';
 
 import CardModal from './CardModal';
 
-function Main() {
+function Main({ recipients }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [cardList, setCardList] = useState([]);
@@ -83,7 +83,12 @@ function Main() {
 
   return (
     <>
-      <Container $isCardModal={isCardModal} onClick={handleCloseCardModal}>
+      <Container
+        $isCardModal={isCardModal}
+        $backgroundColor={recipients?.backgroundColor}
+        $img={recipients?.backgroundImageURL}
+        onClick={handleCloseCardModal}
+      >
         <CardContainer>
           <EditBtnWithWeb onClick={handleToMoveEditPage}>
             수정하기
@@ -99,6 +104,7 @@ function Main() {
               profileImg={card.profileImageURL}
               comment={card.content}
               createdAt={card.createdAt}
+              font={card.font}
               onClickCard={handleViewCardModal}
             />
           ))}
@@ -129,8 +135,9 @@ const StyledBtn = styled.button`
 `;
 
 const Container = styled.main`
-  background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : 'none')};
-  background-color: var(--Orange-200);
+  background-image: ${({ $img }) => ($img ? `url(${$img})` : 'none')};
+  background: ${({ $backgroundColor }) => $backgroundColor || 'none'};
+
   width: 100%;
   display: flex;
   justify-content: center;

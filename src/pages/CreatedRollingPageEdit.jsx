@@ -41,7 +41,7 @@ function CreatedRollingPageEdit() {
             handleOpenUrlShared={onClickUrlShared}
             isUrlSharedPharases={isUrlSharedPharases}
           />
-          <Main />
+          <Main recipients={recipients} />
 
           {isUrlSharedPharases && <UrlCopyPhrases />}
         </>
