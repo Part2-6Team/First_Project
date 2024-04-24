@@ -122,7 +122,7 @@ function filterBrightness(isCardModal) {
 
 const Container = styled.main`
   background-image: ${({ $img }) => ($img ? `url(${$img})` : 'none')};
-  background: ${({$backgroundColor}) => Colors($backgroundColor) || 'none'};
+  background: ${({ $backgroundColor }) => Colors($backgroundColor) || 'none'};
   width: 100%;
   display: flex;
   flex-direction: column;

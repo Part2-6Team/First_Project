@@ -140,7 +140,7 @@ const Container = styled.main`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background: ${({$backgroundColor}) => Colors($backgroundColor) || 'none'};
+  background: ${({ $backgroundColor }) => Colors($backgroundColor) || 'none'};
 
   width: 100%;
   display: flex;
