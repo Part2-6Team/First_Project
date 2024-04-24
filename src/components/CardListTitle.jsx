@@ -13,6 +13,7 @@ function CardListTitle({ textType }) {
 }
 
 const CardListTitleStyled = styled.div`
+  font-family: Pretendard;
   color: var(--Black);
   font-size: 24px;
   font-weight: 700;

@@ -8,6 +8,7 @@ import BackgroundPatternPurple from '../assets/pattern_purple.svg';
 import BackgroundPatternBlue from '../assets/pattern_blue.svg';
 import BackgroundPatterGreen from '../assets/pattern_green.svg';
 import defaultProfileImage from '../assets/profile/0.png';
+import { Colors } from './BackgroundColors';
 import device from '../config';
 
 const BackgroundColorPattern = {
@@ -106,10 +107,11 @@ const CardStyled = styled.div`
   padding: 30px 24px 20px 24px;
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: ${(props) => props.backgroundcolor};
+  background-color: ${(props) => Colors(props.backgroundcolor)};
   background-image: ${(props) => `url("${props.backgroundimage}")`};
   background-repeat: no-repeat;
   background-position: right bottom;
+  background-size: cover;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   margin-top: 16px;
   cursor: pointer;
@@ -145,6 +147,7 @@ const CardDataSection = styled.div`
 `;
 
 const CardToId = styled.span`
+  font-family: Pretendard;
   color: var(--Gray-900);
   text-overflow: ellipsis;
   font-size: 24px;
@@ -190,6 +193,7 @@ const ProfilePlus = styled.div`
   `;
 
 const RollingWriteCount = styled.span`
+  font-family: Pretendard;
   color: var(--Gray-700);
   font-size: 1.6rem;
   font-weight: 700;
@@ -197,6 +201,7 @@ const RollingWriteCount = styled.span`
 `;
 
 const RollingWriteText = styled.span`
+  font-family: Pretendard;
   color: var(--Gray-700);
   font-size: 16px;
   font-weight: 400;
