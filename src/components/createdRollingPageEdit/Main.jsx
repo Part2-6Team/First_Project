@@ -8,6 +8,7 @@ import getRequest from '../../api/getRequest';
 import AddCard from '../createdRollingPage/AddCard';
 import Card from '../createdRollingPage/Card';
 import CardModal from '../createdRollingPage/CardModal';
+import { Colors } from '../BackgroundColors';
 
 function Main({ recipients }) {
   const { id } = useParams();
@@ -121,7 +122,7 @@ function filterBrightness(isCardModal) {
 
 const Container = styled.main`
   background-image: ${({ $img }) => ($img ? `url(${$img})` : 'none')};
-  background: ${({ $backgroundColor }) => $backgroundColor};
+  background: ${({$backgroundColor}) => Colors($backgroundColor) || 'none'};
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -21,6 +21,7 @@ const OutlinedButton = styled.button`
   color: var(--Black);
   cursor: pointer;
   white-space: nowrap;
+  font-family: Pretendard;
 
   &:disabled {
     background: var(--Gray-300);

@@ -7,6 +7,7 @@ import AddCard from './AddCard';
 import Card from './Card';
 import device from '../../config';
 import getRequest from '../../api/getRequest';
+import { Colors } from '../BackgroundColors';
 
 import CardModal from './CardModal';
 
@@ -135,11 +136,11 @@ const StyledBtn = styled.button`
 `;
 
 const Container = styled.main`
-  background-image: ${({ $img }) => ($img ? `url(${$img})` : 'none')};
+  background-image: ${({ $img }) => (`url(${$img})`)};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background: ${({ $backgroundColor }) => $backgroundColor || 'none'};
+  background: ${({$backgroundColor}) => Colors($backgroundColor) || 'none'};
 
   width: 100%;
   display: flex;

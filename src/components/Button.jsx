@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 const Button = styled.button`
+  font-family: Pretendard;
   width: ${({ size }) => size}px;
   color: var(--White);
   cursor: pointer;
